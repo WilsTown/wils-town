@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Bootstrap CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="style.css">
+
+    <title>UI Test</title>
+</head>
+<body>
+    <div id="WT-app">
+        <div id="main-cont">
+            <div id="nav-bar">
+                <button v-on:click="viewTimer" class="nav-icon" id="nav-1"></button>
+                <button v-on:click="viewTown" class="nav-icon" id="nav-2"></button>
+                <button v-on:click="viewEditTown" class="nav-icon" id="nav-3"></button>
+                <button v-on:click="viewSettings" class="nav-icon" id="nav-4"></button>
+            </div>
+            <div id="view-cont">
+                <img class="img" v-bind:src="display" v-bind:alt="display-alt">
+            </div>
+        </div>
+    </div>
+
+    <!--Javascript-->
+    <!--[192 DEV NOTE] type="module" used to indicate module us in js-->
+    <script type="module" src="main.js"></script>
+    <!--Bootstrap CDN-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--Vue CDN-->
+    <script src="https://unpkg.com/vue@3"></script>
+</body>
+</html>

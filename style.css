@@ -1,0 +1,51 @@
+:root{
+    --nav-height: min(10vw, 50px);
+}
+
+div {
+    border: 0px solid;
+}
+
+#nav-bar{
+    background-color: rgb(156, 156, 156);
+
+    margin: auto;
+    height: var(--nav-height);
+    max-height: 10vw;
+}
+
+#view-cont{
+    background-color: rgb(211, 211, 211);
+
+    height: calc(100vh - var(--nav-height));
+}
+
+.nav-icon{
+    height: inherit;
+    width: calc(2.5 * var(--nav-height));
+    float: left;
+    border: none;
+}
+
+#nav-1{
+    background-color: aquamarine;
+    margin-left: calc(50vw - (5 * var(--nav-height)));
+}
+
+#nav-2{
+    background-color: burlywood;
+}
+
+#nav-3{
+    background-color: aquamarine;
+}
+
+#nav-4{
+    background-color: burlywood;
+}
+
+.img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
