@@ -4,8 +4,10 @@
     <!--Bootstrap CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!--Stylesheet-->
+    <!--Main Stylesheet-->
     <link rel="stylesheet" href="style.css">
+    <!--Icons Stylesheet-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>UI Test</title>
 </head>
@@ -13,10 +15,10 @@
     <div id="WT-app">
         <div id="main-cont">
             <div id="nav-bar">
-                <button v-on:click="viewTimer" class="nav-icon" id="nav-1"></button>
-                <button v-on:click="viewTown" class="nav-icon" id="nav-2"></button>
-                <button v-on:click="viewEditTown" class="nav-icon" id="nav-3"></button>
-                <button v-on:click="viewSettings" class="nav-icon" id="nav-4"></button>
+                <button v-on:click="viewTimer" class="nav-btn" id="nav-1"><i class="fa fa-clock-o fa-3x"></i></button>
+                <button v-on:click="viewTown" class="nav-btn" id="nav-2"><i class="fa fa-map-o fa-3x"></i></button>
+                <button v-on:click="viewEditTown" class="nav-btn" id="nav-3"><i class="fa fa-paint-brush fa-3x"></i></button>
+                <button v-on:click="viewSettings" class="nav-btn" id="nav-4"><i class="fa fa-gear fa-3x"></i></button>
             </div>
             <div id="view-cont">
                 <img class="img" v-bind:src="display" v-bind:alt="display-alt">

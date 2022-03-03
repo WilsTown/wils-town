@@ -1,5 +1,5 @@
 :root{
-    --nav-height: min(10vw, 50px);
+    --nav-height: min(8vw, 70px);
 }
 
 div {
@@ -15,33 +15,32 @@ div {
 }
 
 #view-cont{
-    background-color: rgb(211, 211, 211);
-
     height: calc(100vh - var(--nav-height));
 }
 
-.nav-icon{
+.nav-btn{
     height: inherit;
     width: calc(2.5 * var(--nav-height));
     float: left;
     border: none;
+    background-color: rgb(156, 156, 156);
+}
+
+.nav-btn:hover{
+    background-color: rgb(168, 168, 168);
 }
 
 #nav-1{
-    background-color: aquamarine;
     margin-left: calc(50vw - (5 * var(--nav-height)));
 }
 
 #nav-2{
-    background-color: burlywood;
 }
 
 #nav-3{
-    background-color: aquamarine;
 }
 
 #nav-4{
-    background-color: burlywood;
 }
 
 .img{
