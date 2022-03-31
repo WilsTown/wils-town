@@ -17,7 +17,7 @@
         ButtonState="none"
       ></TimerButton>
     </div>
-    <Time TimeRaw=10></Time>
+    <Time :TimeRaw='TimeCount'></Time>
     <div id="line"></div>
     <div id="timer-settings">
       <span id="timer-settings">Timer</span>
@@ -44,6 +44,23 @@ export default {
     ToggleButton,
     Time,
   },
+  data(){
+    return{
+      TimeCount: 300
+    }
+  },
+  watch: {
+    TimeCount:{
+      handler(val){
+        if(val>0){
+          setTimeout(()=>{
+            this.TimeCount--;
+          }, 1000);
+        }
+      },
+      immediate: true
+    }
+  }
 };
 </script>
 
