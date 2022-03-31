@@ -1,6 +1,7 @@
 <template>
   <div id="timer-sesh-container">
     <div id="top-buttons">
+      <!-- SESSION SELECTION BUTTONS -->
       <TimerButton
         ButtonType="sesh-btn"
         ButtonText="Work"
@@ -17,19 +18,26 @@
         ButtonState="none"
       ></TimerButton>
     </div>
+
+    <!-- MAIN TIMER -->
     <div id="time">25:00</div>
+
+    <!-- ADDITIONAL SESSION SETTINGS -->
     <div id="line"></div>
     <div id="timer-settings">
       <span id="timer-settings">Timer</span>
       <ToggleButton></ToggleButton>
       <span id="timer-settings">Stopwatch</span>
     </div>
+
     <div>
-      <form action="">
-        <label for="" id="timeblocks">Timeblocks</label>
+      <form>
+        <label id="timeblocks">Timeblocks</label>
         <input type="number" id="timeblock-input" />
       </form>
     </div>
+
+    <!-- START BUTTON -->
   </div>
 </template>
 
@@ -57,18 +65,18 @@ export default {
 }
 
 #time {
-  font-size: 150px;
+  font-size: 170px;
   font-style: Roboto;
   font-weight: normal;
 }
 
 #timer-settings {
   padding-inline: 4rem;
-  padding-block: 1.5rem;
+  padding-block: 0.5rem;
 }
 
 #timeblocks {
-  padding: 1rem;
+  padding-inline: 1rem;
 }
 
 #timeblock-input {
@@ -81,10 +89,11 @@ export default {
 }
 
 #line {
-  width: 500px;
-  height: 5px;
+  width: 400px;
+  height: 3px;
   background: #6b4e47;
   border-radius: 2px;
   margin: auto;
+  margin-block: 0.2rem;
 }
 </style>
