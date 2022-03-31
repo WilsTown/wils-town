@@ -75,7 +75,7 @@ export default {
 
   padding-block: 0.5rem;
   padding-inline: 3rem;
-  margin-block: 1.5rem;
+  margin-block: 3rem;
 
   font-weight: bold;
   font-size: 30px;

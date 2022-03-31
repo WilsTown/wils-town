@@ -36,8 +36,6 @@
         <input type="number" id="timeblock-input" />
       </form>
     </div>
-
-    <!-- START BUTTON -->
   </div>
 </template>
 
@@ -85,7 +83,6 @@ export default {
   background: #fcf4d5;
   border: none;
   border-radius: 5px;
-  margin: 1rem;
 }
 
 #line {
