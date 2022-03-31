@@ -17,7 +17,7 @@
         ButtonState="none"
       ></TimerButton>
     </div>
-    <div id="time">25:00</div>
+    <Time TimeRaw=10></Time>
     <div id="line"></div>
     <div id="timer-settings">
       <span id="timer-settings">Timer</span>
@@ -36,11 +36,13 @@
 <script>
 import TimerButton from "./Button";
 import ToggleButton from "./ToggleButton";
+import Time from "./Time";
 export default {
   name: "TimerSession",
   components: {
     TimerButton,
     ToggleButton,
+    Time,
   },
 };
 </script>
