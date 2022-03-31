@@ -4,20 +4,20 @@
       <TimerButton
         ButtonType="sesh-btn"
         ButtonText="Work"
-        ButtonState="sesh-active"
+        :ButtonState='work_state'
       ></TimerButton>
       <TimerButton
         ButtonType="sesh-btn"
         ButtonText="Short Break"
-        ButtonState="none"
+        :ButtonState='short_break_state'
       ></TimerButton>
       <TimerButton
         ButtonType="sesh-btn"
         ButtonText="Long Break"
-        ButtonState="none"
+        :ButtonState='long_break_state'
       ></TimerButton>
     </div>
-    <Time :TimeRaw='TimeCount'></Time>
+    <Time :TimeRaw='time_count'></Time>
     <div id="line"></div>
     <div id="timer-settings">
       <span id="timer-settings">Timer</span>
@@ -46,16 +46,44 @@ export default {
   },
   data(){
     return{
-      TimeCount: 300
+      time_count: 5,
+      work_period: 5,
+      short_break_period: 5,
+      long_break_period: 5,
+      work_state: "sesh-active",
+      short_break_state: "none",
+      long_break_state: "none",
+      curr_block: 1,
+      total_time: 0
     }
   },
   watch: {
-    TimeCount:{
+    time_count:{
       handler(val){
         if(val>0){
           setTimeout(()=>{
-            this.TimeCount--;
+            this.time_count--;
+            console.log("Total Time Elapsed : "+this.total_time++);
           }, 1000);
+        //sesh-change
+        } else if(val==0){
+          this.curr_block++;
+          if(this.curr_block%6==0){
+            this.work_state="none";
+            this.short_break_state="none";
+            this.long_break_state="sesh-active";
+            this.time_count=this.long_break_period;
+          } else if(this.curr_block%2==0){
+            this.work_state="none";
+            this.short_break_state="sesh-active";
+            this.long_break_state="none";
+            this.time_count=this.short_break_period;
+          } else{
+            this.work_state="sesh-active";
+            this.short_break_state="none";
+            this.long_break_state="none";
+            this.time_count=this.work_period;
+          }
         }
       },
       immediate: true
@@ -73,12 +101,6 @@ export default {
 
 #top-buttons {
   position: inline;
-}
-
-#time {
-  font-size: 150px;
-  font-style: Roboto;
-  font-weight: normal;
 }
 
 #timer-settings {

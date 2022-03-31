@@ -10,3 +10,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#time {
+  font-size: 150px;
+  font-style: Roboto;
+  font-weight: normal;
+}
+</style>
