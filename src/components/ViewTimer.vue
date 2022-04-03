@@ -1,25 +1,40 @@
 <template>
-    <div id="timer-container">
-        <div id="timer-component">
-            <TimerSession></TimerSession>
-            <StartButton
-                ButtonType="start-btn"
-                ButtonText="START"
-                ButtonState="none"
-            ></StartButton>
-        </div>
+  <div id="timer-container">
+    <div id="timer-component">
+      <!-- <TimerSession> -->
+        <button v-for="tab in tabs" :key="tab" @click="selected = tab;">
+          {{ tab }}
+        </button>
+        <component :is="selected"></component>
+      <!-- </TimerSession> -->
+      <StartButton
+        ButtonType="start-btn"
+        ButtonText="START"
+        ButtonState="none"
+      ></StartButton>
     </div>
 </template>
 
 <script>
-import TimerSession from "./TimerSession";
+//import TimerSession from "./TimerSession";
+import Work from "./Work-tab";
+import ShortBreak from "./Shortbreak-tab";
+import LongBreak from "./Longbreak-tab";
 import StartButton from "./Button";
 export default {
-    name: "ViewTimer",
-    components: {
-        TimerSession,
-        StartButton,
-    },
+  name: "ViewTimer",
+  data: function() {
+    return {
+      tabs: ["Work", "ShortBreak", "LongBreak"],
+      selected: "Work"
+    };
+  },
+  components: {
+    Work,
+    ShortBreak,
+    LongBreak,
+    StartButton
+  },
 };
 </script>
 
