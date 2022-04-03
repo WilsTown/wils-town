@@ -1,27 +1,25 @@
 <template>
     <div id="timer-sesh-container">
         <div id="top-buttons">
-            <!-- SESSION SELECTION BUTTONS -->
             <TimerButton
                 ButtonType="sesh-btn"
                 ButtonText="Work"
-                ButtonState="sesh-active"
+                :ButtonState="work_state"
+            <!-- SESSION SELECTION BUTTONS -->
             ></TimerButton>
             <TimerButton
                 ButtonType="sesh-btn"
                 ButtonText="Short Break"
-                ButtonState="none"
+                :ButtonState="short_break_state"
             ></TimerButton>
             <TimerButton
                 ButtonType="sesh-btn"
                 ButtonText="Long Break"
-                ButtonState="none"
+                :ButtonState="long_break_state"
             ></TimerButton>
         </div>
-
         <!-- MAIN TIMER -->
-        <div id="time">25:00</div>
-
+        <Time :TimeRaw="time_count"></Time>
         <!-- ADDITIONAL SESSION SETTINGS -->
         <div id="line"></div>
         <div id="timer-settings">
@@ -29,7 +27,6 @@
             <ToggleButton></ToggleButton>
             <span id="timer-settings">Stopwatch</span>
         </div>
-
         <div>
             <form>
                 <label id="timeblocks">Timeblocks</label>
@@ -42,11 +39,60 @@
 <script>
 import TimerButton from "./Button";
 import ToggleButton from "./ToggleButton";
+import Time from "./Time";
 export default {
     name: "TimerSession",
     components: {
         TimerButton,
         ToggleButton,
+        Time,
+    },
+    data() {
+        return {
+            time_count: 5,
+            work_period: 5,
+            short_break_period: 5,
+            long_break_period: 5,
+            work_state: "sesh-active",
+            short_break_state: "none",
+            long_break_state: "none",
+            curr_block: 1,
+            total_time: 0,
+        };
+    },
+    watch: {
+        time_count: {
+            handler(val) {
+                if (val > 0) {
+                    setTimeout(() => {
+                        this.time_count--;
+                        console.log(
+                            "Total Time Elapsed : " + this.total_time++
+                        );
+                    }, 1000);
+                    //sesh-change
+                } else if (val == 0) {
+                    this.curr_block++;
+                    if (this.curr_block % 6 == 0) {
+                        this.work_state = "none";
+                        this.short_break_state = "none";
+                        this.long_break_state = "sesh-active";
+                        this.time_count = this.long_break_period;
+                    } else if (this.curr_block % 2 == 0) {
+                        this.work_state = "none";
+                        this.short_break_state = "sesh-active";
+                        this.long_break_state = "none";
+                        this.time_count = this.short_break_period;
+                    } else {
+                        this.work_state = "sesh-active";
+                        this.short_break_state = "none";
+                        this.long_break_state = "none";
+                        this.time_count = this.work_period;
+                    }
+                }
+            },
+            immediate: true,
+        },
     },
 };
 </script>
@@ -61,6 +107,7 @@ export default {
 #top-buttons {
     position: inline;
 }
+
 
 #time {
     font-size: 170px;
