@@ -1,11 +1,11 @@
 <template>
     <div id="timer-sesh-container">
         <div id="top-buttons">
+            <!-- SESSION SELECTION BUTTONS -->
             <TimerButton
                 ButtonType="sesh-btn"
                 ButtonText="Work"
                 :ButtonState="work_state"
-            <!-- SESSION SELECTION BUTTONS -->
             ></TimerButton>
             <TimerButton
                 ButtonType="sesh-btn"
