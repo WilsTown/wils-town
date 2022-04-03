@@ -1,14 +1,14 @@
 <template>
-  <div id="timer-container">
-    <div id="timer-component">
-      <!-- <TimerSession> -->
-        <TimerSession></TimerSession>
-      <StartButton
-        ButtonType="start-btn"
-        ButtonText="START"
-        ButtonState="none"
-      ></StartButton>
-    </div>
+    <div id="timer-container">
+        <div id="timer-component">
+            <!-- <TimerSession> -->
+            <TimerSession></TimerSession>
+            <StartButton
+                ButtonType="start-btn"
+                ButtonText="START"
+                ButtonState="none"
+            ></StartButton>
+        </div>
     </div>
 </template>
 
@@ -19,20 +19,20 @@ import TimerSession from "./TimerSession";
 //import LongBreak from "./Longbreak-tab";
 import StartButton from "./Button";
 export default {
-  name: "ViewTimer",
-  data: function() {
-    return {
-      tabs: ["Work", "ShortBreak", "LongBreak"],
-      selected: "Work"
-    };
-  },
-  components: {
-    //Work,
-    //ShortBreak,
-    //LongBreak,
-    StartButton,
-    TimerSession
-  },
+    name: "ViewTimer",
+    data: function () {
+        return {
+            tabs: ["Work", "ShortBreak", "LongBreak"],
+            selected: "Work",
+        };
+    },
+    components: {
+        //Work,
+        //ShortBreak,
+        //LongBreak,
+        StartButton,
+        TimerSession,
+    },
 };
 </script>
 
