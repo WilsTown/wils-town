@@ -1,20 +1,20 @@
 <template>
-	<button :class="ButtonType" :id="ButtonState">
-		{{ ButtonText }}
-		<i :class="IconClass" :id="IconState"></i>
-	</button>
+    <button :class="ButtonType" :id="ButtonState">
+        {{ ButtonText }}
+        <i :class="IconClass" :id="IconState"></i>
+    </button>
 </template>
 
 <script>
 export default {
-	name: "ButtonClass",
-	props: {
-		ButtonType: String,
-		ButtonText: String,
-		ButtonState: String,
-		IconClass: String,
-		IconState: String,
-	},
+    name: "ButtonClass",
+    props: {
+        ButtonType: String,
+        ButtonText: String,
+        ButtonState: String,
+        IconClass: String,
+        IconState: String,
+    },
 };
 </script>
 
@@ -22,48 +22,48 @@ export default {
 <style scoped>
 /* N A V  B U T T O N */
 .nav-btn {
-	height: inherit;
-	width: inherit;
-	border: none;
-	padding-right: 20px;
-	padding-left: 20px;
-	background-color: #b45a43;
-	color: #faf0ca;
+    height: inherit;
+    width: inherit;
+    border: none;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: #b45a43;
+    color: #faf0ca;
 }
 
 .nav-btn:hover {
-	background-color: #944532;
+    background-color: #944532;
 }
 
 #nav-active {
-	color: #f4d35e;
+    color: #f4d35e;
 }
 
 /* T I M E R  B U T T O N S */
 .sesh-btn {
-	height: 35px;
-	padding-right: 20px;
-	padding-left: 20px;
-	margin-top: 35px;
-	margin-inline: 40px;
-	border: none;
-	border-radius: 15px;
+    height: 35px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 35px;
+    margin-inline: 40px;
+    border: none;
+    border-radius: 15px;
 
-	font-family: Avenir;
-	font-size: 20px;
+    font-family: Avenir;
+    font-size: 20px;
 
-	background: #af4b32;
-	color: #fcf4d5;
+    background: #af4b32;
+    color: #fcf4d5;
 }
 
 .sesh-btn:hover {
-	background: #6b4e4750;
-	color: #fcf4d5;
+    background: #6b4e4750;
+    color: #fcf4d5;
 }
 
 #sesh-active {
-	font-weight: bold;
-	background: #6b4e47;
-	color: #fcf4d5;
+    font-weight: bold;
+    background: #6b4e47;
+    color: #fcf4d5;
 }
 </style>
