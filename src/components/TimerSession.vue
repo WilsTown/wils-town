@@ -5,6 +5,7 @@
                 ButtonType="sesh-btn"
                 ButtonText="Work"
                 :ButtonState="work_state"
+            <!-- SESSION SELECTION BUTTONS -->
             ></TimerButton>
             <TimerButton
                 ButtonType="sesh-btn"
@@ -17,7 +18,9 @@
                 :ButtonState="long_break_state"
             ></TimerButton>
         </div>
+        <!-- MAIN TIMER -->
         <Time :TimeRaw="time_count"></Time>
+        <!-- ADDITIONAL SESSION SETTINGS -->
         <div id="line"></div>
         <div id="timer-settings">
             <span id="timer-settings">Timer</span>
@@ -25,8 +28,8 @@
             <span id="timer-settings">Stopwatch</span>
         </div>
         <div>
-            <form action="">
-                <label for="" id="timeblocks">Timeblocks</label>
+            <form>
+                <label id="timeblocks">Timeblocks</label>
                 <input type="number" id="timeblock-input" />
             </form>
         </div>
@@ -105,13 +108,20 @@ export default {
     position: inline;
 }
 
+
+#time {
+    font-size: 170px;
+    font-style: Roboto;
+    font-weight: normal;
+}
+
 #timer-settings {
     padding-inline: 4rem;
-    padding-block: 1.5rem;
+    padding-block: 0.5rem;
 }
 
 #timeblocks {
-    padding: 1rem;
+    padding-inline: 1rem;
 }
 
 #timeblock-input {
@@ -120,14 +130,14 @@ export default {
     background: #fcf4d5;
     border: none;
     border-radius: 5px;
-    margin: 1rem;
 }
 
 #line {
-    width: 500px;
-    height: 5px;
+    width: 400px;
+    height: 3px;
     background: #6b4e47;
     border-radius: 2px;
     margin: auto;
+    margin-block: 0.2rem;
 }
 </style>

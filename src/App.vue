@@ -32,4 +32,9 @@ export default {
     left: 0%;
     right: 0%;
 }
+
+@font-face {
+    font-family: Sen;
+    src: "https://fonts.google.com/specimen/Sen";
+}
 </style>
