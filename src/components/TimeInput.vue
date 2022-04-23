@@ -10,6 +10,7 @@ export default {
     data: function () {
         return {
             time_val: "0:00",
+            time_raw: 0,
         }
     },
     watch: {
@@ -20,8 +21,10 @@ export default {
                 } else if (val.length == 5 && val.charAt(0)==0) {
                     this.time_val = this.time_val.slice(1,);
                 } else if (val.length < 4) {
-                    this.time_val = "0".concat(this.time_val)
+                    this.time_val = "0".concat(this.time_val);
                 }
+                this.time_raw = Number(this.time_val.slice(0,this.time_val.indexOf(':'))) * 60 + Number(this.time_val.slice(this.time_val.indexOf(':')+1,));
+                this.$emit('update', this.time_raw);
             }
         }
     }
@@ -34,6 +37,7 @@ export default {
     border: none;
     outline: none;
     background: none;
-    width: fit-content;
+    text-align: center;
+    width: 100%;
 }
 </style>

@@ -21,8 +21,8 @@
             </div>
 
             <!-- MAIN TIMER -->
-            <Time :TimeRaw="time_count"></Time>
-            <TimeInput></TimeInput>
+            <Time v-if="time_runs" :TimeRaw="time_count"></Time>
+            <TimeInput v-else @update="periodUpdate"></TimeInput>
 
             <!-- ADDITIONAL SESSION SETTINGS -->
             <div id="line"></div>
@@ -129,6 +129,9 @@ export default {
                 this.start_stop = "START";
                 this.time_runs = false;
             }
+        },
+        periodUpdate (new_period) {
+            this.work_period = new_period;
         }
     }
 };
