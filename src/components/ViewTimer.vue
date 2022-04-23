@@ -1,9 +1,8 @@
 <template>
     <div id="timer-container">
         <div id="timer-component">
-            <!-- <TimerSession> -->
+            <!-- SESSION SELECTION BUTTONS -->
             <div id="top-buttons">
-                <!-- SESSION SELECTION BUTTONS -->
                 <TimerButton
                     ButtonType="sesh-btn"
                     ButtonText="Work"
@@ -20,8 +19,10 @@
                     :ButtonState="long_break_state"
                 ></TimerButton>
             </div>
+
             <!-- MAIN TIMER -->
             <Time :TimeRaw="time_count"></Time>
+
             <!-- ADDITIONAL SESSION SETTINGS -->
             <div id="line"></div>
             <div id="timer-settings">
@@ -35,10 +36,13 @@
                     <input type="number" id="timeblock-input" />
                 </form>
             </div>
+
+            <!-- START BUTTON -->
             <StartButton
                 ButtonType="start-btn"
-                ButtonText="START"
+                :ButtonText="start_stop"
                 ButtonState="none"
+                @click="toggleTime"
             ></StartButton>
         </div>
     </div>
@@ -60,7 +64,7 @@ export default {
             selected: "Work",
 
             // TIMER VARIABLES
-            time_count: 5,
+            time_count: 0,
             work_period: 5,
             short_break_period: 5,
             long_break_period: 5,
@@ -69,6 +73,8 @@ export default {
             long_break_state: "none",
             curr_block: 1,
             total_time: 0,
+            start_stop: "START",
+            time_runs : false,
         };
     },
     components: {
@@ -111,9 +117,18 @@ export default {
                     }
                 }
             },
-            immediate: true,
         },
     },
+    methods : {
+        toggleTime(){
+            if (this.time_runs == false) {
+                this.time_count = this.work_period;
+                this.start_stop = "STOP";
+                this.time_runs = true;
+            }
+            
+        }
+    }
 };
 </script>
 
