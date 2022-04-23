@@ -64,6 +64,7 @@ export default {
             selected: "Work",
 
             // TIMER VARIABLES
+            time_obj: undefined,
             time_count: 0,
             work_period: 5,
             short_break_period: 5,
@@ -89,15 +90,8 @@ export default {
     watch: {
         time_count: {
             handler(val) {
-                if (val > 0) {
-                    setTimeout(() => {
-                        this.time_count--;
-                        console.log(
-                            "Total Time Elapsed : " + this.total_time++
-                        );
-                    }, 1000);
-                    //sesh-change
-                } else if (val == 0) {
+                //sesh-change
+                if (val == 0) {
                     this.curr_block++;
                     if (this.curr_block % 6 == 0) {
                         this.work_state = "none";
@@ -121,12 +115,17 @@ export default {
     },
     methods : {
         toggleTime(){
-            if (this.time_runs == false) {
+            if (this.time_runs == false) { 
                 this.time_count = this.work_period;
+                this.time_obj = setInterval(() =>{this.time_count--}, 1000)
                 this.start_stop = "STOP";
                 this.time_runs = true;
+            } else {
+                this.time_count = this.work_period;
+                clearInterval(this.time_obj);
+                this.start_stop = "START";
+                this.time_runs = false;
             }
-            
         }
     }
 };
