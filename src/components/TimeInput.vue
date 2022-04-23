@@ -1,0 +1,39 @@
+<template>
+    <input type="tel" v-mask="['#:##','##:##', '###:##']" v-model="time_val" id="time">
+</template>
+
+<script>
+import {mask} from 'vue-the-mask'
+export default {
+    name: "TimeInputClass",
+    directives: {mask},
+    data: function () {
+        return {
+            time_val: "0:00",
+        }
+    },
+    watch: {
+        time_val: {
+            handler(val) {
+                if (val.length > 5) {
+                    this.time_val = this.time_val.slice(1,);
+                } else if (val.length == 5 && val.charAt(0)==0) {
+                    this.time_val = this.time_val.slice(1,);
+                } else if (val.length < 4) {
+                    this.time_val = "0".concat(this.time_val)
+                }
+            }
+        }
+    }
+};
+</script>
+
+<style scoped>
+#time {
+    color: #fcf4d5;
+    border: none;
+    outline: none;
+    background: none;
+    width: fit-content;
+}
+</style>

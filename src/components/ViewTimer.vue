@@ -22,6 +22,7 @@
 
             <!-- MAIN TIMER -->
             <Time :TimeRaw="time_count"></Time>
+            <TimeInput></TimeInput>
 
             <!-- ADDITIONAL SESSION SETTINGS -->
             <div id="line"></div>
@@ -56,6 +57,7 @@ import StartButton from "./Button";
 import TimerButton from "./Button";
 import ToggleButton from "./ToggleButton";
 import Time from "./Time";
+import TimeInput from "./TimeInput";
 export default {
     name: "ViewTimer",
     data: function () {
@@ -86,6 +88,7 @@ export default {
         TimerButton,
         ToggleButton,
         Time,
+        TimeInput,
     },
     watch: {
         time_count: {
