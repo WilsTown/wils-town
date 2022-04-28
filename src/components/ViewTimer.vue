@@ -33,13 +33,13 @@
             <div id="line"></div>
             <div id="timer-settings">
                 <span id="timer-settings">Timer</span>
-                <ToggleButton></ToggleButton>
+                <ToggleButton @click="toggleMode"></ToggleButton>
                 <span id="timer-settings">Stopwatch</span>
             </div>
             <div>
                 <form>
                     <label id="timeblocks">Timeblocks</label>
-                    <input type="number" id="timeblock-input" />
+                    <input type="number" id="timeblock-input" v-model="timer_blocks"/>
                 </form>
             </div>
 
@@ -85,6 +85,8 @@ export default {
             total_time: 0,
             start_stop: "START",
             time_runs : false,
+            timer_blocks: 1,
+            mode: "stopwatch",
         };
     },
     components: {
@@ -120,8 +122,22 @@ export default {
                         this.time_count = this.work_period;
                     }
                 }
-            },
+            }
         },
+        timer_blocks: {
+            handler(val){
+                if (val < 1) {
+                    this.timer_blocks = 1;
+                }
+            }
+        },
+        curr_block: {
+            handler(val){
+                if (this.mode == "timer" && Math.floor((val-1)/6) == this.timer_blocks){
+                    this.toggleTime();
+                }
+            }
+        }
     },
     methods : {
         toggleTime(){
@@ -141,6 +157,8 @@ export default {
                 clearInterval(this.time_obj);
                 this.start_stop = "START";
                 this.time_runs = false;
+                console.log("Session stopped | Mode : " + this.mode + " | Total Elapsed Time : " + this.total_time + " | Total Time Blocks : " + Math.floor((this.curr_block-1)/6));
+                this.total_time = 0;
             }
         },
         periodUpdate (new_period) {
@@ -173,7 +191,17 @@ export default {
                 this.short_break_state = "none";
                 this.long_break_state = "sesh-active";
             }
+        },
+        toggleMode () {
+            if (this.time_runs == false) {
+                if (this.mode == "stopwatch") {this.mode = "timer"}
+                else if (this.mode == "timer") {this.mode = "stopwatch"}
+                console.log("Current mode : " + this.mode);
+            }
         }
+    },
+    mounted () {
+        console.log("Current mode : " + this.mode);
     }
 };
 </script>
