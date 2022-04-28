@@ -1,6 +1,7 @@
 <template>
     <div id="view-inventory-container">
-        <div id="left-inventory"> 
+        <div id="left-inventory">
+            <img id="inventory" src="disp-inventory.png" />  
             <div id="inventory-name"> 
                 <div id="top-buttons">
                     <InventoryButton
@@ -8,22 +9,35 @@
                     ButtonText="Inventory"
                     :ButtonState="inventory_state">
                     </InventoryButton>
-                    <InventoryButton
-                    ButtonType="inv-btn"
+                    <StoreButton
+                    ButtonType="store-btn"
                     ButtonText="Store"
                     :ButtonState="store_state">
-                    </InventoryButton>
+                    </StoreButton>
                 </div>
             </div>
         </div>
+        <img id="town" src="town-edit.png" />
+         
     </div>
 </template>
 
 <script>
 import InventoryButton from "./Button";
+import StoreButton from "./Button";
 export default {
     name: "ViewInventory",
-    components: {},
+    components: {
+        InventoryButton,
+        StoreButton,
+    },
+    data() {
+        return {
+            inventory_state: "inv-active",
+            store_state: "none",
+            
+        };
+    },
 };
 </script>
 
@@ -62,6 +76,23 @@ export default {
 
 }
 #top-buttons {
-    position: inline;
+    position: fixed;
+    top: 50px;
+    
+}
+
+#town {
+    height: 95%;
+    padding: 4%;
+}
+
+#inventory {
+    height: 80%;
+    position: fixed;
+    left: 0;
+    top: 80px;
+    width: 350px;
+    
+    
 }
 </style>

@@ -98,16 +98,40 @@ export default {
 /* I N V E N T O R Y  B U T T O N S */
 .inv-btn {
     height: 35px;
-    padding-right: 20px;
-    padding-left: 20px;
-    margin-inline: 40px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-inline: 25px;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
+    
 
-    font-family: Avenir;
+    font-family: Helvetica;
     font-size: 20px;
+    font-weight: bold;
 
     background: #00000000;
-    color: #fcf4d5;
+    color: #efefec;
+}
+
+#inv-active {
+    
+    background: #607896;
+    color: #efefec;
+}
+
+.store-btn {
+    height: 35px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-inline: 40px;
+    border: none;
+    border-radius: 10px;
+
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: bold;
+
+    background: #00000000;
+    color: #efefec;
 }
 </style>
