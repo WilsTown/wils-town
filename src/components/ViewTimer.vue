@@ -146,9 +146,11 @@ export default {
                 this.short_break_state = "none";
                 this.long_break_state = "none";
                 this.time_count = this.work_period;
+                console.log("SESSION STARTED\nMode : " + this.mode);
                 this.time_obj = setInterval(() =>{
                     this.time_count--;
-                    console.log(this.total_time++);
+                    this.total_time++;
+                    console.log(this.total_time);
                 }, 1000)
                 this.start_stop = "STOP";
                 this.time_runs = true;
@@ -157,7 +159,7 @@ export default {
                 clearInterval(this.time_obj);
                 this.start_stop = "START";
                 this.time_runs = false;
-                console.log("Session stopped | Mode : " + this.mode + " | Total Elapsed Time : " + this.total_time + " | Total Time Blocks : " + Math.floor((this.curr_block-1)/6));
+                console.log("SESSION STOPPED\nMode : " + this.mode + "\nTotal Elapsed Time : " + this.total_time + "\nTotal Time Blocks : " + Math.floor((this.curr_block-1)/6));
                 this.total_time = 0;
             }
         },
