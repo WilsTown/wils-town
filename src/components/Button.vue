@@ -94,4 +94,20 @@ export default {
 .start-btn:hover {
     background: #ffea97;
 }
+
+/* I N V E N T O R Y  B U T T O N S */
+.inv-btn {
+    height: 35px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-inline: 40px;
+    border: none;
+    border-radius: 15px;
+
+    font-family: Avenir;
+    font-size: 20px;
+
+    background: #00000000;
+    color: #fcf4d5;
+}
 </style>

@@ -1,12 +1,26 @@
 <template>
     <div id="view-inventory-container">
         <div id="left-inventory"> 
-            Inventory
+            <div id="inventory-name"> 
+                <div id="top-buttons">
+                    <InventoryButton
+                    ButtonType="inv-btn"
+                    ButtonText="Inventory"
+                    :ButtonState="inventory_state">
+                    </InventoryButton>
+                    <InventoryButton
+                    ButtonType="inv-btn"
+                    ButtonText="Store"
+                    :ButtonState="store_state">
+                    </InventoryButton>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import InventoryButton from "./Button";
 export default {
     name: "ViewInventory",
     components: {},
@@ -21,17 +35,33 @@ export default {
     bottom: 0%;
     left: 0%;
     right: 0%;
-    background-color: #f4d35e;
+    background-color: #0D3B66;
     justify-content: center;
     align-items: center;
 }
+#inventory-name{
+    background-color: #2C4C72;
+    width: 350px;
+    position: fixed;
+    z-index: 1;
+    height: 8%;
+    top: 40px;
+    left: 0;
+}
 #left-inventory {
-    height: 945px;
-    width: 480px;
-    position: left;
-    top: 20px;
-    border-radius: 0px;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 350px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 40px; /* Stay at the top */
+    left: 0;
+
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
     background-color: #607896;
 
+}
+#top-buttons {
+    position: inline;
 }
 </style>
