@@ -7,22 +7,27 @@
                     ButtonType="sesh-btn"
                     ButtonText="Work"
                     :ButtonState="work_state"
+                    @click="showWork"
                 ></TimerButton>
                 <TimerButton
                     ButtonType="sesh-btn"
                     ButtonText="Short Break"
                     :ButtonState="short_break_state"
+                    @click="showShort"
                 ></TimerButton>
                 <TimerButton
                     ButtonType="sesh-btn"
                     ButtonText="Long Break"
                     :ButtonState="long_break_state"
+                    @click="showLong"
                 ></TimerButton>
             </div>
 
             <!-- MAIN TIMER -->
             <Time v-if="time_runs" :TimeRaw="time_count"></Time>
-            <TimeInput v-else @update="periodUpdate"></TimeInput>
+            <TimeInput v-else-if="work_state == 'sesh-active'" @update="periodUpdate" :SavedPeriod="work_period"></TimeInput>
+            <TimeInput v-else-if="short_break_state == 'sesh-active'" @update="periodUpdate" :SavedPeriod="short_break_period"></TimeInput>
+            <TimeInput v-else-if="long_break_state == 'sesh-active'" @update="periodUpdate" :SavedPeriod="long_break_period"></TimeInput>
 
             <!-- ADDITIONAL SESSION SETTINGS -->
             <div id="line"></div>
@@ -71,9 +76,11 @@ export default {
             work_period: 5,
             short_break_period: 5,
             long_break_period: 5,
+
             work_state: "sesh-active",
             short_break_state: "none",
             long_break_state: "none",
+
             curr_block: 1,
             total_time: 0,
             start_stop: "START",
@@ -119,8 +126,14 @@ export default {
     methods : {
         toggleTime(){
             if (this.time_runs == false) { 
+                this.work_state = "sesh-active";
+                this.short_break_state = "none";
+                this.long_break_state = "none";
                 this.time_count = this.work_period;
-                this.time_obj = setInterval(() =>{this.time_count--}, 1000)
+                this.time_obj = setInterval(() =>{
+                    this.time_count--;
+                    console.log(this.total_time++);
+                }, 1000)
                 this.start_stop = "STOP";
                 this.time_runs = true;
             } else {
@@ -131,7 +144,35 @@ export default {
             }
         },
         periodUpdate (new_period) {
-            this.work_period = new_period;
+            if (this.work_state == "sesh-active") {
+                this.work_period = new_period;
+            } else if (this.short_break_state == "sesh-active") {
+                this.short_break_period = new_period;
+            } else if (this.long_break_state == "sesh-active") {
+                this.long_break_period = new_period;
+            }
+        },
+        showWork () {
+            if (this.time_runs == false){
+                this.work_state = "sesh-active";
+                this.short_break_state = "none";
+                this.long_break_state = "none";
+            }
+            
+        },
+        showShort () {
+            if (this.time_runs == false){
+                this.work_state = "none";
+                this.short_break_state = "sesh-active";
+                this.long_break_state = "none";
+            }
+        },
+        showLong () {
+            if (this.time_runs == false){
+                this.work_state = "none";
+                this.short_break_state = "none";
+                this.long_break_state = "sesh-active";
+            }
         }
     }
 };

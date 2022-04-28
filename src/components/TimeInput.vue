@@ -7,6 +7,9 @@ import {mask} from 'vue-the-mask'
 export default {
     name: "TimeInputClass",
     directives: {mask},
+    props: {
+        SavedPeriod: Number,
+    },
     data: function () {
         return {
             time_val: "0:00",
@@ -31,7 +34,7 @@ export default {
         }
     },
     mounted() {
-        
+        this.time_val =  String(Math.floor(this.SavedPeriod / 60)).concat(":", this.SavedPeriod % 60 < 10 ? "0" + (this.SavedPeriod % 60) : this.SavedPeriod % 60);
     }
 };
 </script>
