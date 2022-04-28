@@ -1,37 +1,39 @@
 <template>
     <div id="timer-sesh-container">
-        <div id="top-buttons">
-            <!-- SESSION SELECTION BUTTONS -->
-            <TimerButton
-                ButtonType="sesh-btn"
-                ButtonText="Work"
-                :ButtonState="work_state"
-            ></TimerButton>
-            <TimerButton
-                ButtonType="sesh-btn"
-                ButtonText="Short Break"
-                :ButtonState="short_break_state"
-            ></TimerButton>
-            <TimerButton
-                ButtonType="sesh-btn"
-                ButtonText="Long Break"
-                :ButtonState="long_break_state"
-            ></TimerButton>
-        </div>
-        <!-- MAIN TIMER -->
-        <Time :TimeRaw="time_count"></Time>
-        <!-- ADDITIONAL SESSION SETTINGS -->
-        <div id="line"></div>
-        <div id="timer-settings">
-            <span id="timer-settings">Timer</span>
-            <ToggleButton></ToggleButton>
-            <span id="timer-settings">Stopwatch</span>
-        </div>
-        <div>
-            <form>
-                <label id="timeblocks">Timeblocks</label>
-                <input type="number" id="timeblock-input" />
-            </form>
+        <div id="timer-component">
+            <div id="top-buttons">
+                <!-- SESSION SELECTION BUTTONS -->
+                <TimerButton
+                    ButtonType="sesh-btn"
+                    ButtonText="Work"
+                    :ButtonState="work_state"
+                ></TimerButton>
+                <TimerButton
+                    ButtonType="sesh-btn"
+                    ButtonText="Short Break"
+                    :ButtonState="short_break_state"
+                ></TimerButton>
+                <TimerButton
+                    ButtonType="sesh-btn"
+                    ButtonText="Long Break"
+                    :ButtonState="long_break_state"
+                ></TimerButton>
+            </div>
+            <!-- MAIN TIMER -->
+            <Time :TimeRaw="time_count"></Time>
+            <!-- ADDITIONAL SESSION SETTINGS -->
+            <div id="line"></div>
+            <div id="timer-settings">
+                <span id="timer-settings">Timer</span>
+                <ToggleButton></ToggleButton>
+                <span id="timer-settings">Stopwatch</span>
+            </div>
+            <div>
+                <form>
+                    <label id="timeblocks">Timeblocks</label>
+                    <input type="number" id="timeblock-input" />
+                </form>
+            </div>
         </div>
     </div>
 </template>
@@ -98,6 +100,14 @@ export default {
 </script>
 
 <style scoped>
+#timer-component {
+    background: #af4b32;
+    border-radius: 25px;
+    margin-block: 25px;
+    margin-inline: 300px;
+    padding-block: 25px;
+}
+
 #timer-sesh-container {
     color: #fcf4d5;
     font-size: 20px;
@@ -107,7 +117,6 @@ export default {
 #top-buttons {
     position: inline;
 }
-
 
 #time {
     font-size: 170px;

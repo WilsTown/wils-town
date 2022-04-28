@@ -44,7 +44,6 @@ export default {
     height: 35px;
     padding-right: 20px;
     padding-left: 20px;
-    margin-top: 25px;
     margin-inline: 40px;
     border: none;
     border-radius: 15px;
@@ -75,7 +74,6 @@ export default {
 
     padding-block: 0.5rem;
     padding-inline: 3rem;
-    margin-block: 3rem;
 
     font-weight: bold;
     font-size: 30px;
