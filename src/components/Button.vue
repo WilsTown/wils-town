@@ -51,7 +51,7 @@ export default {
     font-family: Avenir;
     font-size: 20px;
 
-    background: #af4b32;
+    background: #00000000;
     color: #fcf4d5;
 }
 
@@ -60,9 +60,21 @@ export default {
     color: #fcf4d5;
 }
 
-#sesh-active {
+#work-sesh-active {
     font-weight: bold;
     background: #6b4e47;
+    color: #fcf4d5;
+}
+
+#sbreak-sesh-active {
+    font-weight: bold;
+    background: #d65535;
+    color: #fcf4d5;
+}
+
+#lbreak-sesh-active {
+    font-weight: bold;
+    background: #f38569;
     color: #fcf4d5;
 }
 

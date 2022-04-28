@@ -2,20 +2,11 @@
     <div id="timer-container">
         <!-- <TimerSession> -->
         <TimerSession></TimerSession>
-        <StartButton
-            ButtonType="start-btn"
-            ButtonText="START"
-            ButtonState="none"
-        ></StartButton>
     </div>
 </template>
 
 <script>
 import TimerSession from "./TimerSession";
-//import Work from "./Work-tab";
-//import ShortBreak from "./Shortbreak-tab";
-//import LongBreak from "./Longbreak-tab";
-import StartButton from "./Button";
 export default {
     name: "ViewTimer",
     data: function () {
@@ -25,10 +16,6 @@ export default {
         };
     },
     components: {
-        //Work,
-        //ShortBreak,
-        //LongBreak,
-        StartButton,
         TimerSession,
     },
 };

@@ -1,6 +1,6 @@
 <template>
     <div id="timer-sesh-container">
-        <div id="timer-component">
+        <div class="timer-component" :id="timer_bg">
             <div id="top-buttons">
                 <!-- SESSION SELECTION BUTTONS -->
                 <TimerButton
@@ -22,7 +22,7 @@
             <!-- MAIN TIMER -->
             <Time :TimeRaw="time_count"></Time>
             <!-- ADDITIONAL SESSION SETTINGS -->
-            <div id="line"></div>
+            <div class="line" :id="line_bg"></div>
             <div id="timer-settings">
                 <span id="timer-settings">Timer</span>
                 <ToggleButton></ToggleButton>
@@ -35,16 +35,24 @@
                 </form>
             </div>
         </div>
+
+        <StartButton
+            ButtonType="start-btn"
+            ButtonText="START"
+            ButtonState="none"
+        ></StartButton>
     </div>
 </template>
 
 <script>
+import StartButton from "./Button";
 import TimerButton from "./Button";
 import ToggleButton from "./ToggleButton";
 import Time from "./Time";
 export default {
     name: "TimerSession",
     components: {
+        StartButton,
         TimerButton,
         ToggleButton,
         Time,
@@ -55,7 +63,9 @@ export default {
             work_period: 5,
             short_break_period: 5,
             long_break_period: 5,
-            work_state: "sesh-active",
+            timer_bg: "work-bg",
+            line_bg: "work-line",
+            work_state: "work-sesh-active",
             short_break_state: "none",
             long_break_state: "none",
             curr_block: 1,
@@ -76,17 +86,26 @@ export default {
                 } else if (val == 0) {
                     this.curr_block++;
                     if (this.curr_block % 6 == 0) {
+                        this.timer_bg = "lbreak-bg";
+                        this.line_bg = "lbreak-line";
+
                         this.work_state = "none";
                         this.short_break_state = "none";
-                        this.long_break_state = "sesh-active";
+                        this.long_break_state = "lbreak-sesh-active";
                         this.time_count = this.long_break_period;
                     } else if (this.curr_block % 2 == 0) {
+                        this.timer_bg = "sbreak-bg";
+                        this.line_bg = "sbreak-line";
+
                         this.work_state = "none";
-                        this.short_break_state = "sesh-active";
+                        this.short_break_state = "sbreak-sesh-active";
                         this.long_break_state = "none";
                         this.time_count = this.short_break_period;
                     } else {
-                        this.work_state = "sesh-active";
+                        this.timer_bg = "work-bg";
+                        this.line_bg = "work-line";
+
+                        this.work_state = "work-sesh-active";
                         this.short_break_state = "none";
                         this.long_break_state = "none";
                         this.time_count = this.work_period;
@@ -100,12 +119,36 @@ export default {
 </script>
 
 <style scoped>
-#timer-component {
+.timer-component {
     background: #af4b32;
     border-radius: 25px;
     margin-block: 25px;
-    margin-inline: 300px;
+    margin-inline: 330px;
     padding-block: 25px;
+}
+
+#work-bg {
+    background: #af4b32;
+}
+
+#sbreak-bg {
+    background: #f38569;
+}
+
+#lbreak-bg {
+    background: #feaa94;
+}
+
+#work-line {
+    background: #6b4e47;
+}
+
+#sbreak-line {
+    background: #d65535;
+}
+
+#lbreak-line {
+    background: #f38569;
 }
 
 #timer-sesh-container {
@@ -141,7 +184,7 @@ export default {
     border-radius: 5px;
 }
 
-#line {
+.line {
     width: 400px;
     height: 3px;
     background: #6b4e47;
