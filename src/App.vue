@@ -9,6 +9,7 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 import ViewTimer from "./components/ViewTimer.vue";
+//import ViewInventory from "./components/ViewInventory.vue";
 // import ViewTown from "./components/ViewTown.vue";
 
 export default {
@@ -17,6 +18,7 @@ export default {
         NavBar,
         ViewTimer,
         // ViewTown,
+        // ViewInventory,
     },
 };
 </script>
