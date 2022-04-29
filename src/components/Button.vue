@@ -44,6 +44,7 @@ export default {
     height: 35px;
     padding-right: 20px;
     padding-left: 20px;
+    margin-top: 25px;
     margin-inline: 40px;
     border: none;
     border-radius: 15px;
@@ -51,7 +52,7 @@ export default {
     font-family: Avenir;
     font-size: 20px;
 
-    background: #00000000;
+    background: #af4b32;
     color: #fcf4d5;
 }
 
@@ -60,21 +61,9 @@ export default {
     color: #fcf4d5;
 }
 
-#work-sesh-active {
+#sesh-active {
     font-weight: bold;
     background: #6b4e47;
-    color: #fcf4d5;
-}
-
-#sbreak-sesh-active {
-    font-weight: bold;
-    background: #d65535;
-    color: #fcf4d5;
-}
-
-#lbreak-sesh-active {
-    font-weight: bold;
-    background: #f38569;
     color: #fcf4d5;
 }
 
@@ -86,6 +75,7 @@ export default {
 
     padding-block: 0.5rem;
     padding-inline: 3rem;
+    margin-block: 3rem;
 
     font-weight: bold;
     font-size: 30px;
@@ -93,45 +83,5 @@ export default {
 
 .start-btn:hover {
     background: #ffea97;
-}
-
-/* I N V E N T O R Y  B U T T O N S */
-.inv-btn {
-    height: 35px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-inline: 25px;
-    border: none;
-    border-radius: 10px;
-    
-
-    font-family: Helvetica;
-    font-size: 20px;
-    font-weight: bold;
-
-    background: #00000000;
-    color: #efefec;
-}
-
-#inv-active {
-    
-    background: #607896;
-    color: #efefec;
-}
-
-.store-btn {
-    height: 35px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-inline: 40px;
-    border: none;
-    border-radius: 10px;
-
-    font-family: Helvetica;
-    font-size: 20px;
-    font-weight: bold;
-
-    background: #00000000;
-    color: #efefec;
 }
 </style>
