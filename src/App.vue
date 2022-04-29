@@ -2,23 +2,18 @@
     <div>
         <NavBar></NavBar>
         <ViewTimer></ViewTimer>
-        <!-- <ViewTown></ViewTown> -->
     </div>
 </template>
 
 <script>
 import NavBar from "./components/NavBar.vue";
 import ViewTimer from "./components/ViewTimer.vue";
-//import ViewInventory from "./components/ViewInventory.vue";
-// import ViewTown from "./components/ViewTown.vue";
 
 export default {
     name: "App",
     components: {
         NavBar,
         ViewTimer,
-        // ViewTown,
-        // ViewInventory,
     },
 };
 </script>
@@ -36,5 +31,10 @@ export default {
     bottom: 0%;
     left: 0%;
     right: 0%;
+}
+
+@font-face {
+    font-family: Sen;
+    src: "https://fonts.google.com/specimen/Sen";
 }
 </style>

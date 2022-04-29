@@ -1,12 +1,23 @@
 <template>
     <div id="timer-container">
-        <!-- <TimerSession> -->
-        <TimerSession></TimerSession>
+        <div id="timer-component">
+            <!-- <TimerSession> -->
+            <TimerSession></TimerSession>
+            <StartButton
+                ButtonType="start-btn"
+                ButtonText="START"
+                ButtonState="none"
+            ></StartButton>
+        </div>
     </div>
 </template>
 
 <script>
 import TimerSession from "./TimerSession";
+//import Work from "./Work-tab";
+//import ShortBreak from "./Shortbreak-tab";
+//import LongBreak from "./Longbreak-tab";
+import StartButton from "./Button";
 export default {
     name: "ViewTimer",
     data: function () {
@@ -16,6 +27,10 @@ export default {
         };
     },
     components: {
+        //Work,
+        //ShortBreak,
+        //LongBreak,
+        StartButton,
         TimerSession,
     },
 };
@@ -29,5 +44,16 @@ export default {
     left: 0%;
     right: 0%;
     background-color: #e76f51;
+}
+
+#timer-component {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 5%;
+    bottom: 20%;
+
+    background: #af4b32;
+    border-radius: 25px;
 }
 </style>

@@ -47,11 +47,6 @@ export default {
     background-color: #dc9e00;
 }
 
-#view-town {
-    background-color: #0e325d;
-}
-  
-
 #icon {
     height: 10px;
     width: 10px;
