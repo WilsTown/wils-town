@@ -1,25 +1,37 @@
 <template>
     <div>
-        <NavBar></NavBar>
-        <ViewTimer></ViewTimer>
-        <!-- <ViewTown></ViewTown> -->
+        <NavBar @navigate="navView"></NavBar>
+
+        <ViewTimer v-if="curr_view == 'ViewTimer'"></ViewTimer>
+        <ViewTown v-else-if="curr_view == 'ViewTown'"></ViewTown>
+        <ViewInventory v-else-if="curr_view == 'ViewInventory'"></ViewInventory>
     </div>
 </template>
 
 <script>
 import NavBar from "./components/NavBar.vue";
 import ViewTimer from "./components/ViewTimer.vue";
-//import ViewInventory from "./components/ViewInventory.vue";
-// import ViewTown from "./components/ViewTown.vue";
+import ViewInventory from "./components/ViewInventory.vue";
+import ViewTown from "./components/ViewTown.vue";
 
 export default {
     name: "App",
     components: {
         NavBar,
         ViewTimer,
-        // ViewTown,
-        // ViewInventory,
+        ViewTown,
+        ViewInventory,
     },
+    data : function(){
+        return{
+            curr_view: "ViewTimer",
+        }
+    },
+    methods : {
+        navView(selected_view) {
+            this.curr_view = selected_view;
+        }
+    }
 };
 </script>
 
