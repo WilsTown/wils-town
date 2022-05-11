@@ -1,9 +1,5 @@
 <template>
-    <div id="time">
-        {{ Math.floor(TimeRaw / 60) }}:{{
-            TimeRaw % 60 < 10 ? "0" + (TimeRaw % 60) : TimeRaw % 60
-        }}
-    </div>
+    <div id="time">{{formattedTime}}</div>
 </template>
 
 <script>
@@ -12,13 +8,10 @@ export default {
     props: {
         TimeRaw: Number,
     },
+    computed: {
+        formattedTime: function() {
+            return String(Math.floor(this.TimeRaw / 60)).concat(":", this.TimeRaw % 60 < 10 ? "0" + (this.TimeRaw % 60) : this.TimeRaw % 60)
+        }
+    }
 };
 </script>
-
-<style scoped>
-#time {
-    font-size: 150px;
-    font-style: Roboto;
-    font-weight: normal;
-}
-</style>
