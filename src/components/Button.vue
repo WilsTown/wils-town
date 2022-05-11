@@ -49,7 +49,7 @@ export default {
     border: none;
     border-radius: 15px;
 
-    font-family: Avenir;
+    font-family: Helvetica;
     font-size: 20px;
 
     background: #af4b32;
@@ -92,7 +92,7 @@ export default {
     padding-left: 5px;
     margin-inline: 25px;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     
 
     font-family: Helvetica;
@@ -100,28 +100,17 @@ export default {
     font-weight: bold;
 
     background: #00000000;
+    color: #efefec;
+}
+
+.inv-btn:hover {
+    background: #223b5a;
     color: #efefec;
 }
 
 #inv-active {
     
     background: #607896;
-    color: #efefec;
-}
-
-.store-btn {
-    height: 35px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-inline: 40px;
-    border: none;
-    border-radius: 10px;
-
-    font-family: Helvetica;
-    font-size: 20px;
-    font-weight: bold;
-
-    background: #00000000;
     color: #efefec;
 }
 </style>

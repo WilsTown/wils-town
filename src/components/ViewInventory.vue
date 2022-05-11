@@ -1,19 +1,21 @@
 <template>
-    <div id="view-inventory-container">
+    <div id="inventory-container">
         <div id="left-inventory">
             <img id="inventory" src="disp-inventory.png" />  
             <div id="inventory-name"> 
                 <div id="top-buttons">
                     <InventoryButton
-                    ButtonType="inv-btn"
-                    ButtonText="Inventory"
-                    :ButtonState="inventory_state">
-                    </InventoryButton>
+                        ButtonType="inv-btn"
+                        ButtonText="Inventory"
+                        :ButtonState="inventory_state"
+                        @click="showInventory"
+                    ></InventoryButton>
                     <StoreButton
-                    ButtonType="store-btn"
+                    ButtonType="inv-btn"
                     ButtonText="Store"
-                    :ButtonState="store_state">
-                    </StoreButton>
+                    :ButtonState="store_state"
+                    @click="showStore"
+                    ></StoreButton>
                 </div>
             </div>
         </div>
@@ -33,22 +35,40 @@ export default {
     },
     data() {
         return {
+            tabs: ["Inventory", "Store"],
+            selected: "Inventory", 
+
             inventory_state: "inv-active",
-            store_state: "none",
+            store_state: "none", 
             
-        };
-    },
+            
+        }; 
+    }, 
+    methods: {
+        showInventory() {
+            this.inventory_state = "inv-active";
+            this.store_state = "none";
+        },
+        showStore() {
+            this.inventory_state = "none";
+            this.store_state = "inv-active";
+        },
+        
+    }
 };
 </script>
 
 <style scoped>
-#view-inventory-container {
+#inventory-container {
     position: absolute;
     top: 40px;
     bottom: 0%;
     left: 0%;
     right: 0%;
     background-color: #0D3B66;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
 
 }
 #inventory-name{
@@ -81,7 +101,7 @@ export default {
 
 #town {
     height: 95%;
-    padding: 4%;
+    padding: 1%; 
 }
 
 #inventory {
