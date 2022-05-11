@@ -44,14 +44,12 @@ export default {
 <style scoped>
 #view-inventory-container {
     position: absolute;
-    display: flex;
     top: 40px;
     bottom: 0%;
     left: 0%;
     right: 0%;
     background-color: #0D3B66;
-    justify-content: center;
-    align-items: center;
+
 }
 #inventory-name{
     background-color: #2C4C72;
