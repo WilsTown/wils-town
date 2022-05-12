@@ -1,7 +1,6 @@
 <template>
     <div id="inventory-container">
-        <div id="left-inventory">
-            <img id="inventory" src="disp-inventory.png" />  
+        <div id="left-inventory"> 
             <div id="inventory-name"> 
                 <div id="top-buttons">
                     <InventoryButton
@@ -19,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <img id="town" src="town-edit.png" />
+        <div id = "edit-town">
          
     </div>
 </template>
@@ -59,6 +58,14 @@ export default {
 </script>
 
 <style scoped>
+#edit-town {
+    top: 40px;
+    position: fixed;
+    height: 80%;
+    width: 80%;
+
+
+}
 #inventory-container {
     position: absolute;
     top: 40px;
@@ -110,7 +117,6 @@ export default {
     left: 0;
     top: 80px;
     width: 350px;
-    
-    
+       
 }
 </style>
