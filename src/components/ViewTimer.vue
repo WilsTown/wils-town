@@ -1,6 +1,6 @@
 <template>
-    <div id="timer-container">
-        <div class="timer-component">
+    <div id="timer-sesh-container">
+        <div class="timer-component" :id="timer_bg">
             <!-- SESSION SELECTION BUTTONS -->
             <div id="top-buttons">
                 <TimerButton
@@ -42,7 +42,7 @@
             ></TimeInput>
 
             <!-- ADDITIONAL SESSION SETTINGS -->
-            <div class="line"></div>
+            <div class="line" :id="line_bg"></div>
             <div id="timer-settings">
                 <span id="timer-settings">Timer</span>
                 <ToggleButton @click="toggleMode"></ToggleButton>
@@ -170,7 +170,7 @@ export default {
     methods: {
         toggleTime() {
             if (this.time_runs == false) {
-                this.work_state = "sesh-active";
+                this.work_state = "work-sesh-active";
                 this.short_break_state = "none";
                 this.long_break_state = "none";
                 this.time_count = this.work_period;
@@ -200,11 +200,11 @@ export default {
             }
         },
         periodUpdate(new_period) {
-            if (this.work_state == "sesh-active") {
+            if (this.work_state == "work-sesh-active") {
                 this.work_period = new_period;
-            } else if (this.short_break_state == "sesh-active") {
+            } else if (this.short_break_state == "sbreak-sesh-active") {
                 this.short_break_period = new_period;
-            } else if (this.long_break_state == "sesh-active") {
+            } else if (this.long_break_state == "lbreak-sesh-active") {
                 this.long_break_period = new_period;
             }
         },
@@ -256,15 +256,6 @@ export default {
 </script>
 
 <style scoped>
-#timer-container {
-    position: absolute;
-    top: 40px;
-    bottom: 0%;
-    left: 0%;
-    right: 0%;
-    background-color: #e76f51;
-}
-
 .timer-component {
     background: #af4b32;
     border-radius: 25px;
@@ -298,6 +289,12 @@ export default {
 }
 
 #timer-sesh-container {
+    position: absolute;
+    top: 40px;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    background-color: #e76f51;
     color: #fcf4d5;
     font-size: 20px;
     font-weight: bold;

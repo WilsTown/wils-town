@@ -52,7 +52,7 @@ export default {
     font-family: Helvetica;
     font-size: 20px;
 
-    background: #af4b32;
+    background: #af4b3200;
     color: #fcf4d5;
 }
 
@@ -61,9 +61,21 @@ export default {
     color: #fcf4d5;
 }
 
-#sesh-active {
+#work-sesh-active {
     font-weight: bold;
     background: #6b4e47;
+    color: #fcf4d5;
+}
+
+#sbreak-sesh-active {
+    font-weight: bold;
+    background: #d65535;
+    color: #fcf4d5;
+}
+
+#lbreak-sesh-active {
+    font-weight: bold;
+    background: #f38569;
     color: #fcf4d5;
 }
 
@@ -93,7 +105,6 @@ export default {
     margin-inline: 25px;
     border: none;
     border-radius: 5px;
-    
 
     font-family: Helvetica;
     font-size: 20px;
@@ -109,7 +120,6 @@ export default {
 }
 
 #inv-active {
-    
     background: #607896;
     color: #efefec;
 }
