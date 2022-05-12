@@ -27,12 +27,12 @@ export default {
     border: none;
     padding-right: 20px;
     padding-left: 20px;
-    background-color: #b45a43;
+    background-color: #b45a4300;
     color: #faf0ca;
 }
 
 .nav-btn:hover {
-    background-color: #944532;
+    background-color: #1d1d1d34;
 }
 
 #nav-active {
@@ -44,20 +44,19 @@ export default {
     height: 35px;
     padding-right: 20px;
     padding-left: 20px;
-    margin-top: 25px;
     margin-inline: 40px;
     border: none;
     border-radius: 15px;
 
-    font-family: Helvetica;
+    font-family: Avenir;
     font-size: 20px;
 
-    background: #af4b3200;
+    background: #00000000;
     color: #fcf4d5;
 }
 
 .sesh-btn:hover {
-    background: #6b4e4750;
+    background: #6b4e472d;
     color: #fcf4d5;
 }
 
@@ -87,7 +86,6 @@ export default {
 
     padding-block: 0.5rem;
     padding-inline: 3rem;
-    margin-block: 3rem;
 
     font-weight: bold;
     font-size: 30px;
