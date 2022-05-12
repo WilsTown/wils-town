@@ -22,22 +22,22 @@ export default {
         ViewTown,
         ViewInventory,
     },
-    data : function(){
-        return{
+    data: function () {
+        return {
             curr_view: "ViewTimer",
-        }
+        };
     },
-    methods : {
+    methods: {
         navView(selected_view) {
             this.curr_view = selected_view;
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
