@@ -19,8 +19,7 @@
                 </div>
             </div>
         </div>
-        <img id="town" src="town-edit.png" />
-        <Grid></Grid>
+        <div id="town"><Grid></Grid></div>
     </div>
 </template>
 
@@ -103,7 +102,9 @@ export default {
 
 #town {
     height: 95%;
-    padding: 1%; 
+    width: calc(100% - 350px);
+    left: 350px;
+    position: relative;
 }
 
 #inventory {
@@ -112,7 +113,5 @@ export default {
     left: 0;
     top: 80px;
     width: 350px;
-    
-    
 }
 </style>

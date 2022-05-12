@@ -40,12 +40,14 @@ export default {
 #scale-container {
     width: 708px;
     height: 1416px;
+    transform-origin: top left;
     transform: scaleY(0.5);
 }
 
 #grid-container {
     width: 500px;
     height: 500px;
+    transform-origin: bottom left;
     transform: rotate(45deg);
     border: solid;
     border-width: 2px;
