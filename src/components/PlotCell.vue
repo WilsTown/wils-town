@@ -25,11 +25,14 @@ export default{
 
 <style scoped>
 .grid-cell {
-    width: 100px;
-    height: 100px;
+    width: 98px;
+    height: 98px;
     position: absolute;
     top: calc(100px * v-bind(top));
     left: calc(100px * v-bind(left));
+    border: dashed;
+    border-width: 1px;
+    border-color: black;
 }
 
 .grid-cell:hover {

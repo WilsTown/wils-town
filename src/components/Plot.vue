@@ -51,5 +51,6 @@ export default {
     transform: rotate(45deg);
     border: solid;
     border-width: 2px;
+    border-color: black;
 }
 </style>
