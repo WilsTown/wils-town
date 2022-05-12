@@ -69,7 +69,7 @@ export default {
             this.nav_color = "edit-town";
         },
         NavSettings() {
-            this.$emit("navigate", "ViewSettings");
+            this.$emit("navigate", "SetPreferences");
             this.timer_state = "none";
             this.town_state = "none";
             this.edit_state = "none";

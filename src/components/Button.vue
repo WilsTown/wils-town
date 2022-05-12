@@ -121,4 +121,19 @@ export default {
     background: #607896;
     color: #efefec;
 }
+
+/* S E T  P R E F E R E N C E S  B U T T O N S */
+.save-btn {
+    color: #614b72;
+    background: #ebd5fc;
+    border: none;
+    border-radius: 15px;
+
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.save-btn:hover {
+    background: #c9a4e7;
+}
 </style>
