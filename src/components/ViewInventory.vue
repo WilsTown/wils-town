@@ -19,20 +19,22 @@
             </div>
             <TownElementMenu></TownElementMenu>
         </div>
-        <div id="town"><Plot></Plot></div>
+        <div id="edit town" >
+            <EditTown></EditTown>
+        </div>
     </div>
 </template>
 
 <script>
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
-import Plot from "./Plot";
+import EditTown from "./EditTown.vue";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
-        Plot,
+        EditTown,
     },
     data() {
         return {
@@ -60,6 +62,11 @@ export default {
 </script>
 
 <style scoped>
+#edit-town {
+   
+    left: 375px;
+
+}
 #inventory-container {
     position: absolute;
     top: 40px;
@@ -69,7 +76,7 @@ export default {
     background-color: #0D3B66;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
 
 }
 #inventory-name{
@@ -100,6 +107,7 @@ export default {
     
 }
 
+=======
 #town {
     height: 95%;
     width: calc(100% - 350px);
