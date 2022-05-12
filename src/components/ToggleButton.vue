@@ -15,7 +15,8 @@
             stroke="#FCF4D5"
             stroke-width="8"
         />
-        <ellipse :cx="toggle_x" cy="38" rx="25.5" ry="25" fill="#FCF4D5" />
+        <!-- <ellipse :cx="toggle_x" cy="38" rx="25.5" ry="25" fill="#FCF4D5" /> -->
+        <ellipse cx="94.5" cy="38" rx="25.5" ry="25" fill="#FCF4D5" />
     </svg>
 </template>
 
@@ -24,7 +25,7 @@ export default {
     name: "ToggleButton",
     prop: {
         size: String,
-        toggle_x: String,
+        // toggle_x: String,
     },
 };
 </script>
