@@ -1,7 +1,6 @@
 <template>
     <div id="inventory-container">
         <div id="left-inventory">
-            <img id="inventory" src="disp-inventory.png" />  
             <div id="inventory-name"> 
                 <div id="top-buttons">
                     <InventoryButton
@@ -18,21 +17,22 @@
                     ></StoreButton>
                 </div>
             </div>
+            <TownElementMenu></TownElementMenu>
         </div>
-        <div id="town"><Grid></Grid></div>
+        <div id="town"><Plot></Plot></div>
     </div>
 </template>
 
 <script>
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
-import Grid from "./Grid";
+import Plot from "./Plot";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
-        Grid,
+        Plot,
     },
     data() {
         return {

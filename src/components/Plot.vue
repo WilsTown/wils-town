@@ -1,22 +1,22 @@
 <template>
     <div id="scale-container">
         <div id="grid-container">
-            <GridCell
+            <PlotCell
                 v-for="(cell) in this.cells_array"
                 :key="cell.id"
                 :Index="cell.id"
                 :GridSize="grid_size"
-            ></GridCell>
+            ></PlotCell>
         </div>
     </div>
 </template>
 
 <script>
-import GridCell from "./GridCell";
+import PlotCell from "./PlotCell";
 export default {
-    name : "GridClass",
+    name : "PlotClass",
     components: {
-        GridCell,
+        PlotCell,
     },
     data: function() {
         return {
