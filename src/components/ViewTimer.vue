@@ -25,9 +25,21 @@
 
             <!-- MAIN TIMER -->
             <Time v-if="time_runs" :TimeRaw="time_count"></Time>
-            <TimeInput v-else-if="work_state == 'sesh-active'" @update="periodUpdate" :SavedPeriod="work_period"></TimeInput>
-            <TimeInput v-else-if="short_break_state == 'sesh-active'" @update="periodUpdate" :SavedPeriod="short_break_period"></TimeInput>
-            <TimeInput v-else-if="long_break_state == 'sesh-active'" @update="periodUpdate" :SavedPeriod="long_break_period"></TimeInput>
+            <TimeInput
+                v-else-if="work_state == 'sesh-active'"
+                @update="periodUpdate"
+                :SavedPeriod="work_period"
+            ></TimeInput>
+            <TimeInput
+                v-else-if="short_break_state == 'sesh-active'"
+                @update="periodUpdate"
+                :SavedPeriod="short_break_period"
+            ></TimeInput>
+            <TimeInput
+                v-else-if="long_break_state == 'sesh-active'"
+                @update="periodUpdate"
+                :SavedPeriod="long_break_period"
+            ></TimeInput>
 
             <!-- ADDITIONAL SESSION SETTINGS -->
             <div id="line"></div>
@@ -39,7 +51,11 @@
             <div>
                 <form>
                     <label id="timeblocks">Timeblocks</label>
-                    <input type="number" id="timeblock-input" v-model="timer_blocks"/>
+                    <input
+                        type="number"
+                        id="timeblock-input"
+                        v-model="timer_blocks"
+                    />
                 </form>
             </div>
 
@@ -55,9 +71,6 @@
 </template>
 
 <script>
-//import Work from "./Work-tab";
-//import ShortBreak from "./Shortbreak-tab";
-//import LongBreak from "./Longbreak-tab";
 import StartButton from "./Button";
 import TimerButton from "./Button";
 import ToggleButton from "./ToggleButton";
@@ -84,15 +97,12 @@ export default {
             curr_block: 1,
             total_time: 0,
             start_stop: "START",
-            time_runs : false,
+            time_runs: false,
             timer_blocks: 1,
             mode: "stopwatch",
         };
     },
     components: {
-        //Work,
-        //ShortBreak,
-        //LongBreak,
         StartButton,
         TimerButton,
         ToggleButton,
@@ -122,36 +132,39 @@ export default {
                         this.time_count = this.work_period;
                     }
                 }
-            }
+            },
         },
         timer_blocks: {
-            handler(val){
+            handler(val) {
                 if (val < 1) {
                     this.timer_blocks = 1;
                 }
-            }
+            },
         },
         curr_block: {
-            handler(val){
-                if (this.mode == "timer" && Math.floor((val-1)/6) == this.timer_blocks){
+            handler(val) {
+                if (
+                    this.mode == "timer" &&
+                    Math.floor((val - 1) / 6) == this.timer_blocks
+                ) {
                     this.toggleTime();
                 }
-            }
-        }
+            },
+        },
     },
-    methods : {
-        toggleTime(){
-            if (this.time_runs == false) { 
+    methods: {
+        toggleTime() {
+            if (this.time_runs == false) {
                 this.work_state = "sesh-active";
                 this.short_break_state = "none";
                 this.long_break_state = "none";
                 this.time_count = this.work_period;
                 console.log("SESSION STARTED\nMode : " + this.mode);
-                this.time_obj = setInterval(() =>{
+                this.time_obj = setInterval(() => {
                     this.time_count--;
                     this.total_time++;
                     console.log(this.total_time);
-                }, 1000)
+                }, 1000);
                 this.start_stop = "STOP";
                 this.time_runs = true;
             } else {
@@ -159,12 +172,19 @@ export default {
                 clearInterval(this.time_obj);
                 this.start_stop = "START";
                 this.time_runs = false;
-                console.log("SESSION STOPPED\nMode : " + this.mode + "\nTotal Elapsed Time : " + this.total_time + "\nTotal Time Blocks : " + Math.floor((this.curr_block-1)/6));
+                console.log(
+                    "SESSION STOPPED\nMode : " +
+                        this.mode +
+                        "\nTotal Elapsed Time : " +
+                        this.total_time +
+                        "\nTotal Time Blocks : " +
+                        Math.floor((this.curr_block - 1) / 6)
+                );
                 this.total_time = 0;
                 this.curr_block = 1;
             }
         },
-        periodUpdate (new_period) {
+        periodUpdate(new_period) {
             if (this.work_state == "sesh-active") {
                 this.work_period = new_period;
             } else if (this.short_break_state == "sesh-active") {
@@ -173,39 +193,41 @@ export default {
                 this.long_break_period = new_period;
             }
         },
-        showWork () {
-            if (this.time_runs == false){
+        showWork() {
+            if (this.time_runs == false) {
                 this.work_state = "sesh-active";
                 this.short_break_state = "none";
                 this.long_break_state = "none";
             }
-            
         },
-        showShort () {
-            if (this.time_runs == false){
+        showShort() {
+            if (this.time_runs == false) {
                 this.work_state = "none";
                 this.short_break_state = "sesh-active";
                 this.long_break_state = "none";
             }
         },
-        showLong () {
-            if (this.time_runs == false){
+        showLong() {
+            if (this.time_runs == false) {
                 this.work_state = "none";
                 this.short_break_state = "none";
                 this.long_break_state = "sesh-active";
             }
         },
-        toggleMode () {
+        toggleMode() {
             if (this.time_runs == false) {
-                if (this.mode == "stopwatch") {this.mode = "timer"}
-                else if (this.mode == "timer") {this.mode = "stopwatch"}
+                if (this.mode == "stopwatch") {
+                    this.mode = "timer";
+                } else if (this.mode == "timer") {
+                    this.mode = "stopwatch";
+                }
                 console.log("Current mode : " + this.mode);
             }
-        }
+        },
     },
-    mounted () {
+    mounted() {
         console.log("Current mode : " + this.mode);
-    }
+    },
 };
 </script>
 
@@ -238,9 +260,8 @@ export default {
     position: inline;
 }
 
-
 #time {
-    font-size: 170px;
+    font-size: 200px;
     font-style: Roboto;
     font-weight: normal;
 }
