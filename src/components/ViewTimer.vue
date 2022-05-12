@@ -46,10 +46,7 @@
                 <div class="line" :id="line_bg"></div>
                 <div id="timer-settings">
                     <span id="timer-settings">Timer</span>
-                    <ToggleButton
-                        :toggle_x="toggle"
-                        @click="toggleMode"
-                    ></ToggleButton>
+                    <ToggleButton @click="toggleMode"></ToggleButton>
                     <span id="timer-settings">Stopwatch</span>
                 </div>
                 <div>
@@ -197,6 +194,14 @@ export default {
                 this.time_runs = false;
                 console.log(
                     "SESSION STOPPED\nMode : " +
+                        this.mode +
+                        "\nTotal Elapsed Time : " +
+                        this.total_time +
+                        "\nTotal Time Blocks : " +
+                        Math.floor((this.curr_block - 1) / 6)
+                );
+                alert(
+                    "SESSION DONE!\nMode: " +
                         this.mode +
                         "\nTotal Elapsed Time : " +
                         this.total_time +
