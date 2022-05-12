@@ -1,6 +1,6 @@
 <template>
     <div id="timer-container">
-        <div id="timer-component">
+        <div class="timer-component">
             <!-- SESSION SELECTION BUTTONS -->
             <div id="top-buttons">
                 <TimerButton
@@ -26,23 +26,23 @@
             <!-- MAIN TIMER -->
             <Time v-if="time_runs" :TimeRaw="time_count"></Time>
             <TimeInput
-                v-else-if="work_state == 'sesh-active'"
+                v-else-if="work_state == 'work-sesh-active'"
                 @update="periodUpdate"
                 :SavedPeriod="work_period"
             ></TimeInput>
             <TimeInput
-                v-else-if="short_break_state == 'sesh-active'"
+                v-else-if="short_break_state == 'sbreak-sesh-active'"
                 @update="periodUpdate"
                 :SavedPeriod="short_break_period"
             ></TimeInput>
             <TimeInput
-                v-else-if="long_break_state == 'sesh-active'"
+                v-else-if="long_break_state == 'lbreak-sesh-active'"
                 @update="periodUpdate"
                 :SavedPeriod="long_break_period"
             ></TimeInput>
 
             <!-- ADDITIONAL SESSION SETTINGS -->
-            <div id="line"></div>
+            <div class="line"></div>
             <div id="timer-settings">
                 <span id="timer-settings">Timer</span>
                 <ToggleButton @click="toggleMode"></ToggleButton>
@@ -90,9 +90,12 @@ export default {
             short_break_period: 5,
             long_break_period: 5,
 
-            work_state: "sesh-active",
+            work_state: "work-sesh-active",
             short_break_state: "none",
             long_break_state: "none",
+
+            timer_bg: "work-bg",
+            line_bg: "work-line",
 
             curr_block: 1,
             total_time: 0,
@@ -116,19 +119,31 @@ export default {
                 if (val == 0) {
                     this.curr_block++;
                     if (this.curr_block % 6 == 0) {
+                        this.timer_bg = "lbreak-bg";
+                        this.line_bg = "lbreak-line";
+
                         this.work_state = "none";
                         this.short_break_state = "none";
-                        this.long_break_state = "sesh-active";
+                        this.long_break_state = "lbreak-sesh-active";
+
                         this.time_count = this.long_break_period;
                     } else if (this.curr_block % 2 == 0) {
+                        this.timer_bg = "sbreak-bg";
+                        this.line_bg = "sbreak-line";
+
                         this.work_state = "none";
-                        this.short_break_state = "sesh-active";
+                        this.short_break_state = "sbreak-sesh-active";
                         this.long_break_state = "none";
+
                         this.time_count = this.short_break_period;
                     } else {
-                        this.work_state = "sesh-active";
+                        this.timer_bg = "work-bg";
+                        this.line_bg = "work-line";
+
+                        this.work_state = "work-sesh-active";
                         this.short_break_state = "none";
                         this.long_break_state = "none";
+
                         this.time_count = this.work_period;
                     }
                 }
@@ -195,23 +210,32 @@ export default {
         },
         showWork() {
             if (this.time_runs == false) {
-                this.work_state = "sesh-active";
+                this.timer_bg = "work-bg";
+                this.line_bg = "work-line";
+
+                this.work_state = "work-sesh-active";
                 this.short_break_state = "none";
                 this.long_break_state = "none";
             }
         },
         showShort() {
             if (this.time_runs == false) {
+                this.timer_bg = "sbreak-bg";
+                this.line_bg = "sbreak-line";
+
                 this.work_state = "none";
-                this.short_break_state = "sesh-active";
+                this.short_break_state = "sbreak-sesh-active";
                 this.long_break_state = "none";
             }
         },
         showLong() {
             if (this.time_runs == false) {
+                this.timer_bg = "lbreak-bg";
+                this.line_bg = "lbreak-line";
+
                 this.work_state = "none";
                 this.short_break_state = "none";
-                this.long_break_state = "sesh-active";
+                this.long_break_state = "lbreak-sesh-active";
             }
         },
         toggleMode() {
@@ -241,16 +265,39 @@ export default {
     background-color: #e76f51;
 }
 
-#timer-component {
-    position: absolute;
-    left: 25%;
-    right: 25%;
-    top: 5%;
-    bottom: 20%;
-
+.timer-component {
     background: #af4b32;
     border-radius: 25px;
+    margin-block: 25px;
+    margin-inline: 330px;
+    padding-block: 25px;
+}
 
+#work-bg {
+    background: #af4b32;
+}
+
+#sbreak-bg {
+    background: #f38569;
+}
+
+#lbreak-bg {
+    background: #feaa94;
+}
+
+#work-line {
+    background: #6b4e47;
+}
+
+#sbreak-line {
+    background: #d65535;
+}
+
+#lbreak-line {
+    background: #f38569;
+}
+
+#timer-sesh-container {
     color: #fcf4d5;
     font-size: 20px;
     font-weight: bold;
@@ -271,6 +318,11 @@ export default {
     padding-block: 0.5rem;
 }
 
+#timer-settings {
+    padding-inline: 4rem;
+    padding-block: 0.5rem;
+}
+
 #timeblocks {
     padding-inline: 1rem;
 }
@@ -283,7 +335,7 @@ export default {
     border-radius: 5px;
 }
 
-#line {
+.line {
     width: 400px;
     height: 3px;
     background: #6b4e47;
