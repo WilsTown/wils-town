@@ -1,6 +1,6 @@
 <template>
     <div id="inventory-container">
-        <div id="left-inventory"> 
+        <div id="left-inventory">
             <div id="inventory-name"> 
                 <div id="top-buttons">
                     <InventoryButton
@@ -17,11 +17,11 @@
                     ></StoreButton>
                 </div>
             </div>
+            <TownElementMenu></TownElementMenu>
         </div>
         <div id="edit town" >
             <EditTown></EditTown>
         </div>
-         
     </div>
 </template>
 
@@ -107,6 +107,13 @@ export default {
     
 }
 
+=======
+#town {
+    height: 95%;
+    width: calc(100% - 350px);
+    left: 350px;
+    position: relative;
+}
 
 #inventory {
     height: 80%;
@@ -114,6 +121,5 @@ export default {
     left: 0;
     top: 80px;
     width: 350px;
-       
 }
 </style>
