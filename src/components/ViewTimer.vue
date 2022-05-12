@@ -1,64 +1,68 @@
 <template>
-    <div id="timer-sesh-container">
-        <div class="timer-component" :id="timer_bg">
-            <!-- SESSION SELECTION BUTTONS -->
-            <div id="top-buttons">
-                <TimerButton
-                    ButtonType="sesh-btn"
-                    ButtonText="Work"
-                    :ButtonState="work_state"
-                    @click="showWork"
-                ></TimerButton>
-                <TimerButton
-                    ButtonType="sesh-btn"
-                    ButtonText="Short Break"
-                    :ButtonState="short_break_state"
-                    @click="showShort"
-                ></TimerButton>
-                <TimerButton
-                    ButtonType="sesh-btn"
-                    ButtonText="Long Break"
-                    :ButtonState="long_break_state"
-                    @click="showLong"
-                ></TimerButton>
-            </div>
+    <div id="timer-container">
+        <div id="timer-sesh-container">
+            <div class="timer-component" :id="timer_bg">
+                <!-- SESSION SELECTION BUTTONS -->
+                <div id="top-buttons">
+                    <TimerButton
+                        ButtonType="sesh-btn"
+                        ButtonText="Work"
+                        :ButtonState="work_state"
+                        @click="showWork"
+                    ></TimerButton>
+                    <TimerButton
+                        ButtonType="sesh-btn"
+                        ButtonText="Short Break"
+                        :ButtonState="short_break_state"
+                        @click="showShort"
+                    ></TimerButton>
+                    <TimerButton
+                        ButtonType="sesh-btn"
+                        ButtonText="Long Break"
+                        :ButtonState="long_break_state"
+                        @click="showLong"
+                    ></TimerButton>
+                </div>
 
-            <!-- MAIN TIMER -->
-            <Time v-if="time_runs" :TimeRaw="time_count"></Time>
-            <TimeInput
-                v-else-if="work_state == 'work-sesh-active'"
-                @update="periodUpdate"
-                :SavedPeriod="work_period"
-            ></TimeInput>
-            <TimeInput
-                v-else-if="short_break_state == 'sbreak-sesh-active'"
-                @update="periodUpdate"
-                :SavedPeriod="short_break_period"
-            ></TimeInput>
-            <TimeInput
-                v-else-if="long_break_state == 'lbreak-sesh-active'"
-                @update="periodUpdate"
-                :SavedPeriod="long_break_period"
-            ></TimeInput>
+                <!-- MAIN TIMER -->
+                <Time v-if="time_runs" :TimeRaw="time_count"></Time>
+                <TimeInput
+                    v-else-if="work_state == 'work-sesh-active'"
+                    @update="periodUpdate"
+                    :SavedPeriod="work_period"
+                ></TimeInput>
+                <TimeInput
+                    v-else-if="short_break_state == 'sbreak-sesh-active'"
+                    @update="periodUpdate"
+                    :SavedPeriod="short_break_period"
+                ></TimeInput>
+                <TimeInput
+                    v-else-if="long_break_state == 'lbreak-sesh-active'"
+                    @update="periodUpdate"
+                    :SavedPeriod="long_break_period"
+                ></TimeInput>
 
-            <!-- ADDITIONAL SESSION SETTINGS -->
-            <div class="line" :id="line_bg"></div>
-            <div id="timer-settings">
-                <span id="timer-settings">Timer</span>
-                <ToggleButton @click="toggleMode"></ToggleButton>
-                <span id="timer-settings">Stopwatch</span>
+                <!-- ADDITIONAL SESSION SETTINGS -->
+                <div class="line" :id="line_bg"></div>
+                <div id="timer-settings">
+                    <span id="timer-settings">Timer</span>
+                    <ToggleButton
+                        :toggle_x="toggle"
+                        @click="toggleMode"
+                    ></ToggleButton>
+                    <span id="timer-settings">Stopwatch</span>
+                </div>
+                <div>
+                    <form>
+                        <label id="timeblocks">Timeblocks</label>
+                        <input
+                            type="number"
+                            id="timeblock-input"
+                            v-model="timer_blocks"
+                        />
+                    </form>
+                </div>
             </div>
-            <div>
-                <form>
-                    <label id="timeblocks">Timeblocks</label>
-                    <input
-                        type="number"
-                        id="timeblock-input"
-                        v-model="timer_blocks"
-                    />
-                </form>
-            </div>
-
             <!-- START BUTTON -->
             <StartButton
                 ButtonType="start-btn"
@@ -103,6 +107,7 @@ export default {
             time_runs: false,
             timer_blocks: 1,
             mode: "stopwatch",
+            toggle: "94.5",
         };
     },
     components: {
@@ -170,6 +175,9 @@ export default {
     methods: {
         toggleTime() {
             if (this.time_runs == false) {
+                this.timer_bg = "work-bg";
+                this.line_bg = "work-line";
+
                 this.work_state = "work-sesh-active";
                 this.short_break_state = "none";
                 this.long_break_state = "none";
@@ -242,8 +250,10 @@ export default {
             if (this.time_runs == false) {
                 if (this.mode == "stopwatch") {
                     this.mode = "timer";
+                    this.toggle = "40";
                 } else if (this.mode == "timer") {
                     this.mode = "stopwatch";
+                    this.toggle = "94.5";
                 }
                 console.log("Current mode : " + this.mode);
             }
@@ -256,6 +266,21 @@ export default {
 </script>
 
 <style scoped>
+#timer-container {
+    position: absolute;
+    top: 40px;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    background-color: #e76f51;
+}
+
+#timer-sesh-container {
+    color: #fcf4d5;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .timer-component {
     background: #af4b32;
     border-radius: 25px;
@@ -288,31 +313,15 @@ export default {
     background: #f38569;
 }
 
-#timer-sesh-container {
-    position: absolute;
-    top: 40px;
-    bottom: 0%;
-    left: 0%;
-    right: 0%;
-    background-color: #e76f51;
-    color: #fcf4d5;
-    font-size: 20px;
-    font-weight: bold;
-}
-
 #top-buttons {
     position: inline;
 }
 
 #time {
     font-size: 200px;
-    font-style: Roboto;
+    font-style: Helvetica;
     font-weight: normal;
-}
-
-#timer-settings {
-    padding-inline: 4rem;
-    padding-block: 0.5rem;
+    padding: 0px;
 }
 
 #timer-settings {
