@@ -19,6 +19,7 @@
             </div>
         </div>
         <div id = "edit-town">
+        </div>
          
     </div>
 </template>
@@ -59,11 +60,12 @@ export default {
 
 <style scoped>
 #edit-town {
-    top: 40px;
+    top: 55px;
+    left: 375px;
     position: fixed;
-    height: 80%;
-    width: 80%;
-
+    height: 90%;
+    width: 75%;
+    background-color:#FAF0CA 
 
 }
 #inventory-container {
@@ -75,7 +77,7 @@ export default {
     background-color: #0D3B66;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
 
 }
 #inventory-name{
