@@ -18,18 +18,20 @@
             </div>
         </div>
         <img id="town" src="town-edit.png" />
-         
+        <Grid></Grid>
     </div>
 </template>
 
 <script>
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
+import Grid from "./Grid";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
+        Grid,
     },
     data() {
         return {
