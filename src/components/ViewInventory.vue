@@ -28,13 +28,15 @@
 <script>
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
-import EditTown from "./EditTown.vue";
+import EditTown from "./EditTown";
+import TownElementMenu from "./TownElementMenu";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
         EditTown,
+        TownElementMenu,
     },
     data() {
         return {
@@ -81,23 +83,23 @@ export default {
 }
 #inventory-name{
     background-color: #2C4C72;
-    width: 350px;
-    position: fixed;
+    width: 340px;
+    /* position: fixed; */
     z-index: 1;
-    height: 8%;
+    height: 70px;
     top: 40px;
     left: 0;
 }
 #left-inventory {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 350px; /* Set the width of the sidebar */
+    width: 340px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 40px; /* Stay at the top */
     left: 0;
 
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
+    /* padding-top: 20px; */
     background-color: #607896;
 
 }
@@ -109,8 +111,8 @@ export default {
 
 #town {
     height: 95%;
-    width: calc(100% - 350px);
-    left: 350px;
+    width: calc(100% - 330px);
+    left: 340px;
     position: relative;
 }
 

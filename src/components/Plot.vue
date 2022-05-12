@@ -53,7 +53,7 @@ export default {
     height: 500px;
     transform-origin: top left;
     margin-left: 50%;
-    margin-top: 50%;
+    margin-top: 30%;
     transform: rotate(45deg);
     border: solid;
     border-width: 2px;
