@@ -1,13 +1,17 @@
 <template>
     <div id="view-town-container">
-        <img id="town" src="town.png" />
+        <EditTown></EditTown>
     </div>
 </template>
 
 <script>
+
+import EditTown from "./EditTown.vue";
 export default {
     name: "ViewTown",
-    components: {},
+    components: {
+        EditTown,
+    },
 };
 </script>
 
@@ -24,7 +28,5 @@ export default {
     align-items: center;
 }
 
-#town {
-    height: 530px;
-}
+
 </style>

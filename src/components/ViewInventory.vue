@@ -18,7 +18,8 @@
                 </div>
             </div>
         </div>
-        <div id = "edit-town">
+        <div id="edit town" >
+            <EditTown></EditTown>
         </div>
          
     </div>
@@ -27,11 +28,13 @@
 <script>
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
+import EditTown from "./EditTown.vue";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
+        EditTown,
     },
     data() {
         return {
@@ -60,12 +63,8 @@ export default {
 
 <style scoped>
 #edit-town {
-    top: 55px;
+   
     left: 375px;
-    position: fixed;
-    height: 90%;
-    width: 75%;
-    background-color:#FAF0CA 
 
 }
 #inventory-container {
@@ -108,10 +107,6 @@ export default {
     
 }
 
-#town {
-    height: 95%;
-    padding: 1%; 
-}
 
 #inventory {
     height: 80%;
