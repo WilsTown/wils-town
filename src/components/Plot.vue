@@ -15,6 +15,9 @@
 import PlotCell from "./PlotCell";
 export default {
     name : "PlotClass",
+    props: {
+        StateEdit: Boolean,
+    },
     components: {
         PlotCell,
     },
@@ -42,12 +45,15 @@ export default {
     height: 1416px;
     transform-origin: top left;
     transform: scaleY(0.5);
+    margin: auto;
 }
 
 #grid-container {
     width: 500px;
     height: 500px;
-    transform-origin: bottom left;
+    transform-origin: top left;
+    margin-left: 50%;
+    margin-top: 50%;
     transform: rotate(45deg);
     border: solid;
     border-width: 2px;

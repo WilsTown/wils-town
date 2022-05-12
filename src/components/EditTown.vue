@@ -1,6 +1,19 @@
 <template>
-    <div id="edit-town"> </div>
+    <div id="edit-town">
+        <Plot></Plot>
+    </div>
 </template>
+
+<script>
+import Plot from "./Plot";
+export default {
+    name: "EditTown",
+    components: {
+        Plot
+    }
+}
+</script>
+
 
 <style scoped>
 #edit-town {

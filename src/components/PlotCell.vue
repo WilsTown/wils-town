@@ -36,6 +36,6 @@ export default{
 }
 
 .grid-cell:hover {
-    background-color: blue;
+    background-color: #81b8dd;
 }
 </style>

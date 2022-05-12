@@ -107,7 +107,6 @@ export default {
     
 }
 
-=======
 #town {
     height: 95%;
     width: calc(100% - 350px);
