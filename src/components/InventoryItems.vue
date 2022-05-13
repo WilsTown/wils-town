@@ -79,7 +79,7 @@ export default {
     display: flex;
     background: #b4bfce;
     color: #0d3b66;
-    height: 4.5rem;
+    height: 5rem;
     border-radius: 5px;
 }
 
