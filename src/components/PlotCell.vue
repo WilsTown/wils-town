@@ -59,7 +59,7 @@ export default{
 .rev-rotate-container{
     position: absolute;
     top: -20px;
-    left: -60px;
+    left: -70px;
     width: 98px;
     height: 98px;
     transform: rotate(-45deg);
