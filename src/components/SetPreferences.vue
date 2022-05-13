@@ -3,16 +3,25 @@
         <div id="settings-container">
             <div id="top">
                 <div id="title">Preferences</div>
-                <img src="exit-button.png" id="exit" />
+                <!-- <img src="exit-button.png" id="exit" /> -->
             </div>
             <div id="line"></div>
             <div id="contents">
                 <div class="item" id="inactive">Consequences</div>
 
                 <div class="item">Set Default Timeblock</div>
-                <div class="item" id="active">Work</div>
-                <div class="item" id="active">Short Break</div>
-                <div class="item" id="active">Long Break</div>
+                <div class="item" id="active">
+                    Work
+                    <input id="input-box" type="time" />
+                </div>
+                <div class="item" id="active">
+                    Short Break
+                    <input id="input-box" type="time" />
+                </div>
+                <div class="item" id="active">
+                    Long Break
+                    <input id="input-box" type="time" />
+                </div>
             </div>
             <PrefButton
                 ButtonType="save-btn"
@@ -36,7 +45,7 @@ export default {
 <style scoped>
 #component-container {
     position: absolute;
-    top: 0%;
+    top: 40px;
     bottom: 0%;
     left: 0%;
     right: 0%;
@@ -45,12 +54,11 @@ export default {
     align-content: center;
     justify-content: center;
 
-    background: #0000007c;
+    background: #866d99;
 }
 
 #settings-container {
-    position: absolute;
-    top: 50px;
+    margin: 2rem;
     height: 500px;
     width: 450px;
 
@@ -66,12 +74,13 @@ export default {
 
 #top {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-direction: row;
 }
 
 #title {
-    margin: 0.5rem;
+    margin-inline: 1rem;
+    margin-block: 0.5rem;
     font-size: 60px;
     font-weight: bold;
     order: 1;
@@ -84,7 +93,7 @@ export default {
 }
 
 #line {
-    width: 400px;
+    width: 420px;
     height: 2px;
     background: #fff9e4;
     border-radius: 2px;
@@ -106,6 +115,7 @@ export default {
 .item {
     display: flex;
     align-self: flex-start;
+    justify-content: space-between;
     background: #00000000;
     border-radius: 10px;
 
@@ -126,6 +136,14 @@ export default {
     background: #675376;
     color: #9588a0;
 }
+#input-box {
+    border: none;
+    width: 5rem;
+    background: #675376;
+    color: #fcf4d5;
+    border-radius: 5px;
+}
+
 #save {
     align-self: center;
     margin: 0.5rem;

@@ -74,6 +74,7 @@ export default {
             this.town_state = "none";
             this.edit_state = "none";
             this.settings_state = "nav-active";
+            this.nav_color = "settings";
         },
     },
 };
@@ -95,6 +96,10 @@ export default {
 
 #edit-town {
     background-color: #0b3154;
+}
+
+#settings {
+    background-color: #503c60;
 }
 
 #icon {
