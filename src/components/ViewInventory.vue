@@ -19,10 +19,14 @@
                 </div>
             </div>
             <div id="item-container">
-                <Inventory
+                <Inventory v-if="inventory_state == 'inv-active'"
                     ItemID="inventory-item"
                     EditOption="inventory-option"
                 ></Inventory>
+                <Store v-if="store_state == 'inv-active'"
+                    ItemID="inventory-item"
+                    EditOption="inventory-option"
+                ></Store>
             </div>
         </div>
         <div id="town"><Grid></Grid></div>
@@ -34,6 +38,7 @@ import InventoryButton from "./Button";
 import StoreButton from "./Button";
 import Grid from "./Grid";
 import Inventory from "./InventoryItems";
+import Store from "./StoreItems";
 export default {
     name: "ViewInventory",
     components: {
@@ -41,6 +46,7 @@ export default {
         StoreButton,
         Grid,
         Inventory,
+        Store,
     },
     data() {
         return {
