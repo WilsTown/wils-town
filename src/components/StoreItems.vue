@@ -3,6 +3,11 @@
         <div class="item-container" :id="EditOption">
             <div v-for="item in items" :key="item" class="item" :id="ItemID">
                 <img :src="item" id="item-img" />
+                <div id="item-description"> 
+                    ITEM NAME <br>
+                    Item description <br>
+                    Cost: 100 coins <br>
+                </div>
             </div>
         </div>
     </div>
@@ -21,7 +26,6 @@ export default {
         return {
             items: [
                 
-                "buildings/Layer 14.png",
                 "buildings/Layer 15.png",
                 "buildings/Layer 16.png",
                 "buildings/Layer 17.png",
@@ -57,13 +61,22 @@ export default {
 }
 
 #inventory-option {
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
 #store-option {
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+}
+
+#item-description{
+    display: flex;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
 }
 
 .item {
@@ -74,6 +87,8 @@ export default {
     border-radius: 5px;
 }
 
+
+
 .item:hover {
     background: #506b8b;
     color: #f1faee;
@@ -82,7 +97,8 @@ export default {
 #inventory-item {
     align-items: center;
     justify-content: center;
-    width: 5rem;
+    width: 80%;
+    height: 5rem;
     margin-block: 0.25rem;
     margin-inline: 0.5rem;
 }
@@ -94,6 +110,8 @@ export default {
 
 #item-img {
     height: 3.5rem;
+    position: absolute;
+    left: 20%;
 }
 </style>
 
