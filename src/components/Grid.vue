@@ -2,7 +2,7 @@
     <div id="scale-container">
         <div id="grid-container">
             <GridCell
-                v-for="(cell) in this.cells_array"
+                v-for="cell in this.cells_array"
                 :key="cell.id"
                 :Index="cell.id"
                 :GridSize="grid_size"
@@ -14,25 +14,24 @@
 <script>
 import GridCell from "./GridCell";
 export default {
-    name : "GridClass",
+    name: "GridClass",
     components: {
         GridCell,
     },
-    data: function() {
+    data: function () {
         return {
             grid_size: 5,
             cells_array: [],
-        }
+        };
     },
     mounted() {
         for (let i = 0; i < Math.pow(this.grid_size, 2); i++) {
             let cell = {
                 id: i,
-            }
-            this.cells_array.push(cell)
+            };
+            this.cells_array.push(cell);
         }
-    }
-
+    },
 };
 </script>
 
@@ -51,5 +50,7 @@ export default {
     transform: rotate(45deg);
     border: solid;
     border-width: 2px;
+
+    background: #fcf4d5;
 }
 </style>
