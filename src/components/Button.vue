@@ -122,6 +122,13 @@ export default {
     color: #efefec;
 }
 
+.inv-item {
+    background: #b4bfce;
+    color: #0d3b66;
+    height: 4rem;
+    width: 4rem;
+}
+
 /* S E T  P R E F E R E N C E S  B U T T O N S */
 .save-btn {
     color: #614b72;
