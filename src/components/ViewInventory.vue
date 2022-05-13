@@ -17,7 +17,7 @@
                     ></StoreButton>
                 </div>
             </div>
-            <TownElementMenu></TownElementMenu>
+            <TownElementMenu @elementSelected="updateElementSelect"></TownElementMenu>
         </div>
         <div id="edit town" >
             <EditTown></EditTown>
@@ -45,8 +45,8 @@ export default {
 
             inventory_state: "inv-active",
             store_state: "none", 
-            
-            
+
+            element_selected: -1,
         }; 
     }, 
     methods: {
@@ -58,7 +58,10 @@ export default {
             this.inventory_state = "none";
             this.store_state = "inv-active";
         },
-        
+        updateElementSelect(element_id) {
+            console.log(element_id);
+            this.element_selected = element_id;
+        }
     }
 };
 </script>
