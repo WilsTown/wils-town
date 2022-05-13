@@ -19,8 +19,8 @@
             </div>
             <TownElementMenu @elementSelected="updateElementSelect"></TownElementMenu>
         </div>
-        <div id="edit town" >
-            <EditTown></EditTown>
+        <div id="edit-town">
+            <EditTown StateEditing="true" :SelectedElement="element_selected"></EditTown>
         </div>
     </div>
 </template>
@@ -59,7 +59,6 @@ export default {
             this.store_state = "inv-active";
         },
         updateElementSelect(element_id) {
-            console.log(element_id);
             this.element_selected = element_id;
         }
     }
