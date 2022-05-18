@@ -1,10 +1,18 @@
 <template>
     <div>
+        <!-- <SetPreferences v-if="settings == 'SetPreferences'"></SetPreferences> -->
         <NavBar @navigate="navView"></NavBar>
 
-        <ViewTimer v-if="curr_view == 'ViewTimer'" @coinSequence="updateCoin" :Coins="this.coins"></ViewTimer>
+        <ViewTimer
+            v-if="curr_view == 'ViewTimer'"
+            @coinSequence="updateCoin"
+            :Coins="this.coins"
+        ></ViewTimer>
         <ViewTown v-else-if="curr_view == 'ViewTown'"></ViewTown>
         <ViewInventory v-else-if="curr_view == 'ViewInventory'"></ViewInventory>
+        <SetPreferences
+            v-else-if="curr_view == 'SetPreferences'"
+        ></SetPreferences>
     </div>
 </template>
 
@@ -13,6 +21,7 @@ import NavBar from "./components/NavBar.vue";
 import ViewTimer from "./components/ViewTimer.vue";
 import ViewInventory from "./components/ViewInventory.vue";
 import ViewTown from "./components/ViewTown.vue";
+import SetPreferences from "./components/SetPreferences.vue";
 
 export default {
     name: "App",
@@ -21,27 +30,28 @@ export default {
         ViewTimer,
         ViewTown,
         ViewInventory,
+        SetPreferences,
     },
-    data : function(){
-        return{
+    data: function () {
+        return {
             curr_view: "ViewTimer",
             coins: 0,
-        }
+        };
     },
-    methods : {
+    methods: {
         navView(selected_view) {
             this.curr_view = selected_view;
         },
         updateCoin(amount) {
             this.coins = this.coins + amount;
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
