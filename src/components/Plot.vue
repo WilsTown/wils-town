@@ -35,12 +35,6 @@ export default {
             .then(res => res.json())
             .then(data => this.cells_array = data)
             .catch(err => console.log(err.message));
-        
-        // for (let i = 0; i < Math.pow(this.grid_size, 2); i++) {
-        //     this.cells_array.push(-1)
-        // }
-        
-        console.log(this.plot_array);
     },
     methods : {
         placeElement(cell_id) {
