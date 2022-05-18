@@ -1,6 +1,6 @@
 <template>
     <div id="view-town-container">"
-        <EditTown StateEditing="false"></EditTown>
+        <EditTown StateEditing="disabled"></EditTown>
     </div>
 </template>
 

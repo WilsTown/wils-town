@@ -1,12 +1,13 @@
 <template>
     <div v-if="cells_array" id="scale-container">
-        <div id="grid-container">
+        <div id="grid-container" :target="StateEditing">
             <PlotCell
                 v-for="(cell, index) in this.cells_array"
                 :key="index"
                 :Index="index"
                 :GridSize="grid_size"
                 :Element="cell"
+                :StateEditing="StateEditing"
                 @click="placeElement(index)"
             ></PlotCell>
         </div>
@@ -38,6 +39,7 @@ export default {
     },
     methods : {
         placeElement(cell_id) {
+            if(this.StateEditing == "disabled"){return NaN}
             this.cells_array[cell_id] = this.SelectedElement;
         }
     }
@@ -53,7 +55,7 @@ export default {
     margin: auto;
 }
 
-#grid-container {
+#grid-container[target="enabled"] {
     width: 500px;
     height: 500px;
     transform-origin: top left;
@@ -63,5 +65,14 @@ export default {
     border: solid;
     border-width: 2px;
     border-color: black;
+}
+
+#grid-container[target="disabled"] {
+    width: 500px;
+    height: 500px;
+    transform-origin: top left;
+    transform: rotate(45deg);
+    margin-left: 50%;
+    margin-top: 30%;
 }
 </style>

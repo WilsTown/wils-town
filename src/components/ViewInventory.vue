@@ -24,7 +24,7 @@
         </div>
         <div id="edit-town">
             <EditTown
-                StateEditing="true"
+                StateEditing="enabled"
                 :SelectedElement="element_selected"
             ></EditTown>
         </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class='grid-cell' >
+    <div class='grid-cell' :target="StateEditing">
         <div v-if="Element != -1" class='rev-rotate-container'><div class='rev-scale-container'>
             <img class="element-img" :src="getImgUrl()"/>
         </div></div>
@@ -10,6 +10,7 @@
 export default{
     name: "GridCellClass",
     props: {
+        StateEditing: String,
         Index: Number,
         GridSize: Number,
         Element: Number,
@@ -35,7 +36,7 @@ export default{
 
 
 <style scoped>
-.grid-cell {
+.grid-cell[target="enabled"] {
     width: 98px;
     height: 98px;
     position: absolute;
@@ -46,8 +47,17 @@ export default{
     border-color: black;
 }
 
-.grid-cell:hover {
+.grid-cell:hover[target="enabled"] {
     background-color: #81b8dd;
+}
+
+.grid-cell[target="disabled"] {
+    width: 98px;
+    height: 98px;
+    position: absolute;
+    top: calc(100px * v-bind(top));
+    left: calc(100px * v-bind(left));
+    border-width: 1px;
 }
 
 .rev-scale-container{
