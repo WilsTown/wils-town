@@ -72,6 +72,10 @@ export default {
 </script>
 
 <style scoped>
+#edit-town {
+    left: 375px;
+}
+
 #edit-container {
     position: absolute;
     top: 40px;
