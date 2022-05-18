@@ -79,6 +79,9 @@ import Time from "./Time";
 import TimeInput from "./TimeInput";
 export default {
     name: "ViewTimer",
+    props: {
+        Coins: Number,
+    },
     data: function () {
         return {
             tabs: ["Work", "ShortBreak", "LongBreak"],
@@ -188,6 +191,16 @@ export default {
                 this.start_stop = "STOP";
                 this.time_runs = true;
             } else {
+                var coins_earned = 0;
+                if (this.mode == "stopwatch") {
+                    coins_earned = Math.floor(this.total_time / 5);
+                    this.$emit("coinSequence", coins_earned);
+                } else if (this.mode == "timer") {
+                    this.timer_blocks > Math.floor((this.curr_block - 1) / 6)
+                        ? (coins_earned = Math.floor(this.total_time / (5 * 2)))
+                        : (coins_earned = (this.total_time * 2) / 5);
+                    this.$emit("coinSequence", coins_earned);
+                }
                 this.time_count = this.work_period;
                 clearInterval(this.time_obj);
                 this.start_stop = "START";
@@ -198,15 +211,11 @@ export default {
                         "\nTotal Elapsed Time : " +
                         this.total_time +
                         "\nTotal Time Blocks : " +
-                        Math.floor((this.curr_block - 1) / 6)
-                );
-                alert(
-                    "SESSION DONE!\nMode: " +
-                        this.mode +
-                        "\nTotal Elapsed Time : " +
-                        this.total_time +
-                        "\nTotal Time Blocks : " +
-                        Math.floor((this.curr_block - 1) / 6)
+                        Math.floor((this.curr_block - 1) / 6) +
+                        "\nCoins Earned : " +
+                        coins_earned +
+                        "\nTotal Coins : " +
+                        (this.Coins + coins_earned)
                 );
                 this.total_time = 0;
                 this.curr_block = 1;

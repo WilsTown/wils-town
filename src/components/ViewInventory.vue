@@ -18,35 +18,31 @@
                     ></StoreButton>
                 </div>
             </div>
-            <div id="item-container">
-                <Inventory v-if="inventory_state == 'inv-active'"
-                    ItemID="inventory-item"
-                    EditOption="inventory-option"
-                ></Inventory>
-                <Store v-if="store_state == 'inv-active'"
-                    ItemID="inventory-item"
-                    EditOption="inventory-option"
-                ></Store>
-            </div>
+            <TownElementMenu
+                @elementSelected="updateElementSelect"
+            ></TownElementMenu>
         </div>
-        <div id="town"><Grid></Grid></div>
+        <div id="edit-town">
+            <EditTown
+                StateEditing="true"
+                :SelectedElement="element_selected"
+            ></EditTown>
+        </div>
     </div>
 </template>
 
 <script>
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
-import Grid from "./Grid";
-import Inventory from "./InventoryItems";
-import Store from "./StoreItems";
+import EditTown from "./EditTown";
+import TownElementMenu from "./TownElementMenu";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
-        Grid,
-        Inventory,
-        Store,
+        EditTown,
+        TownElementMenu,
     },
     data() {
         return {
@@ -55,6 +51,8 @@ export default {
 
             inventory_state: "inv-active",
             store_state: "none",
+
+            element_selected: -1,
         };
     },
     methods: {
@@ -65,6 +63,9 @@ export default {
         showStore() {
             this.inventory_state = "none";
             this.store_state = "inv-active";
+        },
+        updateElementSelect(element_id) {
+            this.element_selected = element_id;
         },
     },
 };
@@ -87,13 +88,13 @@ export default {
     width: 350px;
     position: fixed;
     z-index: 1;
-    height: 8%;
+    height: 70px;
     top: 40px;
     left: 0;
 }
 #left-window {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 350px; /* Set the width of the sidebar */
+    width: 340px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 40px; /* Stay at the top */
@@ -110,8 +111,8 @@ export default {
 
 #town {
     height: 95%;
-    width: calc(100% - 350px);
-    left: 350px;
+    width: calc(100% - 330px);
+    left: 340px;
     position: relative;
 }
 
