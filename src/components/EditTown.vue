@@ -16,7 +16,7 @@ export default {
         SelectedElement: Number,
     },
     mounted () {
-        console.log(this.StateEditing)
+        //console.log(this.StateEditing)
     }
 }
 </script>
