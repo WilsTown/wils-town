@@ -1,6 +1,9 @@
 <template>
     <div id="edit-town">
-        <Plot :StateEditing="StateEditing" :SelectedElement="SelectedElement"></Plot>
+        <Plot
+            :StateEditing="StateEditing"
+            :SelectedElement="SelectedElement"
+        ></Plot>
     </div>
 </template>
 
@@ -9,26 +12,26 @@ import Plot from "./Plot";
 export default {
     name: "EditTown",
     components: {
-        Plot
+        Plot,
     },
     props: {
         StateEditing: String,
         SelectedElement: Number,
     },
-    mounted () {
+    mounted() {
         //console.log(this.StateEditing)
-    }
-}
+    },
+};
 </script>
 
 
 <style scoped>
 #edit-town {
-    top: 55px;
+    top: 50px;
     position: fixed;
     height: 90%;
-    width: 73%;
-    background-color:#FAF0CA;
+    width: 69%;
+    background-color: #faf0ca;
     border: none;
     border-radius: 5px;
 }

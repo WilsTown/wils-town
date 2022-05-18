@@ -92,13 +92,13 @@ export default {
     width: 350px;
     position: fixed;
     z-index: 1;
-    height: 70px;
+    height: 8%;
     top: 40px;
     left: 0;
 }
 #left-window {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 340px; /* Set the width of the sidebar */
+    width: 350px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 40px; /* Stay at the top */
@@ -106,7 +106,7 @@ export default {
 
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
-    /* background-color: #607896; */
+    background-color: #607896;
 }
 #top-buttons {
     position: fixed;
@@ -115,7 +115,7 @@ export default {
 
 #town {
     height: 95%;
-    width: calc(100% - 330px);
+    width: calc(100% - 350px);
     left: 340px;
     position: relative;
 }
