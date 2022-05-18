@@ -83,7 +83,7 @@ export default {
 
 <style scoped>
 .nav-bar {
-    height: 40px;
+    height: 7vh;
 }
 
 #view-timer {
