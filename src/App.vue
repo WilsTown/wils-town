@@ -2,7 +2,7 @@
     <div>
         <NavBar @navigate="navView"></NavBar>
 
-        <ViewTimer v-if="curr_view == 'ViewTimer'"></ViewTimer>
+        <ViewTimer v-if="curr_view == 'ViewTimer'" @coinSequence="updateCoin" :Coins="this.coins"></ViewTimer>
         <ViewTown v-else-if="curr_view == 'ViewTown'"></ViewTown>
         <ViewInventory v-else-if="curr_view == 'ViewInventory'"></ViewInventory>
     </div>
@@ -25,11 +25,15 @@ export default {
     data : function(){
         return{
             curr_view: "ViewTimer",
+            coins: 0,
         }
     },
     methods : {
         navView(selected_view) {
             this.curr_view = selected_view;
+        },
+        updateCoin(amount) {
+            this.coins = this.coins + amount;
         }
     }
 };
