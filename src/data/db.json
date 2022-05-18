@@ -1,11 +1,19 @@
 {
     "elements_array": [
         { "src": "./buildings/Layer 2.png", "owned": true, "id": 1 },
-        { "src": "./buildings/Layer 3.png", "owned": true, "id": 2 },
-        { "src": "./buildings/Layer 4.png", "owned": true, "id": 3 },
-        { "src": "./buildings/Layer 5.png", "owned": true, "id": 4 },
-        { "src": "./buildings/Layer 6.png", "owned": true, "id": 5 },
+        { "src": "./buildings/Layer 3.png", "owned": false, "id": 2 },
+        { "src": "./buildings/Layer 4.png", "owned": false, "id": 3 },
+        { "src": "./buildings/Layer 5.png", "owned": false, "id": 4 },
+        { "src": "./buildings/Layer 6.png", "owned": false, "id": 5 },
         { "src": "./buildings/Layer 7.png", "owned": false, "id": 6 }
+    ],
+    "store_array": [
+        { "src": "./buildings/Layer 8.png", "owned": true, "id": 7 },
+        { "src": "./buildings/Layer 9.png", "owned": true, "id": 8 },
+        { "src": "./buildings/Layer 10.png", "owned": true, "id": 9 },
+        { "src": "./buildings/Layer 11.png", "owned": true, "id": 10 },
+        { "src": "./buildings/Layer 12.png", "owned": true, "id": 11 },
+        { "src": "./buildings/Layer 13.png", "owned": false, "id": 12 }
     ],
     "plot_array": [
         1, -1, -1, -1, -1,
