@@ -37,6 +37,21 @@ export default {
             .then(data => this.cells_array = data)
             .catch(err => console.log(err.message));
     },
+    beforeUnmount() {
+        var data = new FormData();
+        data.append( "plot_array", JSON.stringify( this.cells_array ) );
+        fetch('http://localhost:3000/plot_array', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: data
+            })
+            .then(res => res.json())
+            .then(data => alert( JSON.stringify( data ) ))
+            .catch(err => console.log(err.message));
+    },
     methods : {
         placeElement(cell_id) {
             if(this.StateEditing == "disabled"){return NaN}
