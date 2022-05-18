@@ -277,10 +277,8 @@ export default {
             if (this.time_runs == false) {
                 if (this.mode == "stopwatch") {
                     this.mode = "timer";
-                    this.toggle = "40";
                 } else if (this.mode == "timer") {
                     this.mode = "stopwatch";
-                    this.toggle = "94.5";
                 }
                 console.log("Current mode : " + this.mode);
             }
