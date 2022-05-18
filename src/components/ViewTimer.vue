@@ -217,6 +217,19 @@ export default {
                         "\nTotal Coins : " +
                         (this.Coins + coins_earned)
                 );
+
+                alert(
+                    "SESSION DONE!\nMode: " +
+                        this.mode +
+                        "\nTotal Elapsed Time : " +
+                        this.total_time +
+                        "\nTotal Time Blocks : " +
+                        Math.floor((this.curr_block - 1) / 6) +
+                        "\nCoins Earned : " +
+                        coins_earned +
+                        "\nTotal Coins : " +
+                        (this.Coins + coins_earned)
+                );
                 this.total_time = 0;
                 this.curr_block = 1;
             }
