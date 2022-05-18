@@ -49,7 +49,7 @@ export default {
     border: none;
     border-radius: 15px;
 
-    font-family: Avenir;
+    font-family: Helvetica;
     font-size: 20px;
 
     background: #00000000;

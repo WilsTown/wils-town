@@ -370,6 +370,7 @@ export default {
     background: #fcf4d5;
     border: none;
     border-radius: 5px;
+    
 }
 
 .line {
