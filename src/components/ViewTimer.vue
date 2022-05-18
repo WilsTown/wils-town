@@ -277,10 +277,8 @@ export default {
             if (this.time_runs == false) {
                 if (this.mode == "stopwatch") {
                     this.mode = "timer";
-                    this.toggle = "40";
                 } else if (this.mode == "timer") {
                     this.mode = "stopwatch";
-                    this.toggle = "94.5";
                 }
                 console.log("Current mode : " + this.mode);
             }
@@ -295,7 +293,10 @@ export default {
 <style scoped>
 #timer-container {
     position: absolute;
-    top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    top: 7vh;
     bottom: 0%;
     left: 0%;
     right: 0%;
@@ -310,10 +311,13 @@ export default {
 
 .timer-component {
     background: #af4b32;
-    border-radius: 25px;
-    margin-block: 25px;
-    margin-inline: 330px;
+    border-radius: 4vh;
+    margin-block: 4vh;
+    /* margin-inline: 330px; */
     padding-block: 25px;
+
+    width: 50vw;
+    height: 60vh;
 }
 
 #work-bg {
@@ -366,6 +370,7 @@ export default {
     background: #fcf4d5;
     border: none;
     border-radius: 5px;
+    
 }
 
 .line {

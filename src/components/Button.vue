@@ -22,8 +22,9 @@ export default {
 <style scoped>
 /* N A V  B U T T O N */
 .nav-btn {
-    height: inherit;
+    height: 7vh;
     width: inherit;
+
     border: none;
     padding-right: 20px;
     padding-left: 20px;
@@ -48,7 +49,7 @@ export default {
     border: none;
     border-radius: 15px;
 
-    font-family: Avenir;
+    font-family: Helvetica;
     font-size: 20px;
 
     background: #00000000;

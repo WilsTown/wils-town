@@ -1,37 +1,73 @@
 <template>
-    <svg
-        width="12%"
-        height="12%"
-        viewBox="0 0 134 76"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <rect
-            x="4"
-            y="4"
-            width="126"
-            height="68"
-            rx="34"
-            stroke="#FCF4D5"
-            stroke-width="8"
-        />
-        <!-- <ellipse :cx="toggle_x" cy="38" rx="25.5" ry="25" fill="#FCF4D5" /> -->
-        <ellipse cx="94.5" cy="38" rx="25.5" ry="25" fill="#FCF4D5" />
-    </svg>
+    <label class="switch">
+        <input type="checkbox" />
+        <span class="slider round"></span>
+    </label>
 </template>
 
 <script>
 export default {
     name: "ToggleButton",
-    prop: {
-        size: String,
-        // toggle_x: String,
-    },
 };
 </script>
 
 <style scoped>
-svg {
-    margin: auto;
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+
+    border-style: solid;
+    border-color: #fcf4d5;
+    border-radius: 34px;
+    border-width: 0.5vh;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: #00000000;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fcf4d5;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
 </style>
