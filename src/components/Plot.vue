@@ -1,5 +1,5 @@
 <template>
-    <div id="scale-container">
+    <div v-if="cells_array" id="scale-container">
         <div id="grid-container">
             <PlotCell
                 v-for="(cell, index) in this.cells_array"
@@ -27,13 +27,20 @@ export default {
     data: function() {
         return {
             grid_size: 5,
-            cells_array: [],
+            cells_array: []
         }
     },
     mounted() {
-        for (let i = 0; i < Math.pow(this.grid_size, 2); i++) {
-            this.cells_array.push(-1)
-        }
+        fetch('http://localhost:3000/plot_array')
+            .then(res => res.json())
+            .then(data => this.cells_array = data)
+            .catch(err => console.log(err.message));
+        
+        // for (let i = 0; i < Math.pow(this.grid_size, 2); i++) {
+        //     this.cells_array.push(-1)
+        // }
+        
+        console.log(this.plot_array);
     },
     methods : {
         placeElement(cell_id) {

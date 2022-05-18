@@ -21,38 +21,7 @@ export default {
     data: function(){
         return {
             selected_element: -1,
-            elements_array: [
-                {
-                    src: "./buildings/Layer 2.png",
-                    owned: true,
-                    id: 1,
-                },
-                {
-                    src: "./buildings/Layer 3.png",
-                    owned: true,
-                    id: 2,
-                },
-                {
-                    src: "./buildings/Layer 4.png",
-                    owned: true,
-                    id: 3,
-                },
-                {
-                    src: "./buildings/Layer 5.png",
-                    owned: true,
-                    id: 4,
-                },
-                {
-                    src: "./buildings/Layer 6.png",
-                    owned: true,
-                    id: 5,
-                },
-                {
-                    src: "./buildings/Layer 7.png",
-                    owned: false,
-                    id: 6,
-                },
-            ]
+            elements_array: []
         }
     },
     computed: {
@@ -69,6 +38,12 @@ export default {
             this.$emit("elementSelected", element_id);
         }
     },
+    mounted() {
+        fetch('http://localhost:3000/elements_array')
+            .then(res => res.json())
+            .then(data => this.elements_array = data)
+            .catch(err => console.log(err.message))
+    }
 }
 </script>
 
