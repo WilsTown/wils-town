@@ -19,6 +19,7 @@
                 </div>
             </div>
             <TownElementMenu
+                v-if="inventory_state == 'inv-active'"
                 @elementSelected="updateElementSelect"
             ></TownElementMenu>
         </div>
