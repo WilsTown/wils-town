@@ -17,6 +17,12 @@
                         @click="showStore"
                     ></StoreButton>
                 </div>
+                <div id = "coin-icon">
+                    <i class='fa fa-money fa-2x'></i>
+                </div>
+                <div id = "coin-text">
+                    200
+                </div>
             </div>
             <TownElementMenu
                 v-if="inventory_state == 'inv-active'"
@@ -138,5 +144,22 @@ export default {
     left: 0;
     top: 80px;
     width: 350px;
+}
+
+#coin-icon {
+    color: #F4D35E;
+    padding-top: 10px;
+    padding-left: 150px;
+
+}
+#coin-text{
+    color: #F4D35E;
+    position: fixed;
+    top: 55px;
+    left: 280px;
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: bold;
+
 }
 </style>
