@@ -99,9 +99,9 @@ export default {
 /* I N V E N T O R Y  B U T T O N S */
 .inv-btn {
     height: 35px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-inline: 25px;
+    padding-right: 2px;
+    padding-left: 2px; 
+    margin-inline: 15px;
     border: none;
     border-radius: 5px;
 
