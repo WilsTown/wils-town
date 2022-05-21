@@ -4,11 +4,11 @@
             <PlotCell
                 v-for="(cell, index) in this.cells_array"
                 :key="index"
-                :Index="index"
+                :Index="cell.id"
                 :GridSize="grid_size"
-                :Element="cell"
+                :Element="cell.element_id"
                 :StateEditing="StateEditing"
-                @click="placeElement(index)"
+                @click="placeElement(cell.id)"
             ></PlotCell>
         </div>
     </div>
@@ -37,25 +37,27 @@ export default {
             .then(data => this.cells_array = data)
             .catch(err => console.log(err.message));
     },
-    beforeUnmount() {
-        var data = new FormData();
-        data.append( "plot_array", JSON.stringify( this.cells_array ) );
-        fetch('http://localhost:3000/plot_array', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: data
-            })
-            .then(res => res.json())
-            .then(data => alert( JSON.stringify( data ) ))
-            .catch(err => console.log(err.message));
-    },
     methods : {
         placeElement(cell_id) {
             if(this.StateEditing == "disabled"){return NaN}
-            this.cells_array[cell_id] = this.SelectedElement;
+            for(let i = 0; i <= Math.pow(this.grid_size, 2); i++){
+                if (this.cells_array[i].id == cell_id) {
+                    this.cells_array[i].element_id = this.SelectedElement;
+                    fetch('http://localhost:3000/plot_array/' + cell_id, {
+                        method: 'PUT',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({id: cell_id, element_id: this.SelectedElement})
+                        })
+                        .then(res => {
+                            if (res.status !== 200) {
+                                throw new Error(`There was an error with status code ${res.status}`)
+                            }
+                            return res.json()
+                        })
+                        .catch(err => console.log(err.message));
+                    break;
+                }
+            }
         }
     }
 };

@@ -1,7 +1,7 @@
 <template>
     <div class='grid-cell' :target="StateEditing">
         <div v-if="Element != -1" class='rev-rotate-container'><div class='rev-scale-container'>
-            <img class="element-img" :src="getImgUrl()"/>
+            <img class="element-img" :src="getImg()"/>
         </div></div>
     </div>
 </template>
@@ -27,7 +27,7 @@ export default{
         this.left = Math.floor(this.Index / this.GridSize)
     },
     methods: {
-        getImgUrl() {
+        getImg() {
             return "./buildings/Layer " + String(this.Element + 1) +".png"
         }
     }
