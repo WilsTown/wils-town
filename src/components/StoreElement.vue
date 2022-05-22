@@ -1,6 +1,11 @@
 <template>
     <div class="element-bg">
         <img :src="ImageSource" class="element-img"/>
+        <div id="store-txt"> 
+            Item Name
+            Item Desc
+            Price
+        </div>
     </div>
 </template>
 
@@ -18,8 +23,8 @@ export default{
         }
     },
     mounted() {
-        this.top = Math.floor(this.Index / 3)
-        this.left = this.Index % 3;
+        this.top = Math.floor(this.Index / 1)
+        this.left = this.Index % 1;
     }
 }
 </script>
@@ -29,7 +34,7 @@ export default{
     background-color: #B4BFCE;
     border-radius: 10px;
     height: 90px;
-    width: 90px;
+    width: 300px;
     padding: 5px;
     position: absolute;
     margin-top: 80px;
@@ -44,5 +49,11 @@ export default{
 
 .element-img {
     height: 90px;
+    position: absolute;
+    left: 20px;
+}
+
+#storetxt {
+    
 }
 </style>
