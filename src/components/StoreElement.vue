@@ -1,10 +1,7 @@
 <template>
     <div class="element-bg">
         <img :src="ImageSource" class="element-img"/>
-        <div id="store-txt"> 
-            Item Name
-            Item Desc
-            Price
+        <div class="item-description">
         </div>
     </div>
 </template>
@@ -53,7 +50,12 @@ export default{
     left: 20px;
 }
 
-#storetxt {
-    
+.item-description{
+    display: flex;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
 }
 </style>
