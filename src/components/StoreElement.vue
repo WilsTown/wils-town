@@ -1,7 +1,10 @@
 <template>
     <div class="element-bg">
         <img :src="ImageSource" class="element-img"/>
-        <div class="item-description">
+        <div class="item-description">    
+                ITEM NAME <br>
+                ITEM DESC <br>
+                ITEM PRICE <br> 
         </div>
     </div>
 </template>
@@ -53,9 +56,9 @@ export default{
 .item-description{
     display: flex;
     text-align: left;
-    padding-left: 20px;
-    font-size: 10px;
-    font-family: Helvetica, sans-serif;
-    font-weight: normal;
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    font-size: 15px;
 }
 </style>
