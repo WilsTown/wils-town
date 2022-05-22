@@ -24,14 +24,14 @@
                     200
                 </div>
             </div>
-            <TownElementMenu
+            <InventoryMenu
                 v-if="inventory_state == 'inv-active'"
                 @elementSelected="updateElementSelect"
-            ></TownElementMenu>
-            <StoreElementMenu
+            ></InventoryMenu>
+            <StoreMenu
                 v-else-if="store_state == 'inv-active'"
                 @elementSelected="updateElementSelect"
-            ></StoreElementMenu>
+            ></StoreMenu>
         </div>
         <div id="edit-town">
             <EditTown
@@ -46,16 +46,16 @@
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
 import EditTown from "./EditTown";
-import TownElementMenu from "./TownElementMenu";
-import StoreElementMenu from "./StoreElementMenu";
+import InventoryMenu from "./InventoryMenu";
+import StoreMenu from "./StoreMenu";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
         EditTown,
-        TownElementMenu,
-        StoreElementMenu,
+        InventoryMenu,
+        StoreMenu,
     },
     data() {
         return {
