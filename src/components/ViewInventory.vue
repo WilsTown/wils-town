@@ -17,15 +17,21 @@
                         @click="showStore"
                     ></StoreButton>
                 </div>
+                <div id = "coin-icon">
+                    <i class='fa fa-money fa-2x'></i>
+                </div>
+                <div id = "coin-text">
+                    200
+                </div>
             </div>
-            <TownElementMenu
+            <InventoryMenu
                 v-if="inventory_state == 'inv-active'"
                 @elementSelected="updateElementSelect"
-            ></TownElementMenu>
-            <StoreElementMenu
+            ></InventoryMenu>
+            <StoreMenu
                 v-else-if="store_state == 'inv-active'"
                 @elementSelected="updateElementSelect"
-            ></StoreElementMenu>
+            ></StoreMenu>
         </div>
         <div id="edit-town">
             <EditTown
@@ -40,16 +46,16 @@
 import InventoryButton from "./Button";
 import StoreButton from "./Button";
 import EditTown from "./EditTown";
-import TownElementMenu from "./TownElementMenu";
-import StoreElementMenu from "./StoreElementMenu";
+import InventoryMenu from "./InventoryMenu";
+import StoreMenu from "./StoreMenu";
 export default {
     name: "ViewInventory",
     components: {
         InventoryButton,
         StoreButton,
         EditTown,
-        TownElementMenu,
-        StoreElementMenu,
+        InventoryMenu,
+        StoreMenu,
     },
     data() {
         return {
@@ -138,5 +144,22 @@ export default {
     left: 0;
     top: 80px;
     width: 350px;
+}
+
+#coin-icon {
+    color: #F4D35E;
+    padding-top: 10px;
+    padding-left: 150px;
+
+}
+#coin-text{
+    color: #F4D35E;
+    position: fixed;
+    top: 55px;
+    left: 280px;
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: bold;
+
 }
 </style>

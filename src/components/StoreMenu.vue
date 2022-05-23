@@ -1,33 +1,33 @@
 <template>
     <div id="menu-container">
-        <TownElement
+        <StoreElement
             v-for="(element, index) in ownedElements"
             :key="element.src"
             :ID="element.id"
             :ImageSource="element.src"
             :Index="index"
             @click="elementSelect(element.id)"
-        ></TownElement>
+        ></StoreElement>
     </div>
 </template>
 
 <script>
-import TownElement from "./TownElement";
+import StoreElement from "./StoreElement";
 export default {
-    name: "TownElementMenuClass",
+    name: "StoreElementMenuClass",
     components : {
-        TownElement,
+        StoreElement,
     },
     data: function(){
         return {
             selected_element: -1,
-            store_array: []
+            elements_array: []
         }
     },
     computed: {
         ownedElements: function() {
             let filtered_array = [];
-            for (let element of this.store_array) {
+            for (let element of this.elements_array) {
                 element.owned ? filtered_array.push(element) : NaN;
             }
             return filtered_array
@@ -39,9 +39,9 @@ export default {
         }
     },
     mounted() {
-        fetch('http://localhost:3000/store_array')
+        fetch('http://localhost:3000/elements_array')
             .then(res => res.json())
-            .then(data => this.store_array = data)
+            .then(data => this.elements_array = data)
             .catch(err => console.log(err.message))
     }
 }

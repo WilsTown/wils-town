@@ -1,22 +1,22 @@
 <template>
     <div id="menu-container">
-        <TownElement
+        <InventoryElement
             v-for="(element, index) in ownedElements"
             :key="element.src"
             :ID="element.id"
             :ImageSource="element.src"
             :Index="index"
             @click="elementSelect(element.id)"
-        ></TownElement>
+        ></InventoryElement>
     </div>
 </template>
 
 <script>
-import TownElement from "./TownElement";
+import InventoryElement from "./InventoryElement";
 export default {
-    name: "TownElementMenuClass",
+    name: "InventoryMenuClass",
     components : {
-        TownElement,
+        InventoryElement,
     },
     data: function(){
         return {
