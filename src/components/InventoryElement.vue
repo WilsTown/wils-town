@@ -6,7 +6,7 @@
 
 <script>
 export default{
-    name: "TownelementMenuItem",
+    name: "InventoryElementMenuItem",
     props: {
         ImageSource: String,
         Index: Number,
