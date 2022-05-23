@@ -68,7 +68,7 @@ export default{
 
 .rev-rotate-container{
     position: absolute;
-    top: -20px;
+    top: -10px;
     left: -70px;
     width: 98px;
     height: 98px;

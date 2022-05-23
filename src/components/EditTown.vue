@@ -1,5 +1,6 @@
 <template>
     <div id="edit-town">
+        
         <Plot
             :StateEditing="StateEditing"
             :SelectedElement="SelectedElement"

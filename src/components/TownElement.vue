@@ -43,6 +43,7 @@ export default{
 }
 
 .element-img {
-    height: 90px;
+    max-height: 90px;
+    max-width: 90px;
 }
 </style>
