@@ -8,7 +8,7 @@
                 :GridSize="grid_size"
                 :Element="cell.element_id"
                 :StateEditing="StateEditing"
-                @click="placeElement(cell.id)"
+                @click="placeElement(cell.id, this.SelectedElement, true)"
             ></PlotCell>
         </div>
     </div>
@@ -38,25 +38,29 @@ export default {
             .catch(err => console.log(err.message));
     },
     methods : {
-        placeElement(cell_id) {
+        placeElement(cell_id, element_id, log) {
             if(this.StateEditing == "disabled"){return NaN}
-            for(let i = 0; i <= Math.pow(this.grid_size, 2); i++){
+            for(let i = 0; i < Math.pow(this.grid_size, 2); i++){
                 if (this.cells_array[i].id == cell_id) {
-                    this.cells_array[i].element_id = this.SelectedElement;
-                    fetch('http://localhost:3000/plot_array/' + cell_id, {
-                        method: 'PUT',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({id: cell_id, element_id: this.SelectedElement})
-                        })
-                        .then(res => {
-                            if (res.status !== 200) {
-                                throw new Error(`There was an error with status code ${res.status}`)
-                            }
-                            return res.json()
-                        })
-                        .catch(err => console.log(err.message));
-                    break;
+                    if (log == true){this.$emit("changeLog", cell_id, this.cells_array[i].element_id, element_id)}
+                    this.cells_array[i].element_id = element_id;
                 }
+            }
+        },
+        savePlot() {
+            for(let i = 0; i < Math.pow(this.grid_size, 2); i++){
+                fetch('http://localhost:3000/plot_array/' + i, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({id: i, element_id: this.cells_array[i].element_id})
+                    })
+                    .then(res => {
+                        if (res.status !== 200) {
+                            throw new Error(`There was an error with status code ${res.status}`)
+                        }
+                        return res.json()
+                    })
+                    .catch(err => console.log(err.message));
             }
         }
     }

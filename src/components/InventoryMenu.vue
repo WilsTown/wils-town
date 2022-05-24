@@ -6,6 +6,7 @@
             :ID="element.id"
             :ImageSource="element.src"
             :Index="index"
+            :SelectState="selected_element"
             @click="elementSelect(element.id)"
         ></InventoryElement>
     </div>
@@ -35,7 +36,8 @@ export default {
     },
     methods: {
         elementSelect(element_id){
-            this.$emit("elementSelected", element_id);
+            this.selected_element = element_id;
+            this.$emit("elementSelected", this.selected_element);
         }
     },
     mounted() {

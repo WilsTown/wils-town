@@ -157,7 +157,7 @@
   "plot_array": [
     {
       "id": 0,
-      "element_id": 11
+      "element_id": -1
     },
     {
       "id": 1,
@@ -165,7 +165,7 @@
     },
     {
       "id": 2,
-      "element_id": 12
+      "element_id": -1
     },
     {
       "id": 3,
@@ -173,11 +173,11 @@
     },
     {
       "id": 4,
-      "element_id": 15
+      "element_id": -1
     },
     {
       "id": 5,
-      "element_id": 11
+      "element_id": -1
     },
     {
       "id": 6,
@@ -189,7 +189,7 @@
     },
     {
       "id": 8,
-      "element_id": 18
+      "element_id": 12
     },
     {
       "id": 9,
@@ -197,11 +197,11 @@
     },
     {
       "id": 10,
-      "element_id": 11
+      "element_id": -1
     },
     {
       "id": 11,
-      "element_id": 19
+      "element_id": -1
     },
     {
       "id": 12,
@@ -217,7 +217,7 @@
     },
     {
       "id": 15,
-      "element_id": 5
+      "element_id": -1
     },
     {
       "id": 16,
@@ -225,11 +225,11 @@
     },
     {
       "id": 17,
-      "element_id": 12
+      "element_id": -1
     },
     {
       "id": 18,
-      "element_id": -1
+      "element_id": 12
     },
     {
       "id": 19,
@@ -237,7 +237,7 @@
     },
     {
       "id": 20,
-      "element_id": 5
+      "element_id": -1
     },
     {
       "id": 21,
@@ -245,7 +245,7 @@
     },
     {
       "id": 22,
-      "element_id": 8
+      "element_id": -1
     },
     {
       "id": 23,
