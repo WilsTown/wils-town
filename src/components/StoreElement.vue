@@ -2,9 +2,9 @@
     <div class="element-bg">
         <img :src="ImageSource" class="element-img"/>
         <div class="item-description">    
-                ITEM NAME <br>
-                ITEM DESC <br>
-                ITEM PRICE <br> 
+                {{Name}} <br>
+                {{Desc}} <br>
+                {{Price}} <br> 
         </div>
     </div>
 </template>
@@ -15,6 +15,9 @@ export default{
     props: {
         ImageSource: String,
         Index: Number,
+        Name: String,
+        Desc: String,
+        Price: Number,
     },
     data: function() {
         return {
@@ -48,7 +51,8 @@ export default{
 }
 
 .element-img {
-    height: 90px;
+    max-height: 90px;
+    max-width: 90px;
     position: absolute;
     left: 20px;
 }
@@ -58,7 +62,7 @@ export default{
     text-align: left;
     position: absolute;
     top: 20px;
-    left: 100px;
+    left: 120px;
     font-size: 15px;
 }
 </style>

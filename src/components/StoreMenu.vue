@@ -7,6 +7,9 @@
             :ImageSource="element.src"
             :Index="index"
             @click="elementSelect(element.id)"
+            :Name="element.item_name"
+            :Desc="element.desc"
+            :Price="element.price"
         ></StoreElement>
     </div>
 </template>
