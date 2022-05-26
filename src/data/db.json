@@ -154,6 +154,8 @@
     }
   ],
   "user_stats": {
+    "buffer": true,
+    "consequences": false,
     "coins": 600,
     "overall_time": 0,
     "work_default": 1500,
