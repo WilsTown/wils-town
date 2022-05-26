@@ -27,17 +27,26 @@
                 <!-- MAIN TIMER -->
                 <Time v-if="time_runs" :TimeRaw="time_count"></Time>
                 <TimeInput
-                    v-else-if="work_state == 'work-sesh-active' && user_stats.work_default"
+                    v-else-if="
+                        work_state == 'work-sesh-active' &&
+                        user_stats.work_default
+                    "
                     @update="periodUpdate"
                     :SavedPeriod="work_period"
                 ></TimeInput>
                 <TimeInput
-                    v-else-if="short_break_state == 'sbreak-sesh-active' && user_stats.short_default"
+                    v-else-if="
+                        short_break_state == 'sbreak-sesh-active' &&
+                        user_stats.short_default
+                    "
                     @update="periodUpdate"
                     :SavedPeriod="short_break_period"
                 ></TimeInput>
                 <TimeInput
-                    v-else-if="long_break_state == 'lbreak-sesh-active' && user_stats.long_default"
+                    v-else-if="
+                        long_break_state == 'lbreak-sesh-active' &&
+                        user_stats.long_default
+                    "
                     @update="periodUpdate"
                     :SavedPeriod="long_break_period"
                 ></TimeInput>
@@ -46,7 +55,7 @@
                 <div class="line" :id="line_bg"></div>
                 <div id="timer-settings">
                     <span id="timer-settings">Timer</span>
-                    <ToggleButton 
+                    <ToggleButton
                         @toggleMode="toggleMode"
                         :toggleDisable="time_runs"
                     ></ToggleButton>
@@ -203,26 +212,28 @@ export default {
                         : (coins_earned = (this.total_time * 2) / 5);
                 }
                 this.coins = this.coins + coins_earned;
-                this.overall_time = this.overall_time + this.total_time
+                this.overall_time = this.overall_time + this.total_time;
 
-                fetch('http://localhost:3000/user_stats/', {
-                    method: 'PUT',
-                    headers: {'Content-Type': 'application/json'},
+                fetch("http://localhost:3000/user_stats/", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         coins: this.coins,
                         overall_time: this.overall_time,
                         work_default: this.user_stats.work_default,
                         short_default: this.user_stats.short_default,
                         long_default: this.user_stats.long_default,
-                        })
-                    })
-                    .then(res => {
+                    }),
+                })
+                    .then((res) => {
                         if (res.status !== 200) {
-                            throw new Error(`There was an error with status code ${res.status}`)
+                            throw new Error(
+                                `There was an error with status code ${res.status}`
+                            );
                         }
-                        return res.json()
+                        return res.json();
                     })
-                    .catch(err => console.log(err.message));
+                    .catch((err) => console.log(err.message));
 
                 this.time_count = this.work_period;
                 clearInterval(this.time_obj);
@@ -248,7 +259,7 @@ export default {
                         "\nTotal Time Blocks : " +
                         Math.floor((this.curr_block - 1) / 6) +
                         "\nCoins Earned : " +
-                        coins_earned + 
+                        coins_earned +
                         "\nTotal Coins : " +
                         this.coins
                 );
@@ -297,16 +308,19 @@ export default {
         },
         toggleMode(modeBool) {
             if (this.time_runs == false) {
-                if (modeBool) {this.mode = "stopwatch";
-                } else {this.mode = "timer";}
+                if (modeBool) {
+                    this.mode = "stopwatch";
+                } else {
+                    this.mode = "timer";
+                }
                 // console.log("Current mode : " + this.mode);
             }
         },
     },
     mounted() {
-        fetch('http://localhost:3000/user_stats')
-            .then(res => res.json())
-            .then(data => {
+        fetch("http://localhost:3000/user_stats")
+            .then((res) => res.json())
+            .then((data) => {
                 this.user_stats = data;
                 this.coins = data.coins;
                 this.overall_time = data.overall_time;
@@ -314,7 +328,7 @@ export default {
                 this.short_break_period = data.short_default;
                 this.long_break_period = data.long_default;
             })
-            .catch(err => console.log(err.message))
+            .catch((err) => console.log(err.message));
         // console.log("Current mode : " + this.mode);
     },
 };
@@ -326,7 +340,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    top: 7vh;
+    top: 40px;
     bottom: 0%;
     left: 0%;
     right: 0%;
@@ -340,6 +354,7 @@ export default {
 }
 
 .timer-component {
+    position: -ms-page;
     background: #af4b32;
     border-radius: 4vh;
     margin-block: 4vh;
@@ -400,7 +415,6 @@ export default {
     background: #fcf4d5;
     border: none;
     border-radius: 5px;
-    
 }
 
 .line {
