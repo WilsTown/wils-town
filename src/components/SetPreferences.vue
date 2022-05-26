@@ -12,15 +12,27 @@
                 <div class="item">Set Default Timeblock</div>
                 <div class="item" id="active">
                     Work
-                    <input id="input-box" type="time" />
+                    <TimeInput
+                        id="input-box"
+                        @update="workPeriodUpdate"
+                        :SavedPeriod="work_period"
+                    ></TimeInput>
                 </div>
                 <div class="item" id="active">
                     Short Break
-                    <input id="input-box" type="time" />
+                    <TimeInput
+                        id="input-box"
+                        @update="shortPeriodUpdate"
+                        :SavedPeriod="short_break_period"
+                    ></TimeInput>
                 </div>
                 <div class="item" id="active">
                     Long Break
-                    <input id="input-box" type="time" />
+                    <TimeInput
+                        id="input-box"
+                        @update="longPeriodUpdate"
+                        :SavedPeriod="long_break_period"
+                    ></TimeInput>
                 </div>
             </div>
             <PrefButton
@@ -34,10 +46,35 @@
 
 <script>
 import PrefButton from "./Button";
+import TimeInput from "./TimeInput";
 export default {
     name: "SetPreferences",
     components: {
         PrefButton,
+        TimeInput,
+    },
+    methods: {
+        workPeriodUpdate(new_period) {
+            this.work_period = new_period;
+        },
+
+        shortPeriodUpdate(new_period) {
+            this.short_break_period = new_period;
+        },
+
+        longPeriodUpdate(new_period) {
+            this.long_break_period = new_period;
+        },
+        mounted() {
+            fetch("http://localhost:3000/user_stats")
+                .then((res) => res.json())
+                .then((data) => {
+                    this.work_period = data.work_default;
+                    this.short_break_period = data.short_default;
+                    this.long_break_period = data.long_default;
+                })
+                .catch((err) => console.log(err.message));
+        },
     },
 };
 </script>
@@ -58,6 +95,7 @@ export default {
 }
 
 #settings-container {
+    position: absolute;
     margin: 2rem;
     height: 500px;
     width: 450px;
