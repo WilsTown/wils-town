@@ -53,6 +53,14 @@ export default {
         PrefButton,
         TimeInput,
     },
+
+    data: function () {
+        return {
+            work_period: 5,
+            long_break_period: 5,
+            short_break_period: 5,
+        };
+    },
     methods: {
         workPeriodUpdate(new_period) {
             this.work_period = new_period;
@@ -65,16 +73,16 @@ export default {
         longPeriodUpdate(new_period) {
             this.long_break_period = new_period;
         },
-        mounted() {
-            fetch("http://localhost:3000/user_stats")
-                .then((res) => res.json())
-                .then((data) => {
-                    this.work_period = data.work_default;
-                    this.short_break_period = data.short_default;
-                    this.long_break_period = data.long_default;
-                })
-                .catch((err) => console.log(err.message));
-        },
+    },
+    mounted() {
+        fetch("http://localhost:3000/user_stats")
+            .then((res) => res.json())
+            .then((data) => {
+                this.work_period = data.work_default;
+                this.short_break_period = data.short_default;
+                this.long_break_period = data.long_default;
+            })
+            .catch((err) => console.log(err.message));
     },
 };
 </script>

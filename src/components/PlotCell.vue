@@ -1,13 +1,15 @@
 <template>
-    <div class='grid-cell' :target="StateEditing">
-        <div v-if="Element != -1" class='rev-rotate-container'><div class='rev-scale-container'>
-            <img class="element-img" :src="getImg()"/>
-        </div></div>
+    <div class="grid-cell" :target="StateEditing">
+        <div v-if="Element != -1" class="rev-rotate-container">
+            <div class="rev-scale-container">
+                <img class="element-img" :src="getImg()" />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-export default{
+export default {
     name: "GridCellClass",
     props: {
         StateEditing: String,
@@ -15,23 +17,23 @@ export default{
         GridSize: Number,
         Element: Number,
     },
-    data: function() {
+    data: function () {
         return {
             top: 0,
             left: 0,
             img_src: "",
-        }
+        };
     },
     mounted() {
         this.top = this.Index % this.GridSize;
-        this.left = Math.floor(this.Index / this.GridSize)
+        this.left = Math.floor(this.Index / this.GridSize);
     },
     methods: {
         getImg() {
-            return "./buildings/Layer " + String(this.Element + 1) +".png"
-        }
-    }
-}
+            return "./buildings/Layer " + String(this.Element + 1) + ".png";
+        },
+    },
+};
 </script>
 
 
@@ -42,9 +44,7 @@ export default{
     position: absolute;
     top: calc(100px * v-bind(top));
     left: calc(100px * v-bind(left));
-    border: dashed;
-    border-width: 1px;
-    border-color: black;
+    border: 2px dashed #d4caa5;
 }
 
 .grid-cell:hover[target="enabled"] {
@@ -60,13 +60,13 @@ export default{
     border-width: 1px;
 }
 
-.rev-scale-container{
+.rev-scale-container {
     width: 98px;
     height: 98px;
     transform: scaleY(2);
 }
 
-.rev-rotate-container{
+.rev-rotate-container {
     position: absolute;
     top: -10px;
     left: -70px;
@@ -76,10 +76,10 @@ export default{
     pointer-events: none;
 }
 
-.element-img{
+.element-img {
     max-width: 98px;
     max-height: 98px;
-    position:absolute;
+    position: absolute;
     bottom: 0px;
 }
 </style>

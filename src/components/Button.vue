@@ -100,7 +100,7 @@ export default {
 .inv-btn {
     height: 35px;
     padding-right: 2px;
-    padding-left: 2px; 
+    padding-left: 2px;
     margin-inline: 15px;
     border: none;
     border-radius: 5px;
@@ -143,5 +143,21 @@ export default {
 
 .save-btn:hover {
     background: #c9a4e7;
+}
+
+.edit-town-btn {
+    color: #3f5c7f;
+    background-color: #c4c4c488;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+}
+
+.edit-town-btn:hover {
+    background-color: #c4c4c4;
 }
 </style>
