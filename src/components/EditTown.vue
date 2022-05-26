@@ -1,41 +1,28 @@
 <template>
     <div id="edit-town">
-        <div v-if="StateEditing == 'enabled'" id="edit-buttons-container">
+        <div v-if="StateEditing == 'enabled'" id="edit-buttons">
             <EditButton
-                IconClass="fa fa-wrench"
-                ButtonType="edit-town-btn"
+                IconClass="fa fa-building"
                 @click="editBuild"
             ></EditButton>
             <EditButton
                 IconClass="fa fa-trash"
-                ButtonType="edit-town-btn"
                 @click="editRemove"
             ></EditButton>
-            <EditButton
-                IconClass="fa fa-undo"
-                ButtonType="edit-town-btn"
-                @click="editUndo"
-            ></EditButton>
+            <EditButton IconClass="fa fa-undo" @click="editUndo"></EditButton>
             <EditButton
                 IconClass="fa fa-undo"
                 style="transform: scaleX(-1)"
-                ButtonType="edit-town-btn"
                 @click="editRedo"
             ></EditButton>
-            <EditButton
-                IconClass="fa fa-save"
-                ButtonType="edit-town-btn"
-                @click="saveTown"
-            ></EditButton>
+            <EditButton IconClass="fa fa-save" @click="saveTown"></EditButton>
         </div>
-        <div id="plot-container">
-            <Plot
-                ref="Plot"
-                :StateEditing="StateEditing"
-                :SelectedElement="edit_state == 'build' ? SelectedElement : -1"
-                @changeLog="changeLog"
-            ></Plot>
-        </div>
+        <Plot
+            ref="Plot"
+            :StateEditing="StateEditing"
+            :SelectedElement="edit_state == 'build' ? SelectedElement : -1"
+            @changeLog="changeLog"
+        ></Plot>
     </div>
 </template>
 
@@ -116,23 +103,20 @@ export default {
 
 <style scoped>
 #edit-town {
-    top: 50px;
     position: fixed;
+    top: 50px;
     height: 90%;
     width: 69%;
-    background-color: #f3dfc2;
+    background-color: #faf0ca;
     border: none;
     border-radius: 5px;
 }
 
-#edit-buttons-container {
-    /* position: absolute; */
-    display: flex;
-    align-content: flex-start;
-    justify-content: flex-end;
-    align-self: center;
-    width: 98%;
+#edit-buttons {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 50px;
     height: 50px;
-    margin: 10px;
 }
 </style>

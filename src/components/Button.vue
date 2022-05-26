@@ -22,7 +22,7 @@ export default {
 <style scoped>
 /* N A V  B U T T O N */
 .nav-btn {
-    height: 7vh;
+    height: 40px;
     width: inherit;
 
     border: none;
