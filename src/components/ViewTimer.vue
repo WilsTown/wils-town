@@ -27,17 +27,17 @@
                 <!-- MAIN TIMER -->
                 <Time v-if="time_runs" :TimeRaw="time_count"></Time>
                 <TimeInput
-                    v-else-if="work_state == 'work-sesh-active'"
+                    v-else-if="work_state == 'work-sesh-active' && user_stats.work_default"
                     @update="periodUpdate"
                     :SavedPeriod="work_period"
                 ></TimeInput>
                 <TimeInput
-                    v-else-if="short_break_state == 'sbreak-sesh-active'"
+                    v-else-if="short_break_state == 'sbreak-sesh-active' && user_stats.short_default"
                     @update="periodUpdate"
                     :SavedPeriod="short_break_period"
                 ></TimeInput>
                 <TimeInput
-                    v-else-if="long_break_state == 'lbreak-sesh-active'"
+                    v-else-if="long_break_state == 'lbreak-sesh-active' && user_stats.long_default"
                     @update="periodUpdate"
                     :SavedPeriod="long_break_period"
                 ></TimeInput>
@@ -46,7 +46,10 @@
                 <div class="line" :id="line_bg"></div>
                 <div id="timer-settings">
                     <span id="timer-settings">Timer</span>
-                    <ToggleButton @click="toggleMode"></ToggleButton>
+                    <ToggleButton 
+                        @toggleMode="toggleMode"
+                        :toggleDisable="time_runs"
+                    ></ToggleButton>
                     <span id="timer-settings">Stopwatch</span>
                 </div>
                 <div>
@@ -79,15 +82,14 @@ import Time from "./Time";
 import TimeInput from "./TimeInput";
 export default {
     name: "ViewTimer",
-    props: {
-        Coins: Number,
-    },
     data: function () {
         return {
             tabs: ["Work", "ShortBreak", "LongBreak"],
             selected: "Work",
 
             // TIMER VARIABLES
+            user_stats: {},
+
             time_obj: undefined,
             time_count: 0,
             work_period: 5,
@@ -103,11 +105,12 @@ export default {
 
             curr_block: 1,
             total_time: 0,
+            overall_time: 0,
             start_stop: "START",
             time_runs: false,
             timer_blocks: 1,
             mode: "stopwatch",
-            toggle: "94.5",
+            coins: 0,
         };
     },
     components: {
@@ -182,11 +185,11 @@ export default {
                 this.short_break_state = "none";
                 this.long_break_state = "none";
                 this.time_count = this.work_period;
-                console.log("SESSION STARTED\nMode : " + this.mode);
+                // console.log("SESSION STARTED\nMode : " + this.mode);
                 this.time_obj = setInterval(() => {
                     this.time_count--;
                     this.total_time++;
-                    console.log(this.total_time);
+                    // console.log(this.total_time);
                 }, 1000);
                 this.start_stop = "STOP";
                 this.time_runs = true;
@@ -194,30 +197,49 @@ export default {
                 var coins_earned = 0;
                 if (this.mode == "stopwatch") {
                     coins_earned = Math.floor(this.total_time / 5);
-                    this.$emit("coinSequence", coins_earned);
                 } else if (this.mode == "timer") {
                     this.timer_blocks > Math.floor((this.curr_block - 1) / 6)
                         ? (coins_earned = Math.floor(this.total_time / (5 * 2)))
                         : (coins_earned = (this.total_time * 2) / 5);
-                    this.$emit("coinSequence", coins_earned);
                 }
+                this.coins = this.coins + coins_earned;
+                this.overall_time = this.overall_time + this.total_time
+
+                fetch('http://localhost:3000/user_stats/', {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        coins: this.coins,
+                        overall_time: this.overall_time,
+                        work_default: this.user_stats.work_default,
+                        short_default: this.user_stats.short_default,
+                        long_default: this.user_stats.long_default,
+                        })
+                    })
+                    .then(res => {
+                        if (res.status !== 200) {
+                            throw new Error(`There was an error with status code ${res.status}`)
+                        }
+                        return res.json()
+                    })
+                    .catch(err => console.log(err.message));
+
                 this.time_count = this.work_period;
                 clearInterval(this.time_obj);
                 this.start_stop = "START";
                 this.time_runs = false;
-                console.log(
-                    "SESSION STOPPED\nMode : " +
-                        this.mode +
-                        "\nTotal Elapsed Time : " +
-                        this.total_time +
-                        "\nTotal Time Blocks : " +
-                        Math.floor((this.curr_block - 1) / 6) +
-                        "\nCoins Earned : " +
-                        coins_earned +
-                        "\nTotal Coins : " +
-                        (this.Coins + coins_earned)
-                );
-
+                // console.log(
+                //     "SESSION STOPPED\nMode : " +
+                //         this.mode +
+                //         "\nTotal Elapsed Time : " +
+                //         this.total_time +
+                //         "\nTotal Time Blocks : " +
+                //         Math.floor((this.curr_block - 1) / 6) +
+                //         "\nCoins Earned : " +
+                //         coins_earned +
+                //         "\nTotal Coins : " +
+                //         (this.Coins + coins_earned)
+                // );
                 alert(
                     "SESSION DONE!\nMode: " +
                         this.mode +
@@ -226,9 +248,9 @@ export default {
                         "\nTotal Time Blocks : " +
                         Math.floor((this.curr_block - 1) / 6) +
                         "\nCoins Earned : " +
-                        coins_earned +
+                        coins_earned + 
                         "\nTotal Coins : " +
-                        (this.Coins + coins_earned)
+                        this.coins
                 );
                 this.total_time = 0;
                 this.curr_block = 1;
@@ -273,19 +295,27 @@ export default {
                 this.long_break_state = "lbreak-sesh-active";
             }
         },
-        toggleMode() {
+        toggleMode(modeBool) {
             if (this.time_runs == false) {
-                if (this.mode == "stopwatch") {
-                    this.mode = "timer";
-                } else if (this.mode == "timer") {
-                    this.mode = "stopwatch";
-                }
-                console.log("Current mode : " + this.mode);
+                if (modeBool) {this.mode = "stopwatch";
+                } else {this.mode = "timer";}
+                // console.log("Current mode : " + this.mode);
             }
         },
     },
     mounted() {
-        console.log("Current mode : " + this.mode);
+        fetch('http://localhost:3000/user_stats')
+            .then(res => res.json())
+            .then(data => {
+                this.user_stats = data;
+                this.coins = data.coins;
+                this.overall_time = data.overall_time;
+                this.work_period = data.work_default;
+                this.short_break_period = data.short_default;
+                this.long_break_period = data.long_default;
+            })
+            .catch(err => console.log(err.message))
+        // console.log("Current mode : " + this.mode);
     },
 };
 </script>

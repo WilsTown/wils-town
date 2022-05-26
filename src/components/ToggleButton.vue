@@ -1,6 +1,6 @@
 <template>
     <label class="switch">
-        <input type="checkbox" />
+        <input type="checkbox" v-model="mode_toggle" :disabled="toggleDisable"/>
         <span class="slider round"></span>
     </label>
 </template>
@@ -8,6 +8,21 @@
 <script>
 export default {
     name: "ToggleButton",
+    props: {
+        toggleDisable: Boolean,
+    },
+    data() {
+        return{
+            mode_toggle: true,
+        }
+    },
+    watch: {
+        mode_toggle:{
+            handler(val) {
+                this.$emit("toggleMode", val)
+            }
+        }
+    }
 };
 </script>
 

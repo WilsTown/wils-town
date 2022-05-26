@@ -153,6 +153,13 @@
       "desc": "The telecommunication center starter"
     }
   ],
+  "user_stats": {
+    "coins": 2,
+    "overall_time": 10,
+    "work_default": 1500,
+    "short_default": 300,
+    "long_default": 900
+  },
   "store_array": [],
   "plot_array": [
     {
@@ -177,11 +184,11 @@
     },
     {
       "id": 5,
-      "element_id": -1
+      "element_id": 2
     },
     {
       "id": 6,
-      "element_id": -1
+      "element_id": 2
     },
     {
       "id": 7,
@@ -229,7 +236,7 @@
     },
     {
       "id": 18,
-      "element_id": 12
+      "element_id": 2
     },
     {
       "id": 19,

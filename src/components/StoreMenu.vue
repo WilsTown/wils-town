@@ -1,5 +1,5 @@
 <template>
-    <div id="menu-container">
+    <div v-if="elements_array" id="menu-container">
         <StoreElement
             v-for="(element, index) in ownedElements"
             :key="element.src"
