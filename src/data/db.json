@@ -154,8 +154,8 @@
     }
   ],
   "user_stats": {
-    "coins": 2,
-    "overall_time": 11,
+    "coins": 600,
+    "overall_time": 0,
     "work_default": 1500,
     "short_default": 300,
     "long_default": 900
@@ -172,19 +172,19 @@
     },
     {
       "id": 2,
-      "element_id": 18
+      "element_id": -1
     },
     {
       "id": 3,
-      "element_id": 17
+      "element_id": -1
     },
     {
       "id": 4,
-      "element_id": 1
+      "element_id": -1
     },
     {
       "id": 5,
-      "element_id": 5
+      "element_id": -1
     },
     {
       "id": 6,
@@ -204,7 +204,7 @@
     },
     {
       "id": 10,
-      "element_id": 5
+      "element_id": -1
     },
     {
       "id": 11,
@@ -212,7 +212,7 @@
     },
     {
       "id": 12,
-      "element_id": 8
+      "element_id": -1
     },
     {
       "id": 13,
@@ -224,7 +224,7 @@
     },
     {
       "id": 15,
-      "element_id": 5
+      "element_id": -1
     },
     {
       "id": 16,
@@ -232,7 +232,7 @@
     },
     {
       "id": 17,
-      "element_id": 7
+      "element_id": -1
     },
     {
       "id": 18,
@@ -252,7 +252,7 @@
     },
     {
       "id": 22,
-      "element_id": 8
+      "element_id": -1
     },
     {
       "id": 23,
