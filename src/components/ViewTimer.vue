@@ -105,7 +105,6 @@ export default {
 
             curr_block: 1,
             total_time: 0,
-            overall_time: 0,
             start_stop: "START",
             time_runs: false,
             timer_blocks: 1,
@@ -203,14 +202,12 @@ export default {
                         : (coins_earned = (this.total_time * 2) / 5);
                 }
                 this.coins = this.coins + coins_earned;
-                this.overall_time = this.overall_time + this.total_time
 
                 fetch('http://localhost:3000/user_stats/', {
                     method: 'PUT',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
                         coins: this.coins,
-                        overall_time: this.overall_time,
                         work_default: this.user_stats.work_default,
                         short_default: this.user_stats.short_default,
                         long_default: this.user_stats.long_default,
@@ -309,7 +306,6 @@ export default {
             .then(data => {
                 this.user_stats = data;
                 this.coins = data.coins;
-                this.overall_time = data.overall_time;
                 this.work_period = data.work_default;
                 this.short_break_period = data.short_default;
                 this.long_break_period = data.long_default;

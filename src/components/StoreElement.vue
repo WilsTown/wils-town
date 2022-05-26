@@ -26,8 +26,10 @@ export default{
         }
     },
     mounted() {
-        this.top = Math.floor(this.Index / 1)
-        this.left = this.Index % 1;
+        this.top = this.Index
+    },
+    updated() {
+        this.top = this.Index
     }
 }
 </script>
@@ -43,7 +45,6 @@ export default{
     margin-top: 80px;
     margin-left: 10px;
     top: calc(110px * v-bind(top));
-    left: calc(110px * v-bind(left));
 }
 
 .element-bg:hover {
