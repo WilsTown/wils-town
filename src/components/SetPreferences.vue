@@ -11,7 +11,6 @@
                     Consequences
                     <ToggleButton class="toggle-btn"></ToggleButton>
                 </div>
-                <div class="item" id="inactive">Coins Reduced</div>
 
                 <div class="item">Set Default Timeblock</div>
                 <div class="item" id="active">
@@ -121,8 +120,8 @@ export default {
 
 #settings-container {
     position: absolute;
-    margin: 0.5rem;
-    height: 540px;
+    margin: 2rem;
+    height: 500px;
     width: 450px;
 
     display: flex;
@@ -144,7 +143,7 @@ export default {
 #title {
     margin-inline: 1rem;
     margin-block: 0.5rem;
-    font-size: 45px;
+    font-size: 60px;
     font-weight: bold;
     order: 1;
 }
