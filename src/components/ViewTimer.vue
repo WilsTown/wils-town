@@ -53,23 +53,47 @@
 
                 <!-- ADDITIONAL SESSION SETTINGS -->
                 <div class="line" :id="line_bg"></div>
-                <div id="timer-settings">
-                    <span id="timer-settings">Timer</span>
-                    <ToggleButton
-                        @toggleMode="toggleMode"
-                        :toggleDisable="time_runs"
-                    ></ToggleButton>
-                    <span id="timer-settings">Stopwatch</span>
+                <div v-if="time_runs == false">
+                    <div id="timer-settings">
+                        <span id="timer-settings">Timer</span>
+                        <ToggleButton
+                            @toggleMode="toggleMode"
+                            :toggleDisable="time_runs"
+                        ></ToggleButton>
+                        <span id="timer-settings">Stopwatch</span>
+                    </div>
+                    <div>
+                        <form>
+                            <label id="timeblocks">Timeblocks</label>
+                            <input
+                                type="number"
+                                id="timeblock-input"
+                                v-model="timer_blocks"
+                            />
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <form>
-                        <label id="timeblocks">Timeblocks</label>
-                        <input
-                            type="number"
-                            id="timeblock-input"
-                            v-model="timer_blocks"
-                        />
-                    </form>
+                <div
+                    v-else-if="time_runs && work_state == 'work-sesh-active'"
+                    class="encouragements"
+                >
+                    time to focus!
+                </div>
+                <div
+                    v-else-if="
+                        time_runs && short_break_state == 'sbreak-sesh-active'
+                    "
+                    class="encouragements"
+                >
+                    time to rest for a bit
+                </div>
+                <div
+                    v-else-if="
+                        time_runs && long_break_state == 'lbreak-sesh-active'
+                    "
+                    class="encouragements"
+                >
+                    finally! sit back and relax
                 </div>
             </div>
             <!-- START BUTTON -->
@@ -421,5 +445,12 @@ export default {
     border-radius: 2px;
     margin: auto;
     margin-block: 0.2rem;
+}
+
+.encouragements {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 30px;
+    margin-block: 2rem;
 }
 </style>
