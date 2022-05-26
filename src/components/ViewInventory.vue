@@ -21,7 +21,7 @@
                     <i class='fa fa-money fa-2x'></i>
                 </div>
                 <div id = "coin-text">
-                    200
+                    {{coins}}
                 </div>
             </div>
             <InventoryMenu
@@ -30,7 +30,8 @@
             ></InventoryMenu>
             <StoreMenu
                 v-else-if="store_state == 'inv-active'"
-                @elementSelected="updateElementSelect"
+                @confirmBuy="confirmBuy"
+                :Coins="coins"
             ></StoreMenu>
         </div>
         <div id="edit-town">
@@ -66,6 +67,8 @@ export default {
             store_state: "none",
 
             element_selected: -1,
+            coins: 0,
+            user_stats: {},
         };
     },
     methods: {
@@ -80,7 +83,36 @@ export default {
         updateElementSelect(element_id) {
             this.element_selected = element_id;
         },
+        confirmBuy(element_price) {
+            this.coins = this.coins - element_price;
+            fetch('http://localhost:3000/user_stats/', {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        coins: this.coins,
+                        work_default: this.user_stats.work_default,
+                        short_default: this.user_stats.short_default,
+                        long_default: this.user_stats.long_default,
+                        })
+                    })
+                    .then(res => {
+                        if (res.status !== 200) {
+                            throw new Error(`There was an error with status code ${res.status}`)
+                        }
+                        return res.json()
+                    })
+                    .catch(err => console.log(err.message));
+        }
     },
+    mounted() {   
+        fetch('http://localhost:3000/user_stats')
+            .then(res => res.json())
+            .then(data => {
+                this.user_stats = data;
+                this.coins = data.coins;
+            })
+            .catch(err => console.log(err.message))
+    }
 };
 </script>
 
