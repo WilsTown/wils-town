@@ -7,7 +7,10 @@
             </div>
             <div id="line"></div>
             <div id="contents">
-                <div class="item" id="inactive">Consequences</div>
+                <div class="item" id="inactive">
+                    Consequences <i>(coming soon!)</i>
+                </div>
+                <div class="item" id="inactive">Coins Reduced</div>
 
                 <div class="item">Set Default Timeblock</div>
                 <div class="item" id="active">
@@ -104,8 +107,8 @@ export default {
 
 #settings-container {
     position: absolute;
-    margin: 2rem;
-    height: 500px;
+    margin: 1rem;
+    height: 540px;
     width: 450px;
 
     display: flex;
