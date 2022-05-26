@@ -34,6 +34,7 @@ export default {
 
 .nav-btn:hover {
     background-color: #1d1d1d34;
+    transition: 0.5s;
 }
 
 #nav-active {
@@ -59,6 +60,7 @@ export default {
 .sesh-btn:hover {
     background: #6b4e472d;
     color: #fcf4d5;
+    transition: 0.5s;
 }
 
 #work-sesh-active {
