@@ -57,7 +57,7 @@
                     <div id="timer-settings">
                         <span id="timer-settings">Timer</span>
                         <ToggleButton
-                            @toggleMode="toggleMode"
+                            @toggle="toggleMode"
                             :toggleDisable="time_runs"
                         ></ToggleButton>
                         <span id="timer-settings">Stopwatch</span>

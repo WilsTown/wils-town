@@ -9,7 +9,11 @@
             <div id="contents"  v-if="user_stats.buffer">
                 <div class="item" id="active">
                     Consequences
-                    <ToggleButton class="toggle-btn"></ToggleButton>
+                    <ToggleButton
+                        @toggle="toggleConsequence"
+                        class="toggle-btn"
+                        :toggleDefault="user_stats.consequences"
+                    ></ToggleButton>
                 </div>
 
                 <div class="item">Set Default Timeblock</div>
@@ -76,6 +80,9 @@ export default {
 
         longPeriodUpdate(new_period) {
             this.user_stats.long_default = new_period;
+        },
+        toggleConsequence(toggleBool) {
+            this.user_stats.consequences = toggleBool;
         },
         savePreferences(){
             fetch('http://localhost:3000/user_stats/', {
