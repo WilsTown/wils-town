@@ -7,8 +7,9 @@
             </div>
             <div id="line"></div>
             <div id="contents">
-                <div class="item" id="inactive">
-                    Consequences <i>(coming soon!)</i>
+                <div class="item" id="active">
+                    Consequences
+                    <ToggleButton class="toggle-btn"></ToggleButton>
                 </div>
                 <div class="item" id="inactive">Coins Reduced</div>
 
@@ -50,11 +51,13 @@
 <script>
 import PrefButton from "./Button";
 import TimeInput from "./TimeInput";
+import ToggleButton from "./ToggleButton";
 export default {
     name: "SetPreferences",
     components: {
         PrefButton,
         TimeInput,
+        ToggleButton,
     },
 
     data: function () {
@@ -107,7 +110,7 @@ export default {
 
 #settings-container {
     position: absolute;
-    margin: 1rem;
+    margin: 0.5rem;
     height: 540px;
     width: 450px;
 
@@ -130,7 +133,7 @@ export default {
 #title {
     margin-inline: 1rem;
     margin-block: 0.5rem;
-    font-size: 60px;
+    font-size: 45px;
     font-weight: bold;
     order: 1;
 }
@@ -152,25 +155,25 @@ export default {
 }
 
 #contents {
-    align-self: flex-start;
     display: flex;
+    width: 100%;
     flex-direction: column;
-    justify-content: space-around;
-    align-content: flex-start;
-    margin: 1rem;
+    justify-items: center;
+    align-content: center;
+    margin: 0.5rem;
     order: 3;
 }
 
 .item {
     display: flex;
-    align-self: flex-start;
+    align-items: center;
     justify-content: space-between;
     background: #00000000;
     border-radius: 10px;
 
     padding: 0.7rem;
     margin: 0.4rem;
-    width: 380px;
+    width: 400px;
 
     color: #fcf4d5;
     font-weight: bold;
@@ -188,9 +191,13 @@ export default {
 #input-box {
     border: none;
     width: 5rem;
+    height: 1.5rem;
     background: #675376;
     color: #fcf4d5;
     border-radius: 5px;
+
+    text-align: center;
+    font-size: 15px;
 }
 
 #save {
@@ -200,6 +207,10 @@ export default {
     width: 10rem;
     height: 2.5rem;
     order: 5;
+}
+
+.toggle-btn {
+    transform: scale(0.7);
 }
 </style>
 
