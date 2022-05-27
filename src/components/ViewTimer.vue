@@ -3,6 +3,7 @@
         <div id="timer-sesh-container">
             <div class="timer-component" :id="timer_bg">
                 <!-- SESSION SELECTION BUTTONS -->
+
                 <div id="top-buttons">
                     <TimerButton
                         ButtonType="sesh-btn"
@@ -25,32 +26,33 @@
                 </div>
 
                 <!-- MAIN TIMER -->
-                <Time v-if="time_runs" :TimeRaw="time_count"></Time>
-                <TimeInput
-                    v-else-if="
-                        work_state == 'work-sesh-active' &&
-                        user_stats.work_default
-                    "
-                    @update="periodUpdate"
-                    :SavedPeriod="work_period"
-                ></TimeInput>
-                <TimeInput
-                    v-else-if="
-                        short_break_state == 'sbreak-sesh-active' &&
-                        user_stats.short_default
-                    "
-                    @update="periodUpdate"
-                    :SavedPeriod="short_break_period"
-                ></TimeInput>
-                <TimeInput
-                    v-else-if="
-                        long_break_state == 'lbreak-sesh-active' &&
-                        user_stats.long_default
-                    "
-                    @update="periodUpdate"
-                    :SavedPeriod="long_break_period"
-                ></TimeInput>
-
+                <transition name="component-fade" mode="out-in">
+                    <Time v-if="time_runs" :TimeRaw="time_count"></Time>
+                    <TimeInput
+                        v-else-if="
+                            work_state == 'work-sesh-active' &&
+                            user_stats.work_default
+                        "
+                        @update="periodUpdate"
+                        :SavedPeriod="work_period"
+                    ></TimeInput>
+                    <TimeInput
+                        v-else-if="
+                            short_break_state == 'sbreak-sesh-active' &&
+                            user_stats.short_default
+                        "
+                        @update="periodUpdate"
+                        :SavedPeriod="short_break_period"
+                    ></TimeInput>
+                    <TimeInput
+                        v-else-if="
+                            long_break_state == 'lbreak-sesh-active' &&
+                            user_stats.long_default
+                        "
+                        @update="periodUpdate"
+                        :SavedPeriod="long_break_period"
+                    ></TimeInput>
+                </transition>
                 <!-- ADDITIONAL SESSION SETTINGS -->
                 <div class="line" :id="line_bg"></div>
                 <div v-if="time_runs == false">
@@ -96,6 +98,7 @@
                     finally! sit back and relax
                 </div>
             </div>
+
             <!-- START BUTTON -->
             <StartButton
                 ButtonType="start-btn"
@@ -159,27 +162,18 @@ export default {
                 if (val == 0) {
                     this.curr_block++;
                     if (this.curr_block % 6 == 0) {
-                        this.timer_bg = "lbreak-bg";
-                        this.line_bg = "lbreak-line";
-
                         this.work_state = "none";
                         this.short_break_state = "none";
                         this.long_break_state = "lbreak-sesh-active";
 
                         this.time_count = this.long_break_period;
                     } else if (this.curr_block % 2 == 0) {
-                        this.timer_bg = "sbreak-bg";
-                        this.line_bg = "sbreak-line";
-
                         this.work_state = "none";
                         this.short_break_state = "sbreak-sesh-active";
                         this.long_break_state = "none";
 
                         this.time_count = this.short_break_period;
                     } else {
-                        this.timer_bg = "work-bg";
-                        this.line_bg = "work-line";
-
                         this.work_state = "work-sesh-active";
                         this.short_break_state = "none";
                         this.long_break_state = "none";
@@ -295,10 +289,16 @@ export default {
         periodUpdate(new_period) {
             if (this.work_state == "work-sesh-active") {
                 this.work_period = new_period;
+                this.timer_bg = "work-bg";
+                this.line_bg = "work-line";
             } else if (this.short_break_state == "sbreak-sesh-active") {
                 this.short_break_period = new_period;
+                this.timer_bg = "sbreak-bg";
+                this.line_bg = "sbreak-line";
             } else if (this.long_break_state == "lbreak-sesh-active") {
                 this.long_break_period = new_period;
+                this.timer_bg = "lbreak-bg";
+                this.line_bg = "lbreak-line";
             }
         },
         showWork() {
@@ -456,5 +456,14 @@ export default {
     font-weight: normal;
     font-size: 30px;
     margin-block: 2rem;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }
 </style>

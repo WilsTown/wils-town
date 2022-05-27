@@ -1,11 +1,7 @@
 <template>
     <div>
-        <!-- <SetPreferences v-if="settings == 'SetPreferences'"></SetPreferences> -->
         <NavBar @navigate="navView"></NavBar>
-
-        <ViewTimer
-            v-if="curr_view == 'ViewTimer'"
-        ></ViewTimer>
+        <ViewTimer v-if="curr_view == 'ViewTimer'"></ViewTimer>
         <ViewTown v-else-if="curr_view == 'ViewTown'"></ViewTown>
         <ViewInventory v-else-if="curr_view == 'ViewInventory'"></ViewInventory>
         <SetPreferences
@@ -56,5 +52,14 @@ export default {
     bottom: 0%;
     left: 0%;
     right: 0%;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active below version 2.1.8 */ {
+    opacity: 50%;
 }
 </style>
