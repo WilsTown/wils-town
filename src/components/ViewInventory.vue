@@ -17,11 +17,13 @@
                         @click="showStore"
                     ></StoreButton>
                 </div>
-                <div id = "coin-icon">
-                    <i class='fa fa-money fa-2x'></i>
-                </div>
-                <div id = "coin-text">
-                    200
+                <div id="cointainer">
+                    <div id="coin-icon">
+                        <i class="fa fa-money fa-2x"></i>
+                    </div>
+                    <div id="coin-text">
+                        {{ coins }}
+                    </div>
                 </div>
             </div>
             <InventoryMenu
@@ -30,7 +32,8 @@
             ></InventoryMenu>
             <StoreMenu
                 v-else-if="store_state == 'inv-active'"
-                @elementSelected="updateElementSelect"
+                @confirmBuy="confirmBuy"
+                :Coins="coins"
             ></StoreMenu>
         </div>
         <div id="edit-town">
@@ -66,6 +69,8 @@ export default {
             store_state: "none",
 
             element_selected: -1,
+            coins: 0,
+            user_stats: {},
         };
     },
     methods: {
@@ -80,6 +85,37 @@ export default {
         updateElementSelect(element_id) {
             this.element_selected = element_id;
         },
+        confirmBuy(element_price) {
+            this.coins = this.coins - element_price;
+            fetch("http://localhost:3000/user_stats/", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    coins: this.coins,
+                    work_default: this.user_stats.work_default,
+                    short_default: this.user_stats.short_default,
+                    long_default: this.user_stats.long_default,
+                }),
+            })
+                .then((res) => {
+                    if (res.status !== 200) {
+                        throw new Error(
+                            `There was an error with status code ${res.status}`
+                        );
+                    }
+                    return res.json();
+                })
+                .catch((err) => console.log(err.message));
+        },
+    },
+    mounted() {
+        fetch("http://localhost:3000/user_stats")
+            .then((res) => res.json())
+            .then((data) => {
+                this.user_stats = data;
+                this.coins = data.coins;
+            })
+            .catch((err) => console.log(err.message));
     },
 };
 </script>
@@ -100,15 +136,7 @@ export default {
     align-items: center;
     overflow: hidden;
 }
-#top-bar {
-    background-color: #2c4c72;
-    width: 350px;
-    position: fixed;
-    z-index: 1;
-    height: 8%;
-    top: 40px;
-    left: 0;
-}
+
 #left-window {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 350px; /* Set the width of the sidebar */
@@ -121,9 +149,46 @@ export default {
     padding-top: 20px;
     background-color: #607896;
 }
-#top-buttons {
+
+#top-bar {
+    background-color: #2c4c72;
+    width: 350px;
     position: fixed;
-    top: 50px;
+    z-index: 1;
+    height: 50px;
+    top: 40px;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#top-buttons {
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+#cointainer {
+    display: flex;
+    flex-flow: row unwrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-inline: 20px;
+}
+
+#coin-icon {
+    color: #f4d35e;
+    margin-right: 15px;
+}
+
+#coin-text {
+    color: #f4d35e;
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #town {
@@ -146,20 +211,15 @@ export default {
     width: 350px;
 }
 
-#coin-icon {
-    color: #F4D35E;
-    padding-top: 10px;
-    padding-left: 150px;
-
+::-webkit-scrollbar {
+    width: 10px;
 }
-#coin-text{
-    color: #F4D35E;
-    position: fixed;
-    top: 55px;
-    left: 280px;
-    font-family: Helvetica;
-    font-size: 20px;
-    font-weight: bold;
 
+::-webkit-scrollbar-track {
+    background: #506b8b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b4bfce;
 }
 </style>

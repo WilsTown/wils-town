@@ -22,7 +22,7 @@ export default {
 <style scoped>
 /* N A V  B U T T O N */
 .nav-btn {
-    height: 7vh;
+    height: 40px;
     width: inherit;
 
     border: none;
@@ -34,6 +34,7 @@ export default {
 
 .nav-btn:hover {
     background-color: #1d1d1d34;
+    transition: 0.5s;
 }
 
 #nav-active {
@@ -59,6 +60,7 @@ export default {
 .sesh-btn:hover {
     background: #6b4e472d;
     color: #fcf4d5;
+    transition: 0.5s;
 }
 
 #work-sesh-active {
@@ -99,9 +101,8 @@ export default {
 /* I N V E N T O R Y  B U T T O N S */
 .inv-btn {
     height: 35px;
-    padding-right: 2px;
-    padding-left: 2px; 
-    margin-inline: 15px;
+    padding: 2px 10px;
+    margin-inline: 10px;
     border: none;
     border-radius: 5px;
 
@@ -143,5 +144,21 @@ export default {
 
 .save-btn:hover {
     background: #c9a4e7;
+}
+
+.edit-town-btn {
+    color: #3f5c7f;
+    background-color: #c4c4c488;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+}
+
+.edit-town-btn:hover {
+    background-color: #c4c4c4;
 }
 </style>

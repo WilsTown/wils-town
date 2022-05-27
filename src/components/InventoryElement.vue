@@ -1,5 +1,5 @@
 <template>
-    <div class="element-bg">
+    <div class="element-bg" :target="ID == SelectState? 'selected' : 'unselected'">
         <img :src="ImageSource" class="element-img"/>
     </div>
 </template>
@@ -10,6 +10,8 @@ export default{
     props: {
         ImageSource: String,
         Index: Number,
+        SelectState: Number,
+        ID: Number,
     },
     data: function() {
         return {
@@ -38,11 +40,17 @@ export default{
     left: calc(110px * v-bind(left));
 }
 
-.element-bg:hover {
+
+.element-bg[target="selected"] {
+    background-color: #264672;
+}
+
+.element-bg:hover[target="unselected"] {
     background-color: #506B8B;
 }
 
 .element-img {
-    height: 90px;
+    max-height: 90px;
+    max-width: 90px;
 }
 </style>

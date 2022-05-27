@@ -3,6 +3,7 @@
         <div id="timer-sesh-container">
             <div class="timer-component" :id="timer_bg">
                 <!-- SESSION SELECTION BUTTONS -->
+
                 <div id="top-buttons">
                     <TimerButton
                         ButtonType="sesh-btn"
@@ -25,41 +26,79 @@
                 </div>
 
                 <!-- MAIN TIMER -->
-                <Time v-if="time_runs" :TimeRaw="time_count"></Time>
-                <TimeInput
-                    v-else-if="work_state == 'work-sesh-active'"
-                    @update="periodUpdate"
-                    :SavedPeriod="work_period"
-                ></TimeInput>
-                <TimeInput
-                    v-else-if="short_break_state == 'sbreak-sesh-active'"
-                    @update="periodUpdate"
-                    :SavedPeriod="short_break_period"
-                ></TimeInput>
-                <TimeInput
-                    v-else-if="long_break_state == 'lbreak-sesh-active'"
-                    @update="periodUpdate"
-                    :SavedPeriod="long_break_period"
-                ></TimeInput>
-
+                <transition name="component-fade" mode="out-in">
+                    <Time v-if="time_runs" :TimeRaw="time_count"></Time>
+                    <TimeInput
+                        v-else-if="
+                            work_state == 'work-sesh-active' &&
+                            user_stats.work_default
+                        "
+                        @update="periodUpdate"
+                        :SavedPeriod="work_period"
+                    ></TimeInput>
+                    <TimeInput
+                        v-else-if="
+                            short_break_state == 'sbreak-sesh-active' &&
+                            user_stats.short_default
+                        "
+                        @update="periodUpdate"
+                        :SavedPeriod="short_break_period"
+                    ></TimeInput>
+                    <TimeInput
+                        v-else-if="
+                            long_break_state == 'lbreak-sesh-active' &&
+                            user_stats.long_default
+                        "
+                        @update="periodUpdate"
+                        :SavedPeriod="long_break_period"
+                    ></TimeInput>
+                </transition>
                 <!-- ADDITIONAL SESSION SETTINGS -->
                 <div class="line" :id="line_bg"></div>
-                <div id="timer-settings">
-                    <span id="timer-settings">Timer</span>
-                    <ToggleButton @click="toggleMode"></ToggleButton>
-                    <span id="timer-settings">Stopwatch</span>
+                <div v-if="time_runs == false">
+                    <div id="timer-settings">
+                        <span id="timer-settings">Timer</span>
+                        <ToggleButton
+                            @toggleMode="toggleMode"
+                            :toggleDisable="time_runs"
+                        ></ToggleButton>
+                        <span id="timer-settings">Stopwatch</span>
+                    </div>
+                    <div>
+                        <form>
+                            <label id="timeblocks">Timeblocks</label>
+                            <input
+                                type="number"
+                                id="timeblock-input"
+                                v-model="timer_blocks"
+                            />
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <form>
-                        <label id="timeblocks">Timeblocks</label>
-                        <input
-                            type="number"
-                            id="timeblock-input"
-                            v-model="timer_blocks"
-                        />
-                    </form>
+                <div
+                    v-else-if="time_runs && work_state == 'work-sesh-active'"
+                    class="encouragements"
+                >
+                    time to focus!
+                </div>
+                <div
+                    v-else-if="
+                        time_runs && short_break_state == 'sbreak-sesh-active'
+                    "
+                    class="encouragements"
+                >
+                    time to rest for a bit
+                </div>
+                <div
+                    v-else-if="
+                        time_runs && long_break_state == 'lbreak-sesh-active'
+                    "
+                    class="encouragements"
+                >
+                    finally! sit back and relax
                 </div>
             </div>
+
             <!-- START BUTTON -->
             <StartButton
                 ButtonType="start-btn"
@@ -79,15 +118,14 @@ import Time from "./Time";
 import TimeInput from "./TimeInput";
 export default {
     name: "ViewTimer",
-    props: {
-        Coins: Number,
-    },
     data: function () {
         return {
             tabs: ["Work", "ShortBreak", "LongBreak"],
             selected: "Work",
 
             // TIMER VARIABLES
+            user_stats: {},
+
             time_obj: undefined,
             time_count: 0,
             work_period: 5,
@@ -107,7 +145,7 @@ export default {
             time_runs: false,
             timer_blocks: 1,
             mode: "stopwatch",
-            toggle: "94.5",
+            coins: 0,
         };
     },
     components: {
@@ -124,27 +162,18 @@ export default {
                 if (val == 0) {
                     this.curr_block++;
                     if (this.curr_block % 6 == 0) {
-                        this.timer_bg = "lbreak-bg";
-                        this.line_bg = "lbreak-line";
-
                         this.work_state = "none";
                         this.short_break_state = "none";
                         this.long_break_state = "lbreak-sesh-active";
 
                         this.time_count = this.long_break_period;
                     } else if (this.curr_block % 2 == 0) {
-                        this.timer_bg = "sbreak-bg";
-                        this.line_bg = "sbreak-line";
-
                         this.work_state = "none";
                         this.short_break_state = "sbreak-sesh-active";
                         this.long_break_state = "none";
 
                         this.time_count = this.short_break_period;
                     } else {
-                        this.timer_bg = "work-bg";
-                        this.line_bg = "work-line";
-
                         this.work_state = "work-sesh-active";
                         this.short_break_state = "none";
                         this.long_break_state = "none";
@@ -182,11 +211,11 @@ export default {
                 this.short_break_state = "none";
                 this.long_break_state = "none";
                 this.time_count = this.work_period;
-                console.log("SESSION STARTED\nMode : " + this.mode);
+                // console.log("SESSION STARTED\nMode : " + this.mode);
                 this.time_obj = setInterval(() => {
                     this.time_count--;
                     this.total_time++;
-                    console.log(this.total_time);
+                    // console.log(this.total_time);
                 }, 1000);
                 this.start_stop = "STOP";
                 this.time_runs = true;
@@ -194,30 +223,50 @@ export default {
                 var coins_earned = 0;
                 if (this.mode == "stopwatch") {
                     coins_earned = Math.floor(this.total_time / 5);
-                    this.$emit("coinSequence", coins_earned);
                 } else if (this.mode == "timer") {
                     this.timer_blocks > Math.floor((this.curr_block - 1) / 6)
                         ? (coins_earned = Math.floor(this.total_time / (5 * 2)))
                         : (coins_earned = (this.total_time * 2) / 5);
-                    this.$emit("coinSequence", coins_earned);
                 }
+                this.coins = this.coins + coins_earned;
+                this.overall_time = this.overall_time + this.total_time;
+
+                fetch("http://localhost:3000/user_stats/", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        coins: this.coins,
+                        work_default: this.user_stats.work_default,
+                        short_default: this.user_stats.short_default,
+                        long_default: this.user_stats.long_default,
+                    }),
+                })
+                    .then((res) => {
+                        if (res.status !== 200) {
+                            throw new Error(
+                                `There was an error with status code ${res.status}`
+                            );
+                        }
+                        return res.json();
+                    })
+                    .catch((err) => console.log(err.message));
+
                 this.time_count = this.work_period;
                 clearInterval(this.time_obj);
                 this.start_stop = "START";
                 this.time_runs = false;
-                console.log(
-                    "SESSION STOPPED\nMode : " +
-                        this.mode +
-                        "\nTotal Elapsed Time : " +
-                        this.total_time +
-                        "\nTotal Time Blocks : " +
-                        Math.floor((this.curr_block - 1) / 6) +
-                        "\nCoins Earned : " +
-                        coins_earned +
-                        "\nTotal Coins : " +
-                        (this.Coins + coins_earned)
-                );
-
+                // console.log(
+                //     "SESSION STOPPED\nMode : " +
+                //         this.mode +
+                //         "\nTotal Elapsed Time : " +
+                //         this.total_time +
+                //         "\nTotal Time Blocks : " +
+                //         Math.floor((this.curr_block - 1) / 6) +
+                //         "\nCoins Earned : " +
+                //         coins_earned +
+                //         "\nTotal Coins : " +
+                //         (this.Coins + coins_earned)
+                // );
                 alert(
                     "SESSION DONE!\nMode: " +
                         this.mode +
@@ -228,7 +277,7 @@ export default {
                         "\nCoins Earned : " +
                         coins_earned +
                         "\nTotal Coins : " +
-                        (this.Coins + coins_earned)
+                        this.coins
                 );
                 this.total_time = 0;
                 this.curr_block = 1;
@@ -237,10 +286,16 @@ export default {
         periodUpdate(new_period) {
             if (this.work_state == "work-sesh-active") {
                 this.work_period = new_period;
+                this.timer_bg = "work-bg";
+                this.line_bg = "work-line";
             } else if (this.short_break_state == "sbreak-sesh-active") {
                 this.short_break_period = new_period;
+                this.timer_bg = "sbreak-bg";
+                this.line_bg = "sbreak-line";
             } else if (this.long_break_state == "lbreak-sesh-active") {
                 this.long_break_period = new_period;
+                this.timer_bg = "lbreak-bg";
+                this.line_bg = "lbreak-line";
             }
         },
         showWork() {
@@ -273,19 +328,29 @@ export default {
                 this.long_break_state = "lbreak-sesh-active";
             }
         },
-        toggleMode() {
+        toggleMode(modeBool) {
             if (this.time_runs == false) {
-                if (this.mode == "stopwatch") {
-                    this.mode = "timer";
-                } else if (this.mode == "timer") {
+                if (modeBool) {
                     this.mode = "stopwatch";
+                } else {
+                    this.mode = "timer";
                 }
-                console.log("Current mode : " + this.mode);
+                // console.log("Current mode : " + this.mode);
             }
         },
     },
     mounted() {
-        console.log("Current mode : " + this.mode);
+        fetch("http://localhost:3000/user_stats")
+            .then((res) => res.json())
+            .then((data) => {
+                this.user_stats = data;
+                this.coins = data.coins;
+                this.work_period = data.work_default;
+                this.short_break_period = data.short_default;
+                this.long_break_period = data.long_default;
+            })
+            .catch((err) => console.log(err.message));
+        // console.log("Current mode : " + this.mode);
     },
 };
 </script>
@@ -296,7 +361,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    top: 7vh;
+    top: 40px;
     bottom: 0%;
     left: 0%;
     right: 0%;
@@ -310,6 +375,7 @@ export default {
 }
 
 .timer-component {
+    position: -ms-page;
     background: #af4b32;
     border-radius: 4vh;
     margin-block: 4vh;
@@ -370,7 +436,6 @@ export default {
     background: #fcf4d5;
     border: none;
     border-radius: 5px;
-    
 }
 
 .line {
@@ -380,5 +445,21 @@ export default {
     border-radius: 2px;
     margin: auto;
     margin-block: 0.2rem;
+}
+
+.encouragements {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 30px;
+    margin-block: 2rem;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }
 </style>

@@ -1,33 +1,266 @@
 {
-    "elements_array": [
-        { "src": "./buildings/Layer 2.png", "owned": true, "id": 1, "item_name": "Old Factory", "price": 100, "desc": "A simple old factory"  },
-        { "src": "./buildings/Layer 3.png", "owned": false, "id": 2, "item_name": "Sampaguita", "price": 120, "desc": "A sizeable building to house many people" },
-        { "src": "./buildings/Layer 4.png", "owned": false, "id": 3, "item_name": "Ilang-Ilang", "price": 120, "desc": "A sizeable building to house many people, but with better color" },
-        { "src": "./buildings/Layer 5.png", "owned": false, "id": 4, "item_name": "Kalayaan", "price": 100, "desc": "The place where freedom starts" },
-        { "src": "./buildings/Layer 6.png", "owned": false, "id": 5, "item_name": "Acacia Town Center", "price": 140, "desc": "The town center that has everything you need" },
-        { "src": "./buildings/Layer 7.png", "owned": false, "id": 6, "item_name": "Ipil", "price": 150, "desc": "A humble building" },
-        { "src": "./buildings/Layer 8.png", "owned": true, "id": 7, "item_name": "Centennial 1", "price": 175, "desc": "A large building for your needs" },
-        { "src": "./buildings/Layer 9.png", "owned": true, "id": 8, "item_name": "Centennial 2", "price": 150, "desc": "A small building for your needs" },
-        { "src": "./buildings/Layer 10.png", "owned": true, "id": 9, "item_name": "Niagra Tower", "price": 150, "desc": "A classy tower" },
-        { "src": "./buildings/Layer 11.png", "owned": true, "id": 10, "item_name": "Zeus Tower", "price": 175, "desc": "A tower that reaches Mt. Olympus" },
-        { "src": "./buildings/Layer 12.png", "owned": true, "id": 11, "item_name": "Loitte Building", "price": 100, "desc": "The place to start a business" },
-        { "src": "./buildings/Layer 13.png", "owned": false, "id": 12, "item_name": "CGB Building", "price": 120, "desc": "The metropolitan tower you need" },
-        { "src": "./buildings/Layer 14.png", "owned": false, "id": 13, "item_name": "Alaya Tower", "price": 150, "desc": "Another tower for business" },
-        { "src": "./buildings/Layer 15.png", "owned": false, "id": 14, "item_name": "G&P Building", "price": 120, "desc": "The place where business booms" },
-        { "src": "./buildings/Layer 16.png", "owned": false, "id": 15, "item_name": "Radical Building", "price": 200, "desc": "The perfect condominium for your town" },
-        { "src": "./buildings/Layer 17.png", "owned": false, "id": 16, "item_name": "Plain Building", "price": 100, "desc": "Just a plain building" },
-        { "src": "./buildings/Layer 18.png", "owned": true, "id": 17, "item_name": "Angat Hospital", "price": 100, "desc": "A simple hospital" },
-        { "src": "./buildings/Layer 19.png", "owned": true, "id": 18, "item_name": "Beatles Firehouse", "price": 150, "desc": "A firehouse will always be a necessity in a town" },
-        { "src": "./buildings/Layer 20.png", "owned": true, "id": 19, "item_name": "TDLP Building", "price": 150, "desc": "The telecommunication center starter" }       
-    ],
-    "store_array": [
-
-    ],
-    "plot_array": [
-        1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1
-    ]
+  "elements_array": [
+    {
+      "src": "./buildings/Layer 2.png",
+      "owned": false,
+      "id": 1,
+      "item_name": "Old Factory",
+      "price": 100,
+      "desc": "A simple old factory"
+    },
+    {
+      "src": "./buildings/Layer 3.png",
+      "owned": false,
+      "id": 2,
+      "item_name": "Sampaguita",
+      "price": 120,
+      "desc": "A sizeable building to house many people"
+    },
+    {
+      "src": "./buildings/Layer 4.png",
+      "owned": false,
+      "id": 3,
+      "item_name": "Ilang-Ilang",
+      "price": 120,
+      "desc": "A sizeable building to house many people, but with better color"
+    },
+    {
+      "src": "./buildings/Layer 5.png",
+      "owned": false,
+      "id": 4,
+      "item_name": "Kalayaan",
+      "price": 100,
+      "desc": "The place where freedom starts"
+    },
+    {
+      "src": "./buildings/Layer 6.png",
+      "owned": false,
+      "id": 5,
+      "item_name": "Acacia Town Center",
+      "price": 140,
+      "desc": "The town center that has everything you need"
+    },
+    {
+      "src": "./buildings/Layer 7.png",
+      "owned": false,
+      "id": 6,
+      "item_name": "Ipil",
+      "price": 150,
+      "desc": "A humble building"
+    },
+    {
+      "src": "./buildings/Layer 8.png",
+      "owned": false,
+      "id": 7,
+      "item_name": "Centennial 1",
+      "price": 175,
+      "desc": "A large building for your needs"
+    },
+    {
+      "src": "./buildings/Layer 9.png",
+      "owned": false,
+      "id": 8,
+      "item_name": "Centennial 2",
+      "price": 150,
+      "desc": "A small building for your needs"
+    },
+    {
+      "src": "./buildings/Layer 10.png",
+      "owned": false,
+      "id": 9,
+      "item_name": "Niagra Tower",
+      "price": 150,
+      "desc": "A classy tower"
+    },
+    {
+      "src": "./buildings/Layer 11.png",
+      "owned": false,
+      "id": 10,
+      "item_name": "Zeus Tower",
+      "price": 175,
+      "desc": "A tower that reaches Mt. Olympus"
+    },
+    {
+      "src": "./buildings/Layer 12.png",
+      "owned": false,
+      "id": 11,
+      "item_name": "Loitte Building",
+      "price": 100,
+      "desc": "The place to start a business"
+    },
+    {
+      "src": "./buildings/Layer 13.png",
+      "owned": false,
+      "id": 12,
+      "item_name": "CGB Building",
+      "price": 120,
+      "desc": "The metropolitan tower you need"
+    },
+    {
+      "src": "./buildings/Layer 14.png",
+      "owned": false,
+      "id": 13,
+      "item_name": "Alaya Tower",
+      "price": 150,
+      "desc": "Another tower for business"
+    },
+    {
+      "src": "./buildings/Layer 15.png",
+      "owned": false,
+      "id": 14,
+      "item_name": "G&P Building",
+      "price": 120,
+      "desc": "The place where business booms"
+    },
+    {
+      "src": "./buildings/Layer 16.png",
+      "owned": false,
+      "id": 15,
+      "item_name": "Radical Building",
+      "price": 200,
+      "desc": "The perfect condominium for your town"
+    },
+    {
+      "src": "./buildings/Layer 17.png",
+      "owned": false,
+      "id": 16,
+      "item_name": "Plain Building",
+      "price": 100,
+      "desc": "Just a plain building"
+    },
+    {
+      "src": "./buildings/Layer 18.png",
+      "owned": false,
+      "id": 17,
+      "item_name": "Angat Hospital",
+      "price": 100,
+      "desc": "A simple hospital"
+    },
+    {
+      "src": "./buildings/Layer 19.png",
+      "owned": false,
+      "id": 18,
+      "item_name": "Beatles Firehouse",
+      "price": 150,
+      "desc": "A firehouse will always be a necessity in a town"
+    },
+    {
+      "src": "./buildings/Layer 20.png",
+      "owned": false,
+      "id": 19,
+      "item_name": "TDLP Building",
+      "price": 150,
+      "desc": "The telecommunication center starter"
+    }
+  ],
+  "user_stats": {
+    "coins": 600,
+    "overall_time": 0,
+    "work_default": 1500,
+    "short_default": 300,
+    "long_default": 900
+  },
+  "store_array": [],
+  "plot_array": [
+    {
+      "id": 0,
+      "element_id": -1
+    },
+    {
+      "id": 1,
+      "element_id": -1
+    },
+    {
+      "id": 2,
+      "element_id": -1
+    },
+    {
+      "id": 3,
+      "element_id": -1
+    },
+    {
+      "id": 4,
+      "element_id": -1
+    },
+    {
+      "id": 5,
+      "element_id": -1
+    },
+    {
+      "id": 6,
+      "element_id": -1
+    },
+    {
+      "id": 7,
+      "element_id": -1
+    },
+    {
+      "id": 8,
+      "element_id": -1
+    },
+    {
+      "id": 9,
+      "element_id": -1
+    },
+    {
+      "id": 10,
+      "element_id": -1
+    },
+    {
+      "id": 11,
+      "element_id": -1
+    },
+    {
+      "id": 12,
+      "element_id": -1
+    },
+    {
+      "id": 13,
+      "element_id": -1
+    },
+    {
+      "id": 14,
+      "element_id": -1
+    },
+    {
+      "id": 15,
+      "element_id": -1
+    },
+    {
+      "id": 16,
+      "element_id": -1
+    },
+    {
+      "id": 17,
+      "element_id": -1
+    },
+    {
+      "id": 18,
+      "element_id": -1
+    },
+    {
+      "id": 19,
+      "element_id": -1
+    },
+    {
+      "id": 20,
+      "element_id": -1
+    },
+    {
+      "id": 21,
+      "element_id": -1
+    },
+    {
+      "id": 22,
+      "element_id": -1
+    },
+    {
+      "id": 23,
+      "element_id": -1
+    },
+    {
+      "id": 24,
+      "element_id": -1
+    }
+  ]
 }

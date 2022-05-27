@@ -7,20 +7,35 @@
             </div>
             <div id="line"></div>
             <div id="contents">
-                <div class="item" id="inactive">Consequences</div>
+                <div class="item" id="active">
+                    Consequences
+                    <ToggleButton class="toggle-btn"></ToggleButton>
+                </div>
 
                 <div class="item">Set Default Timeblock</div>
                 <div class="item" id="active">
                     Work
-                    <input id="input-box" type="time" />
+                    <TimeInput
+                        id="input-box"
+                        @update="workPeriodUpdate"
+                        :SavedPeriod="work_period"
+                    ></TimeInput>
                 </div>
                 <div class="item" id="active">
                     Short Break
-                    <input id="input-box" type="time" />
+                    <TimeInput
+                        id="input-box"
+                        @update="shortPeriodUpdate"
+                        :SavedPeriod="short_break_period"
+                    ></TimeInput>
                 </div>
                 <div class="item" id="active">
                     Long Break
-                    <input id="input-box" type="time" />
+                    <TimeInput
+                        id="input-box"
+                        @update="longPeriodUpdate"
+                        :SavedPeriod="long_break_period"
+                    ></TimeInput>
                 </div>
             </div>
             <PrefButton
@@ -34,10 +49,45 @@
 
 <script>
 import PrefButton from "./Button";
+import TimeInput from "./TimeInput";
+import ToggleButton from "./ToggleButton";
 export default {
     name: "SetPreferences",
     components: {
         PrefButton,
+        TimeInput,
+        ToggleButton,
+    },
+
+    data: function () {
+        return {
+            work_period: 5,
+            long_break_period: 5,
+            short_break_period: 5,
+        };
+    },
+    methods: {
+        workPeriodUpdate(new_period) {
+            this.work_period = new_period;
+        },
+
+        shortPeriodUpdate(new_period) {
+            this.short_break_period = new_period;
+        },
+
+        longPeriodUpdate(new_period) {
+            this.long_break_period = new_period;
+        },
+    },
+    mounted() {
+        fetch("http://localhost:3000/user_stats")
+            .then((res) => res.json())
+            .then((data) => {
+                this.work_period = data.work_default;
+                this.short_break_period = data.short_default;
+                this.long_break_period = data.long_default;
+            })
+            .catch((err) => console.log(err.message));
     },
 };
 </script>
@@ -58,6 +108,7 @@ export default {
 }
 
 #settings-container {
+    position: absolute;
     margin: 2rem;
     height: 500px;
     width: 450px;
@@ -103,25 +154,25 @@ export default {
 }
 
 #contents {
-    align-self: flex-start;
     display: flex;
+    width: 100%;
     flex-direction: column;
-    justify-content: space-around;
-    align-content: flex-start;
-    margin: 1rem;
+    justify-items: center;
+    align-content: center;
+    margin: 0.5rem;
     order: 3;
 }
 
 .item {
     display: flex;
-    align-self: flex-start;
+    align-items: center;
     justify-content: space-between;
     background: #00000000;
     border-radius: 10px;
 
     padding: 0.7rem;
     margin: 0.4rem;
-    width: 380px;
+    width: 400px;
 
     color: #fcf4d5;
     font-weight: bold;
@@ -139,9 +190,13 @@ export default {
 #input-box {
     border: none;
     width: 5rem;
+    height: 1.5rem;
     background: #675376;
     color: #fcf4d5;
     border-radius: 5px;
+
+    text-align: center;
+    font-size: 15px;
 }
 
 #save {
@@ -151,6 +206,10 @@ export default {
     width: 10rem;
     height: 2.5rem;
     order: 5;
+}
+
+.toggle-btn {
+    transform: scale(0.7);
 }
 </style>
 
