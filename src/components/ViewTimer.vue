@@ -59,7 +59,7 @@
                     <div id="timer-settings">
                         <span id="timer-settings">Timer</span>
                         <ToggleButton
-                            @toggleMode="toggleMode"
+                            @toggle="toggleMode"
                             :toggleDisable="time_runs"
                         ></ToggleButton>
                         <span id="timer-settings">Stopwatch</span>
@@ -221,13 +221,13 @@ export default {
                 this.time_runs = true;
             } else {
                 var coins_earned = 0;
-                if (this.mode == "stopwatch") {
-                    coins_earned = Math.floor(this.total_time / 5);
-                } else if (this.mode == "timer") {
+                if (this.mode == "timer" && this.user_stats.consequences == true) {
                     this.timer_blocks > Math.floor((this.curr_block - 1) / 6)
                         ? (coins_earned = Math.floor(this.total_time / (5 * 2)))
                         : (coins_earned = (this.total_time * 2) / 5);
-                }
+                } else {
+                    coins_earned = Math.floor(this.total_time / 5);
+                } 
                 this.coins = this.coins + coins_earned;
                 this.overall_time = this.overall_time + this.total_time;
 
@@ -235,7 +235,10 @@ export default {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
+                        buffer: true,
+                        consequences: this.user_stats.consequences,
                         coins: this.coins,
+                        overall_time: this.overall_time,
                         work_default: this.user_stats.work_default,
                         short_default: this.user_stats.short_default,
                         long_default: this.user_stats.long_default,
@@ -345,6 +348,7 @@ export default {
             .then((data) => {
                 this.user_stats = data;
                 this.coins = data.coins;
+                this.overall_time = data.overall_time;
                 this.work_period = data.work_default;
                 this.short_break_period = data.short_default;
                 this.long_break_period = data.long_default;

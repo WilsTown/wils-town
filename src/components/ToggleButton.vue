@@ -1,6 +1,6 @@
 <template>
     <label class="switch">
-        <input type="checkbox" v-model="mode_toggle" :disabled="toggleDisable"/>
+        <input type="checkbox" v-model="toggle" :disabled="toggleDisable"/>
         <span class="slider round"></span>
     </label>
 </template>
@@ -10,18 +10,22 @@ export default {
     name: "ToggleButton",
     props: {
         toggleDisable: Boolean,
+        toggleDefault: Boolean,
     },
     data() {
         return{
-            mode_toggle: true,
+            toggle: true,
         }
     },
     watch: {
-        mode_toggle:{
+        toggle:{
             handler(val) {
-                this.$emit("toggleMode", val)
+                this.$emit("toggle", val)
             }
         }
+    },
+    mounted() {
+        this.toggle = this.toggleDefault;
     }
 };
 </script>

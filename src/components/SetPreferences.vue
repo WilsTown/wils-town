@@ -6,10 +6,14 @@
                 <!-- <img src="exit-button.png" id="exit" /> -->
             </div>
             <div id="line"></div>
-            <div id="contents">
+            <div id="contents"  v-if="user_stats.buffer">
                 <div class="item" id="active">
                     Consequences
-                    <ToggleButton class="toggle-btn"></ToggleButton>
+                    <ToggleButton
+                        @toggle="toggleConsequence"
+                        class="toggle-btn"
+                        :toggleDefault="user_stats.consequences"
+                    ></ToggleButton>
                 </div>
 
                 <div class="item">Set Default Timeblock</div>
@@ -18,7 +22,7 @@
                     <TimeInput
                         id="input-box"
                         @update="workPeriodUpdate"
-                        :SavedPeriod="work_period"
+                        :SavedPeriod="user_stats.work_default"
                     ></TimeInput>
                 </div>
                 <div class="item" id="active">
@@ -26,7 +30,7 @@
                     <TimeInput
                         id="input-box"
                         @update="shortPeriodUpdate"
-                        :SavedPeriod="short_break_period"
+                        :SavedPeriod="user_stats.short_default"
                     ></TimeInput>
                 </div>
                 <div class="item" id="active">
@@ -34,7 +38,7 @@
                     <TimeInput
                         id="input-box"
                         @update="longPeriodUpdate"
-                        :SavedPeriod="long_break_period"
+                        :SavedPeriod="user_stats.long_default"
                     ></TimeInput>
                 </div>
             </div>
@@ -42,6 +46,7 @@
                 ButtonType="save-btn"
                 ButtonText="SAVE"
                 id="save"
+                @click="savePreferences"
             ></PrefButton>
         </div>
     </div>
@@ -61,31 +66,44 @@ export default {
 
     data: function () {
         return {
-            work_period: 5,
-            long_break_period: 5,
-            short_break_period: 5,
+            user_stats: {},
         };
     },
     methods: {
         workPeriodUpdate(new_period) {
-            this.work_period = new_period;
+            this.user_stats.work_default = new_period;
         },
 
         shortPeriodUpdate(new_period) {
-            this.short_break_period = new_period;
+            this.user_stats.short_default = new_period;
         },
 
         longPeriodUpdate(new_period) {
-            this.long_break_period = new_period;
+            this.user_stats.long_default = new_period;
         },
+        toggleConsequence(toggleBool) {
+            this.user_stats.consequences = toggleBool;
+        },
+        savePreferences(){
+            fetch('http://localhost:3000/user_stats/', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(this.user_stats)
+                })
+                .then(res => {
+                    if (res.status !== 200) {
+                        throw new Error(`There was an error with status code ${res.status}`)
+                    }
+                    return res.json()
+                })
+                .catch(err => console.log(err.message));
+        }
     },
     mounted() {
         fetch("http://localhost:3000/user_stats")
             .then((res) => res.json())
             .then((data) => {
-                this.work_period = data.work_default;
-                this.short_break_period = data.short_default;
-                this.long_break_period = data.long_default;
+                this.user_stats = data;
             })
             .catch((err) => console.log(err.message));
     },
