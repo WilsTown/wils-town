@@ -11,7 +11,7 @@
                 </div>
                 <div class="item">
                     Navigate the different icons above to start your personal
-                    productivity app!
+                    productivity app. Have fun!
                 </div>
                 <div class="item">
                     <i class="fa fa-clock-o" id="icon"></i>
@@ -128,7 +128,7 @@ export default {
 }
 
 .text.subtitle {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     margin: 0 0 1rem 0;
 }
@@ -144,7 +144,7 @@ export default {
 
 #icon {
     font-size: 2rem;
-    margin: 0.5rem;
+    margin: 0 1.5rem;
     color: #f4d35e;
 }
 </style>
