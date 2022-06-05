@@ -6,12 +6,12 @@
                 <!-- <img src="exit-button.png" id="exit" /> -->
             </div>
             <div id="line"></div>
-            <div id="contents"  v-if="user_stats.buffer">
+            <div id="contents" v-if="user_stats.buffer">
                 <div class="item" id="active">
                     Consequences
                     <ToggleButton
                         @toggle="toggleConsequence"
-                        class="toggle-btn"
+                        :class="toggleBtn"
                         :toggleDefault="user_stats.consequences"
                     ></ToggleButton>
                 </div>
@@ -67,6 +67,7 @@ export default {
     data: function () {
         return {
             user_stats: {},
+            toggleBtn: "toggle-btn",
         };
     },
     methods: {
@@ -83,21 +84,28 @@ export default {
         },
         toggleConsequence(toggleBool) {
             this.user_stats.consequences = toggleBool;
+            if (toggleBool) {
+                this.toggleBtn = "toggle-btn";
+            } else {
+                this.toggleBtn = "toggle-btn inactive";
+            }
         },
-        savePreferences(){
-            fetch('http://localhost:3000/user_stats/', {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(this.user_stats)
-                })
-                .then(res => {
+        savePreferences() {
+            fetch("http://localhost:3000/user_stats/", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(this.user_stats),
+            })
+                .then((res) => {
                     if (res.status !== 200) {
-                        throw new Error(`There was an error with status code ${res.status}`)
+                        throw new Error(
+                            `There was an error with status code ${res.status}`
+                        );
                     }
-                    return res.json()
+                    return res.json();
                 })
-                .catch(err => console.log(err.message));
-        }
+                .catch((err) => console.log(err.message));
+        },
     },
     mounted() {
         fetch("http://localhost:3000/user_stats")
@@ -228,6 +236,11 @@ export default {
 
 .toggle-btn {
     transform: scale(0.7);
+}
+
+.toggle-btn.inactive {
+    transform: scale(0.7);
+    opacity: 0.5;
 }
 </style>
 

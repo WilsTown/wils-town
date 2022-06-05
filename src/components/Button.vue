@@ -22,14 +22,16 @@ export default {
 <style scoped>
 /* N A V  B U T T O N */
 .nav-btn {
-    height: 40px;
-    width: inherit;
+    height: inherit;
+    width: 5rem;
 
     border: none;
     padding-right: 20px;
     padding-left: 20px;
     background-color: #b45a4300;
     color: #faf0ca;
+
+    font-size: 1.7rem;
 }
 
 .nav-btn:hover {
@@ -44,9 +46,7 @@ export default {
 /* T I M E R  B U T T O N S */
 .sesh-btn {
     height: 35px;
-    padding-right: 20px;
-    padding-left: 20px;
-    margin-inline: 40px;
+    padding: 0px 20px;
     border: none;
     border-radius: 15px;
 
@@ -89,6 +89,7 @@ export default {
 
     padding-block: 0.5rem;
     padding-inline: 3rem;
+    width: 12.5rem;
 
     font-weight: bold;
     font-size: 30px;

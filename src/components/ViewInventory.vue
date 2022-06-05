@@ -87,9 +87,9 @@ export default {
         },
         confirmBuy(element_price) {
             this.coins = this.coins - element_price;
-            fetch('http://localhost:3000/user_stats/', {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
+            fetch("http://localhost:3000/user_stats/", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     buffer: true,
                     consequences: this.user_stats.consequences,
@@ -98,16 +98,18 @@ export default {
                     work_default: this.user_stats.work_default,
                     short_default: this.user_stats.short_default,
                     long_default: this.user_stats.long_default,
-                    })
-                })
-                .then(res => {
+                }),
+            })
+                .then((res) => {
                     if (res.status !== 200) {
-                        throw new Error(`There was an error with status code ${res.status}`)
+                        throw new Error(
+                            `There was an error with status code ${res.status}`
+                        );
                     }
-                    return res.json()
+                    return res.json();
                 })
-                .catch(err => console.log(err.message));
-        }
+                .catch((err) => console.log(err.message));
+        },
     },
     mounted() {
         fetch("http://localhost:3000/user_stats")
@@ -128,7 +130,7 @@ export default {
 
 #edit-container {
     position: absolute;
-    top: 40px;
+    top: 2.5rem;
     bottom: 0%;
     left: 0%;
     right: 0%;

@@ -12,7 +12,7 @@
                         @click="showWork"
                     ></TimerButton>
                     <TimerButton
-                        ButtonType="sesh-btn"
+                        ButtonType="sesh-btn sbreak"
                         ButtonText="Short Break"
                         :ButtonState="short_break_state"
                         @click="showShort"
@@ -55,16 +55,19 @@
                 </transition>
                 <!-- ADDITIONAL SESSION SETTINGS -->
                 <div class="line" :id="line_bg"></div>
-                <div v-if="time_runs == false">
+
+                <div v-if="time_runs == false" class="settings-container">
                     <div id="timer-settings">
-                        <span id="timer-settings">Timer</span>
-                        <ToggleButton
-                            @toggle="toggleMode"
-                            :toggleDisable="time_runs"
-                        ></ToggleButton>
-                        <span id="timer-settings">Stopwatch</span>
+                        <div id="toggle-settings">
+                            <span class="toggle-label">Timer</span>
+                            <ToggleButton
+                                @toggle="toggleMode"
+                                :toggleDisable="time_runs"
+                            ></ToggleButton>
+                            <span class="toggle-label">Stopwatch</span>
+                        </div>
                     </div>
-                    <div>
+                    <div class="timeblocks-container">
                         <form>
                             <label id="timeblocks">Timeblocks</label>
                             <input
@@ -75,6 +78,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div
                     v-else-if="time_runs && work_state == 'work-sesh-active'"
                     class="encouragements"
@@ -221,13 +225,16 @@ export default {
                 this.time_runs = true;
             } else {
                 var coins_earned = 0;
-                if (this.mode == "timer" && this.user_stats.consequences == true) {
+                if (
+                    this.mode == "timer" &&
+                    this.user_stats.consequences == true
+                ) {
                     this.timer_blocks > Math.floor((this.curr_block - 1) / 6)
                         ? (coins_earned = Math.floor(this.total_time / (5 * 2)))
                         : (coins_earned = (this.total_time * 2) / 5);
                 } else {
                     coins_earned = Math.floor(this.total_time / 5);
-                } 
+                }
                 this.coins = this.coins + coins_earned;
                 this.overall_time = this.overall_time + this.total_time;
 
@@ -362,32 +369,43 @@ export default {
 <style scoped>
 #timer-container {
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    top: 40px;
+    top: 2.5rem;
     bottom: 0%;
     left: 0%;
     right: 0%;
+
+    display: flex;
+    justify-content: center;
+    align-items: space-evenly;
+
     background-color: #e76f51;
 }
 
 #timer-sesh-container {
     color: #fcf4d5;
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: bold;
+
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 0 1 auto;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .timer-component {
-    position: -ms-page;
+    /* position: -ms-page; */
     background: #af4b32;
     border-radius: 4vh;
-    margin-block: 4vh;
     /* margin-inline: 330px; */
     padding-block: 25px;
 
-    width: 50vw;
-    height: 60vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: space-around;
+    width: 40rem;
+    height: 22.5rem;
 }
 
 #work-bg {
@@ -416,6 +434,9 @@ export default {
 
 #top-buttons {
     position: inline;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
 }
 
 #time {
@@ -425,9 +446,32 @@ export default {
     padding: 0px;
 }
 
+.settings-container {
+    /* height: 5rem; */
+    display: flex;
+    flex-flow: column nowrap;
+}
 #timer-settings {
-    padding-inline: 4rem;
-    padding-block: 0.5rem;
+    /* padding-inline: 4rem;
+    padding-block: 0.5rem; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-content: space-evenly;
+}
+
+#toggle-settings {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeblocks-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 #timeblocks {
@@ -435,11 +479,12 @@ export default {
 }
 
 #timeblock-input {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     background: #fcf4d5;
     border: none;
     border-radius: 5px;
+    text-align: center;
 }
 
 .line {
@@ -447,17 +492,23 @@ export default {
     height: 3px;
     background: #6b4e47;
     border-radius: 2px;
-    margin: auto;
-    margin-block: 0.2rem;
+    align-self: center;
+    margin: 0.5rem 0.5rem;
 }
 
 .encouragements {
+    display: flex;
     font-style: italic;
     font-weight: normal;
-    font-size: 30px;
-    margin-block: 2rem;
+    font-size: 2rem;
+    align-content: space-around;
+    justify-content: center;
+    /* margin-block: 1.5rem; */
 }
 
+.toggle-label {
+    margin: 0rem 2rem;
+}
 .component-fade-enter-active,
 .component-fade-leave-active {
     transition: opacity 0.5s ease;

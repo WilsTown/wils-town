@@ -2,25 +2,25 @@
     <div class="nav-bar" :id="nav_color">
         <NavButton
             ButtonType="nav-btn"
-            IconClass="fa fa-clock-o fa-2x"
+            IconClass="fa fa-clock-o"
             :IconState="timer_state"
             @click="NavTimer"
         ></NavButton>
         <NavButton
             ButtonType="nav-btn"
-            IconClass="fa fa-map-o fa-2x"
+            IconClass="fa fa-map-o"
             :IconState="town_state"
             @click="NavTown"
         ></NavButton>
         <NavButton
             ButtonType="nav-btn"
-            IconClass="fa fa-paint-brush fa-2x"
+            IconClass="fa fa-paint-brush"
             :IconState="edit_state"
             @click="NavInventory"
         ></NavButton>
         <NavButton
             ButtonType="nav-btn"
-            IconClass="fa fa-gear fa-2x"
+            IconClass="fa fa-gear"
             :IconState="settings_state"
             @click="NavSettings"
         ></NavButton>
@@ -83,7 +83,7 @@ export default {
 
 <style scoped>
 .nav-bar {
-    height: 40px;
+    height: 2.5rem;
 }
 
 #view-timer {

@@ -1,6 +1,6 @@
 <template>
     <label class="switch">
-        <input type="checkbox" v-model="toggle" :disabled="toggleDisable"/>
+        <input type="checkbox" v-model="toggle" :disabled="toggleDisable" />
         <span class="slider round"></span>
     </label>
 </template>
@@ -13,20 +13,20 @@ export default {
         toggleDefault: Boolean,
     },
     data() {
-        return{
+        return {
             toggle: true,
-        }
+        };
     },
     watch: {
-        toggle:{
+        toggle: {
             handler(val) {
-                this.$emit("toggle", val)
-            }
-        }
+                this.$emit("toggle", val);
+            },
+        },
     },
     mounted() {
         this.toggle = this.toggleDefault;
-    }
+    },
 };
 </script>
 
@@ -36,6 +36,7 @@ export default {
     display: inline-block;
     width: 60px;
     height: 34px;
+    /* margin-inline: 2rem; */
 
     border-style: solid;
     border-color: #fcf4d5;
@@ -73,6 +74,10 @@ export default {
     background-color: #fcf4d5;
     -webkit-transition: 0.4s;
     transition: 0.4s;
+}
+
+.slider.false:before {
+    background-color: black;
 }
 
 input:checked + .slider:before {

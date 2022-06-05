@@ -1,11 +1,11 @@
 <template>
-    <div id="view-town-container">"
+    <div id="view-town-container">
+        "
         <EditTown StateEditing="disabled"></EditTown>
     </div>
 </template>
 
 <script>
-
 import EditTown from "./EditTown.vue";
 export default {
     name: "ViewTown",
@@ -19,7 +19,7 @@ export default {
 #view-town-container {
     position: absolute;
     display: flex;
-    top: 40px;
+    top: 2.5rem;
     bottom: 0%;
     left: 0%;
     right: 0%;
@@ -27,6 +27,4 @@ export default {
     justify-content: center;
     align-items: center;
 }
-
-
 </style>
