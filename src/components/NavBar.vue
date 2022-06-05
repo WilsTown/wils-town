@@ -24,6 +24,12 @@
             :IconState="settings_state"
             @click="NavSettings"
         ></NavButton>
+        <NavButton
+            ButtonType="nav-btn"
+            IconClass="fa fa-info-circle"
+            :IconState="info_state"
+            @click="NavInfo"
+        ></NavButton>
     </div>
 </template>
 
@@ -40,6 +46,7 @@ export default {
             town_state: "none",
             edit_state: "none",
             settings_state: "none",
+            info_state: "none",
             nav_color: "view-timer",
         };
     },
@@ -50,6 +57,7 @@ export default {
             this.town_state = "none";
             this.edit_state = "none";
             this.settings_state = "none";
+            this.info_state = "none";
             this.nav_color = "view-timer";
         },
         NavTown() {
@@ -58,6 +66,7 @@ export default {
             this.town_state = "nav-active";
             this.edit_state = "none";
             this.settings_state = "none";
+            this.info_state = "none";
             this.nav_color = "view-town";
         },
         NavInventory() {
@@ -66,6 +75,7 @@ export default {
             this.town_state = "none";
             this.edit_state = "nav-active";
             this.settings_state = "none";
+            this.info_state = "none";
             this.nav_color = "edit-town";
         },
         NavSettings() {
@@ -74,6 +84,16 @@ export default {
             this.town_state = "none";
             this.edit_state = "none";
             this.settings_state = "nav-active";
+            this.info_state = "none";
+            this.nav_color = "settings";
+        },
+        NavInfo() {
+            this.$emit("navigate", "ViewInfo");
+            this.timer_state = "none";
+            this.town_state = "none";
+            this.edit_state = "none";
+            this.settings_state = "none";
+            this.info_state = "nav-active";
             this.nav_color = "settings";
         },
     },

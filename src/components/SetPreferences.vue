@@ -3,7 +3,6 @@
         <div id="settings-container">
             <div id="top">
                 <div id="title">Preferences</div>
-                <!-- <img src="exit-button.png" id="exit" /> -->
             </div>
             <div id="line"></div>
             <div id="contents" v-if="user_stats.buffer">
@@ -121,7 +120,7 @@ export default {
 <style scoped>
 #component-container {
     position: absolute;
-    top: 40px;
+    top: 2.5rem;
     bottom: 0%;
     left: 0%;
     right: 0%;

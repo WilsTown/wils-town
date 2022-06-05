@@ -26,33 +26,31 @@
                 </div>
 
                 <!-- MAIN TIMER -->
-                <transition name="component-fade" mode="out-in">
-                    <Time v-if="time_runs" :TimeRaw="time_count"></Time>
-                    <TimeInput
-                        v-else-if="
-                            work_state == 'work-sesh-active' &&
-                            user_stats.work_default
-                        "
-                        @update="periodUpdate"
-                        :SavedPeriod="work_period"
-                    ></TimeInput>
-                    <TimeInput
-                        v-else-if="
-                            short_break_state == 'sbreak-sesh-active' &&
-                            user_stats.short_default
-                        "
-                        @update="periodUpdate"
-                        :SavedPeriod="short_break_period"
-                    ></TimeInput>
-                    <TimeInput
-                        v-else-if="
-                            long_break_state == 'lbreak-sesh-active' &&
-                            user_stats.long_default
-                        "
-                        @update="periodUpdate"
-                        :SavedPeriod="long_break_period"
-                    ></TimeInput>
-                </transition>
+                <Time v-if="time_runs" :TimeRaw="time_count"></Time>
+                <TimeInput
+                    v-else-if="
+                        work_state == 'work-sesh-active' &&
+                        user_stats.work_default
+                    "
+                    @update="periodUpdate"
+                    :SavedPeriod="work_period"
+                ></TimeInput>
+                <TimeInput
+                    v-else-if="
+                        short_break_state == 'sbreak-sesh-active' &&
+                        user_stats.short_default
+                    "
+                    @update="periodUpdate"
+                    :SavedPeriod="short_break_period"
+                ></TimeInput>
+                <TimeInput
+                    v-else-if="
+                        long_break_state == 'lbreak-sesh-active' &&
+                        user_stats.long_default
+                    "
+                    @update="periodUpdate"
+                    :SavedPeriod="long_break_period"
+                ></TimeInput>
                 <!-- ADDITIONAL SESSION SETTINGS -->
                 <div class="line" :id="line_bg"></div>
 
@@ -508,13 +506,5 @@ export default {
 
 .toggle-label {
     margin: 0rem 2rem;
-}
-.component-fade-enter-active,
-.component-fade-leave-active {
-    transition: opacity 0.5s ease;
-}
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
 }
 </style>

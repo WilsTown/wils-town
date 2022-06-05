@@ -7,6 +7,7 @@
         <SetPreferences
             v-else-if="curr_view == 'SetPreferences'"
         ></SetPreferences>
+        <ViewInfo v-else-if="curr_view == 'ViewInfo'"></ViewInfo>
     </div>
 </template>
 
@@ -16,6 +17,7 @@ import ViewTimer from "./components/ViewTimer.vue";
 import ViewInventory from "./components/ViewInventory.vue";
 import ViewTown from "./components/ViewTown.vue";
 import SetPreferences from "./components/SetPreferences.vue";
+import ViewInfo from "./components/ViewInfo.vue";
 
 export default {
     name: "App",
@@ -25,6 +27,7 @@ export default {
         ViewTown,
         ViewInventory,
         SetPreferences,
+        ViewInfo,
     },
     data: function () {
         return {
@@ -52,14 +55,5 @@ export default {
     bottom: 0%;
     left: 0%;
     right: 0%;
-}
-
-.component-fade-enter-active,
-.component-fade-leave-active {
-    transition: opacity 0.5s ease;
-}
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
-    opacity: 50%;
 }
 </style>
