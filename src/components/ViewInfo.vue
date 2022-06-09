@@ -10,20 +10,22 @@
                     Wil's Town is a City-Builder Game-Integrated Pomodoro Timer
                 </div>
                 <div class="item">
-                    Navigate the different icons above to start your personal
+                    Navigate the different icons to start your personal
                     productivity app. Have fun!
                 </div>
                 <div class="item">
                     <i class="fa fa-clock-o" id="icon"></i>
                     <div class="text">
                         Pomodoro Timer. Personalize your sessions! Finish your
-                        timeblocks and earn coins.
+                        timeblocks and earn coins. Timer mode lets you work with
+                        default timeblocks. Stopwatch mode lets you work for as
+                        long as you can!
                     </div>
                 </div>
                 <div class="item">
                     <i class="fa fa-map-o" id="icon"></i>
                     <div class="text">
-                        View Town. How productive have you been?
+                        <b>View Town.</b><i> How productive have you been?</i>
                     </div>
                 </div>
                 <div class="item">
@@ -93,7 +95,7 @@ export default {
 #title {
     margin-inline: 1rem;
     margin-block: 0.5rem;
-    font-size: 60px;
+    font-size: 3rem;
     font-weight: bold;
     order: 1;
 }
@@ -103,7 +105,7 @@ export default {
     height: 2px;
     background: #fff9e4;
     border-radius: 2px;
-    margin: auto;
+    margin-inline: auto;
     margin-block: 0.1rem;
     order: 2;
 }
