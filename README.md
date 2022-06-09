@@ -25,6 +25,11 @@ npm run serve
 npm run build
 ```
 
+### Runs the database
+```
+npm run database
+```
+
 ### Lints and fixes files
 ```
 npm run lint
