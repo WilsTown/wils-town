@@ -25,7 +25,7 @@
                 <div class="item">
                     <i class="fa fa-map-o" id="icon"></i>
                     <div class="text">
-                        <b>View Town.</b><i> How productive have you been?</i>
+                        View Town. How productive have you been?
                     </div>
                 </div>
                 <div class="item">
