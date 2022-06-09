@@ -65,7 +65,7 @@
                             <span class="toggle-label">Stopwatch</span>
                         </div>
                     </div>
-                    <div class="timeblocks-container">
+                    <div v-if="mode == 'timer'" class="timeblocks-container">
                         <form>
                             <label id="timeblocks">Timeblocks</label>
                             <input
@@ -167,18 +167,24 @@ export default {
                         this.work_state = "none";
                         this.short_break_state = "none";
                         this.long_break_state = "lbreak-sesh-active";
+                        this.timer_bg = "lbreak-bg";
+                        this.line_bg = "lbreak-line";
 
                         this.time_count = this.long_break_period;
                     } else if (this.curr_block % 2 == 0) {
                         this.work_state = "none";
                         this.short_break_state = "sbreak-sesh-active";
                         this.long_break_state = "none";
+                        this.timer_bg = "sbreak-bg";
+                        this.line_bg = "sbreak-line";
 
                         this.time_count = this.short_break_period;
                     } else {
                         this.work_state = "work-sesh-active";
                         this.short_break_state = "none";
                         this.long_break_state = "none";
+                        this.timer_bg = "work-bg";
+                        this.line_bg = "work-line";
 
                         this.time_count = this.work_period;
                     }
