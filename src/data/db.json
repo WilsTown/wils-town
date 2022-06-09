@@ -2,7 +2,7 @@
   "elements_array": [
     {
       "src": "./buildings/Layer 2.png",
-      "owned": false,
+      "owned": true,
       "id": 1,
       "item_name": "Old Factory",
       "price": 100,
@@ -26,7 +26,7 @@
     },
     {
       "src": "./buildings/Layer 5.png",
-      "owned": false,
+      "owned": true,
       "id": 4,
       "item_name": "Kalayaan",
       "price": 100,
@@ -34,7 +34,7 @@
     },
     {
       "src": "./buildings/Layer 6.png",
-      "owned": false,
+      "owned": true,
       "id": 5,
       "item_name": "Acacia Town Center",
       "price": 140,
@@ -50,7 +50,7 @@
     },
     {
       "src": "./buildings/Layer 8.png",
-      "owned": false,
+      "owned": true,
       "id": 7,
       "item_name": "Centennial 1",
       "price": 175,
@@ -122,7 +122,7 @@
     },
     {
       "src": "./buildings/Layer 17.png",
-      "owned": false,
+      "owned": true,
       "id": 16,
       "item_name": "Plain Building",
       "price": 100,
@@ -155,38 +155,38 @@
   ],
   "user_stats": {
     "buffer": true,
-    "consequences": false,
-    "coins": 600,
-    "overall_time": 0,
-    "work_default": 1500,
-    "short_default": 300,
-    "long_default": 900
+    "consequences": true,
+    "coins": 8.2,
+    "overall_time": 37,
+    "work_default": 4,
+    "short_default": 3,
+    "long_default": 3
   },
   "store_array": [],
   "plot_array": [
     {
       "id": 0,
-      "element_id": -1
+      "element_id": 4
     },
     {
       "id": 1,
-      "element_id": -1
+      "element_id": 7
     },
     {
       "id": 2,
-      "element_id": -1
+      "element_id": 7
     },
     {
       "id": 3,
-      "element_id": -1
+      "element_id": 16
     },
     {
       "id": 4,
-      "element_id": -1
+      "element_id": 16
     },
     {
       "id": 5,
-      "element_id": -1
+      "element_id": 5
     },
     {
       "id": 6,
@@ -202,11 +202,11 @@
     },
     {
       "id": 9,
-      "element_id": -1
+      "element_id": 5
     },
     {
       "id": 10,
-      "element_id": -1
+      "element_id": 4
     },
     {
       "id": 11,
@@ -226,7 +226,7 @@
     },
     {
       "id": 15,
-      "element_id": -1
+      "element_id": 16
     },
     {
       "id": 16,
@@ -246,7 +246,7 @@
     },
     {
       "id": 20,
-      "element_id": -1
+      "element_id": 16
     },
     {
       "id": 21,
