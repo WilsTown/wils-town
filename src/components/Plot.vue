@@ -29,12 +29,16 @@ export default {
         return {
             grid_size: 5,
             cells_array: [],
+            plot_data: [],
         };
     },
     mounted() {
         fetch("http://localhost:3000/plot_array")
             .then((res) => res.json())
-            .then((data) => (this.cells_array = data))
+            .then((data) => {
+                this.plot_data = data;
+                this.cells_array = data[0].array;
+                })
             .catch((err) => console.log(err.message));
     },
     methods: {
@@ -57,25 +61,21 @@ export default {
             }
         },
         savePlot() {
-            for (let i = 0; i < Math.pow(this.grid_size, 2); i++) {
-                fetch("http://localhost:3000/plot_array/" + i, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        id: i,
-                        element_id: this.cells_array[i].element_id,
-                    }),
+            this.plot_data[0].array = this.cells_array;
+            fetch("http://localhost:3000/plot_array/" + this.plot_data[0].id, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(this.plot_data[0]),
+            })
+                .then((res) => {
+                    if (res.status !== 200) {
+                        throw new Error(
+                            `There was an error with status code ${res.status}`
+                        );
+                    }
+                    return res.json();
                 })
-                    .then((res) => {
-                        if (res.status !== 200) {
-                            throw new Error(
-                                `There was an error with status code ${res.status}`
-                            );
-                        }
-                        return res.json();
-                    })
-                    .catch((err) => console.log(err.message));
-            }
+                .catch((err) => console.log(err.message));
         },
     },
 };

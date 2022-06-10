@@ -157,7 +157,6 @@
     "buffer": true,
     "consequences": false,
     "coins": 600,
-    "overall_time": 0,
     "work_default": 1500,
     "short_default": 300,
     "long_default": 900
@@ -166,103 +165,108 @@
   "plot_array": [
     {
       "id": 0,
-      "element_id": -1
-    },
-    {
-      "id": 1,
-      "element_id": -1
-    },
-    {
-      "id": 2,
-      "element_id": -1
-    },
-    {
-      "id": 3,
-      "element_id": -1
-    },
-    {
-      "id": 4,
-      "element_id": -1
-    },
-    {
-      "id": 5,
-      "element_id": -1
-    },
-    {
-      "id": 6,
-      "element_id": -1
-    },
-    {
-      "id": 7,
-      "element_id": -1
-    },
-    {
-      "id": 8,
-      "element_id": -1
-    },
-    {
-      "id": 9,
-      "element_id": -1
-    },
-    {
-      "id": 10,
-      "element_id": -1
-    },
-    {
-      "id": 11,
-      "element_id": -1
-    },
-    {
-      "id": 12,
-      "element_id": -1
-    },
-    {
-      "id": 13,
-      "element_id": -1
-    },
-    {
-      "id": 14,
-      "element_id": -1
-    },
-    {
-      "id": 15,
-      "element_id": -1
-    },
-    {
-      "id": 16,
-      "element_id": -1
-    },
-    {
-      "id": 17,
-      "element_id": -1
-    },
-    {
-      "id": 18,
-      "element_id": -1
-    },
-    {
-      "id": 19,
-      "element_id": -1
-    },
-    {
-      "id": 20,
-      "element_id": -1
-    },
-    {
-      "id": 21,
-      "element_id": -1
-    },
-    {
-      "id": 22,
-      "element_id": -1
-    },
-    {
-      "id": 23,
-      "element_id": -1
-    },
-    {
-      "id": 24,
-      "element_id": -1
+      "array": [
+        {
+          "id": 0,
+          "element_id": -1
+        },
+        {
+          "id": 1,
+          "element_id": -1
+        },
+        {
+          "id": 2,
+          "element_id": -1
+        },
+        {
+          "id": 3,
+          "element_id": -1
+        },
+        {
+          "id": 4,
+          "element_id": -1
+        },
+        {
+          "id": 5,
+          "element_id": -1
+        },
+        {
+          "id": 6,
+          "element_id": -1
+        },
+        {
+          "id": 7,
+          "element_id": -1
+        },
+        {
+          "id": 8,
+          "element_id": -1
+        },
+        {
+          "id": 9,
+          "element_id": -1
+        },
+        {
+          "id": 10,
+          "element_id": -1
+        },
+        {
+          "id": 11,
+          "element_id": -1
+        },
+        {
+          "id": 12,
+          "element_id": -1
+        },
+        {
+          "id": 13,
+          "element_id": -1
+        },
+        {
+          "id": 14,
+          "element_id": -1
+        },
+        {
+          "id": 15,
+          "element_id": -1
+        },
+        {
+          "id": 16,
+          "element_id": -1
+        },
+        {
+          "id": 17,
+          "element_id": -1
+        },
+        {
+          "id": 18,
+          "element_id": -1
+        },
+        {
+          "id": 19,
+          "element_id": -1
+        },
+        {
+          "id": 20,
+          "element_id": -1
+        },
+        {
+          "id": 21,
+          "element_id": -1
+        },
+        {
+          "id": 22,
+          "element_id": -1
+        },
+        {
+          "id": 23,
+          "element_id": -1
+        },
+        {
+          "id": 24,
+          "element_id": -1
+        }
+      ]
     }
   ]
 }
